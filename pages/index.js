@@ -91,6 +91,12 @@ export default function Home() {
       description: "An AI tool that helps improve your public speaking",
       imageUrl: "https://images.unsplash.com/photo-1570610155223-66279ba81b41?q=80&w=1999&auto=format&fit=crop",
       projectUrl: "#presence-analysis"
+    },
+    {
+      title: "AI Communication Coach",
+      description: "Personal AI assistant that provides feedback on your communication style",
+      imageUrl: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=2070&auto=format&fit=crop",
+      projectUrl: "#ai-communication-coach"
     }
   ];
 
