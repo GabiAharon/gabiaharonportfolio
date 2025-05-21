@@ -4,8 +4,12 @@ const nextConfig = {
   swcMinify: true,
   output: 'export',
   images: { unoptimized: true },
-  assetPrefix: '/gabiaharonportfolio',
-  basePath: '/gabiaharonportfolio',
+}
+
+// Only add these in production (for GitHub Pages)
+if (process.env.NODE_ENV === 'production') {
+  nextConfig.assetPrefix = '/gabiaharonportfolio'
+  nextConfig.basePath = '/gabiaharonportfolio'
 }
 
 module.exports = nextConfig 

@@ -1,10 +1,10 @@
 import React from "react";
 
-export default function Layout({ children }) {
+export default function Layout({ children, language = 'he' }) {
   return (
-    <div className="font-sans">
+    <div className={`font-sans ${language === 'he' ? 'font-heebo' : 'font-inter'}`}>
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Heebo:wght@300;400;500;600;700;800&display=swap');
         
         :root {
           --background: #050505;
@@ -14,11 +14,31 @@ export default function Layout({ children }) {
         }
         
         body {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          font-family: 'Heebo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
           background-color: var(--background);
           color: var(--foreground);
           scrollbar-width: thin;
           scrollbar-color: var(--accent) var(--background);
+        }
+        
+        /* Direction-specific styles */
+        .rtl {
+          direction: rtl;
+          text-align: right;
+        }
+        
+        .ltr {
+          direction: ltr;
+          text-align: left;
+        }
+        
+        /* Font family specific */
+        .font-heebo {
+          font-family: 'Heebo', sans-serif;
+        }
+        
+        .font-inter {
+          font-family: 'Inter', sans-serif;
         }
         
         /* CSS for marquee animation */
@@ -29,6 +49,11 @@ export default function Layout({ children }) {
         
         .animate-marquee {
           animation: marquee 30s linear infinite;
+        }
+        
+        /* RTL marquee */
+        .rtl .animate-marquee {
+          animation-direction: reverse;
         }
         
         /* Smooth scrolling */
