@@ -198,7 +198,8 @@ export default function Home() {
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/9d57c5_Untitleddesign1.png" 
                 alt="Gabi Aharon" 
-                className="w-full h-full object-cover rounded-full p-1"
+                className="w-full h-full object-cover rounded-full p-1 relative z-20"
+                style={{ position: 'relative', zIndex: 20 }}
               />
             </div>
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 opacity-20 blur-xl -z-10"></div>
