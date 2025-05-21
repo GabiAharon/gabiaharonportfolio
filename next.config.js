@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  output: 'export',
+  images: { unoptimized: true },
+  assetPrefix: '/gabiaharonportfolio',
+  basePath: '/gabiaharonportfolio',
 }
 
 module.exports = nextConfig 

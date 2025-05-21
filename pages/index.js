@@ -13,8 +13,10 @@ import {
   Sparkles,
   ArrowRight
 } from "lucide-react";
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
   // Controls for intersection observers and animations
   const [activeSection, setActiveSection] = useState("hero");
   
