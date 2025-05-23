@@ -10,13 +10,13 @@
       "en": "A Zoom plugin that analyzes participants' body language during meetings and provides real-time feedback on engagement and presence levels."
     },
     "detailedDescription": {
-      "he": "פרויקט חדשני שמשלב בינה מלאכותית וראייה ממוחשבת לניתוח שפת גוף בזמן אמת במהלך פגישות זום. הכלי מזהה תנועות, הבעות פנים ותנוחות גוף ומספק משוב מיידי למארח הפגישה על רמת המעורבות של המשתתפים. מתאים במיוחד לארגונים שרוצים לשפר את יעילות הפגישות הוירטואליות שלהם.",
+      "he": "התוסף מכיל את כל הטיפים שלמדתי, אספתי והשתמשתי ומאפשר לקטלג אותם על פי קטגוריות שונות כמו: הבעות פנים, שכנוע, משא ומתן, סגנונות תקשורת, עמידה מול קהל ועוד. \nבנוסף התוסף מייצר משימות שבועיות למשל: שים לב להבעות פנים של כעס לפחות במקרה אחד בו תיתקל השבוע. לאחר ביצוע המשימה ניתן לרשום משוב עבור מעקב והתקדמות. \n\nבנוסף קיימת פונקציה של \"טיקר\" שמאפשר טיפים רצים בתחתית המסך לצפייה רציפה. \n",
       "en": "An innovative project that combines AI and computer vision for real-time body language analysis during Zoom meetings. The tool identifies movements, facial expressions and body postures and provides immediate feedback to the meeting host about participants' engagement levels. Perfect for organizations looking to improve their virtual meeting effectiveness."
     },
     "category": "plugin",
     "date": "2024-12-01",
     "image": "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&h=400&fit=crop",
-    "detailImage": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop",
+    "detailImage": "https://i.postimg.cc/HsHZCKGN/0-4.webp",
     "link": "#zoom-body-language-bot",
     "isVideo": false,
     "technologies": [
@@ -29,10 +29,9 @@
     "status": "הושלם",
     "features": {
       "he": [
-        "ניתוח בזמן אמת",
-        "משוב על מעורבות",
-        "דוחות מפורטים",
-        "אינטגרציה עם זום"
+        "תוסף",
+        "שינון",
+        "שימור ידע"
       ],
       "en": [
         "Real-time analysis",
