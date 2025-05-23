@@ -45,11 +45,11 @@
   {
     "id": 2,
     "title": {
-      "he": "מחולל נוכחות AI",
+      "he": "תוסף כלי AI ",
       "en": "AI Presence Generator"
     },
     "description": {
-      "he": "כלי שעוזר לדוברים לשפר את הנוכחות שלהם על הבמה באמצעות ניתוח תנועות גוף ומתן המלצות מותאמות אישית.",
+      "he": "תוסף נגיש לכרום שמכיל את כל כלי הAI הנפוצים ומחולק על פי קטגוריות. \nנבנה ע\"י Cursor AI",
       "en": "A tool that helps speakers improve their stage presence through body movement analysis and personalized recommendations."
     },
     "detailedDescription": {
@@ -58,7 +58,7 @@
     },
     "category": "tool",
     "date": "2024-11-15",
-    "image": "https://images.unsplash.com/photo-1515378791036-0648a814c963?w=600&h=400&fit=crop",
+    "image": "https://i.postimg.cc/yd96SJbN/Screenshot-2025-05-23-171315.png",
     "detailImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
     "link": "#ai-presence-generator",
     "isVideo": false,
