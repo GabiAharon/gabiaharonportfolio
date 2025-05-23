@@ -2,11 +2,11 @@
   {
     "id": 1,
     "title": {
-      "he": "בוט שפת גוף לזום",
+      "he": "תוסף טיפים בשפת גוף",
       "en": "Body Language Bot for Zoom"
     },
     "description": {
-      "he": "תוסף לזום שמנתח את שפת הגוף של המשתתפים במפגש ונותן משוב בזמן אמת על רמת האנגייג'מנט והנוכחות.",
+      "he": "תוסף כרום שמאפשר גישה מהירה למאות טיפים שונים בנושא שפת גוף ותקשורת לא מילולית",
       "en": "A Zoom plugin that analyzes participants' body language during meetings and provides real-time feedback on engagement and presence levels."
     },
     "detailedDescription": {
@@ -26,7 +26,7 @@
       "Python",
       "TensorFlow"
     ],
-    "status": "בפיתוח",
+    "status": "הושלם",
     "features": {
       "he": [
         "ניתוח בזמן אמת",
@@ -208,6 +208,48 @@
         "Graduated exercises",
         "Progress tracking",
         "Review recordings"
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "title": {
+      "he": "Legends (עותק)",
+      "en": "Legends (Copy)"
+    },
+    "description": {
+      "he": "סרטון אישי על עולם הדימיונות, אגדות המוזיקה שמלוות אותי, והקשר בין חלומות למציאות.",
+      "en": "A personal video about the world of imagination, music legends that accompany me, and the connection between dreams and reality."
+    },
+    "detailedDescription": {
+      "he": "מכירים את הרגע ההוא? הרגע שבו אתם נוסעים אל תוך עולם של דמיונות, אל אשליות, אל האדם שתמיד חלמתם להיות? את הטקסט הזה כתבתי לפני לא מעט זמן, והוא מספר על 'ספר הדימיונות' שכל אחד מאיתנו כותב במהלך החיים. בדמיון שלנו אנחנו יכולים להיות הכול, גם דברים שברור לנו שלעולם לא נהיה. התרופה עבורי (כמו בטח לא מעט מכם) לעולם האמיתי תמיד הייתה מוזיקה. בסרטון הזה ניסיתי לחבר בין המוזיקה, אגדות המוזיקה שאני מרגיש שמלוות אותי כל החיים, לבין מי ומה שאני ואולי כולנו מנסים להיות בעולם, כל אחד בדרך שלו.",
+      "en": "Do you know that moment? The moment when you travel into a world of fantasies, into illusions, into the person you always dreamed of being? I wrote this text quite some time ago, and it tells about the 'book of imagination' that each of us writes throughout life. In our imagination we can be everything, even things we know we will never be. The remedy for me (like probably many of you) to the real world has always been music. In this video I tried to connect between music, the music legends that I feel have accompanied me all my life, and who and what I and perhaps all of us are trying to be in the world, each in their own way."
+    },
+    "category": "video",
+    "date": "2025-05-23",
+    "image": "https://i.postimg.cc/y8Y180by/Screenshot-2025-05-23-015716.png",
+    "detailImage": "https://i.postimg.cc/y8Y180by/Screenshot-2025-05-23-015716.png",
+    "link": "https://vimeo.com/1086929819",
+    "isVideo": true,
+    "technologies": [
+      "Video Production",
+      "Storytelling",
+      "Music",
+      "Personal Expression"
+    ],
+    "status": "פורסם",
+    "features": {
+      "he": [
+        "סיפור אישי",
+        "חיבור בין מוזיקה לחלומות",
+        "הרהורים על דמיון ומציאות",
+        "ביטוי אומנותי"
+      ],
+      "en": [
+        "Personal story",
+        "Connection between music and dreams",
+        "Reflections on imagination and reality",
+        "Artistic expression"
       ]
     }
   }
