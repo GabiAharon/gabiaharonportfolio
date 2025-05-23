@@ -49,17 +49,17 @@
       "en": "AI Presence Generator"
     },
     "description": {
-      "he": "תוסף נגיש לכרום שמכיל את כל כלי הAI הנפוצים ומחולק על פי קטגוריות. \nנבנה ע\"י Cursor AI",
+      "he": "תוסף כלי AI",
       "en": "A tool that helps speakers improve their stage presence through body movement analysis and personalized recommendations."
     },
     "detailedDescription": {
-      "he": "אפליקציה מתקדמת שמשתמשת בבינה מלאכותית כדי לנתח ולשפר את הנוכחות הבמתית של דוברים. הכלי מנתח תנועות גוף, קול, קצב דיבור ויישור עם הקהל, ומספק המלצות מותאמות אישית לשיפור. כולל אימונים אינטראקטיביים וסימולציות של מצבי דיבור שונים.",
+      "he": "תוסף נגיש לכרום שמכיל את כל כלי הAI הנפוצים ומחולק על פי קטגוריות. \nנבנה ע\"י Cursor AI",
       "en": "An advanced application that uses AI to analyze and improve speakers' stage presence. The tool analyzes body movements, voice, speech pace and audience alignment, providing personalized recommendations for improvement. Includes interactive training and simulations of various speaking scenarios."
     },
     "category": "tool",
     "date": "2024-11-15",
     "image": "https://i.postimg.cc/yd96SJbN/Screenshot-2025-05-23-171315.png",
-    "detailImage": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
+    "detailImage": "https://i.postimg.cc/yd96SJbN/Screenshot-2025-05-23-171315.png",
     "link": "#ai-presence-generator",
     "isVideo": false,
     "technologies": [
@@ -72,10 +72,8 @@
     "status": "הושלם",
     "features": {
       "he": [
-        "ניתוח תנועות גוף",
-        "ניתוח קול",
-        "המלצות אישיות",
-        "אימונים אינטראקטיביים"
+        "כלי AI",
+        "נגישות"
       ],
       "en": [
         "Body movement analysis",
