@@ -13,12 +13,12 @@
       "he": "כאן יופיע תיאור מפורט של הפרויקט. זהו המקום להרחיב על המטרות, השיטות והתוצאות.",
       "en": "Here is a detailed description of the project. This is the place to expand on the goals, methods and results."
     },
-    "category": "tool",
+    "category": "video",
     "date": "2025-05-24",
     "image": "https://i.postimg.cc/XqKSckjD/11.png",
     "detailImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
     "link": "#new-project",
-    "isVideo": false,
+    "isVideo": true,
     "technologies": [
       "Technology 1",
       "Technology 2",
