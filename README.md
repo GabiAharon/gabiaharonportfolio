@@ -53,3 +53,6 @@ yarn dev
 - `pages/index.js` - Main home page component
 - `components/Layout.js` - Layout component with global styles
 - `styles/globals.css` - Global CSS with Tailwind imports
+
+## Build Trigger
+This line was added to trigger a new build.
