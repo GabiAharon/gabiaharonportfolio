@@ -44,7 +44,7 @@
   {
     "id": 7,
     "title": {
-      "he": "סרטון דמויות אספנות-",
+      "he": "סרטון דמויות אספנות ",
       "en": "New Project"
     },
     "description": {
@@ -58,8 +58,8 @@
     "category": "video",
     "date": "2025-05-24",
     "image": "https://i.postimg.cc/XqKSckjD/11.png",
-    "detailImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
-    "link": "https://vimeo.com/1087339107?share=copy",
+    "detailImage": "https://i.postimg.cc/sgTzNmpk/Untitled-design.png",
+    "link": "https://i.postimg.cc/XqKSckjD/11.png",
     "isVideo": true,
     "technologies": [
       "Technology 1",
