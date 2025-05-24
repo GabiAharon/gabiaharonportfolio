@@ -1,7 +1,5 @@
 @echo off
-echo GitHub Update Process Started...
+echo Starting GitHub update process...
 echo.
-powershell -ExecutionPolicy Bypass -File "%~dp0update-github.ps1"
-echo.
-echo Process completed! This window will close in 10 seconds.
-timeout /t 10 
+cd /d "%~dp0"
+powershell -ExecutionPolicy Bypass -File "%~dp0update-github.ps1" 

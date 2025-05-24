@@ -2,8 +2,11 @@ const translations = {
   en: {
     // Hero section
     title: "Gabi Aharon",
-    subtitle: "Manager | Body Language & Public Speaking Lecturer | Mechanical Engineer",
-    quote: "Helping people connect with others through movement, presence, and technology.",
+    subtitle: "Manager | Body Language & Public Speaking Lecturer | Mechanical Engineer | AI Enthusiast",
+    quote: "The biggest stage is life itself.",
+    
+    // Profile hover text
+    profileHoverText: "Hi, I'm Gabi Aharon - a manager, mechanical engineer, and people person. In recent years, I've been working with a wide range of people - teenagers, entrepreneurs, and teachers - with the goal of uncovering the hidden potential that each of us has to influence, persuade, and lead change. The ability to stand confidently in front of an audience, use precise body language, and convey a strong message is not just a tool - it's a secret weapon. It's the key that opens doors in all areas of life. I don't promise magic, but I do promise to provide practical tools that will help you improve every lecture or interaction you have from today forward.",
     
     // Navigation
     switchLanguage: "עברית",
@@ -15,7 +18,7 @@ const translations = {
     email: "Email",
     
     // Ticker
-    ticker: "🎤 Booking now: Lectures & workshops on Body Language & Public Speaking! Contact Gabi on WhatsApp – click here",
+    ticker: "✨ Discover the secret language we all speak without knowing! Body language workshops that will reveal a whole new world of communication. Join me! →",
     
     // Featured links
     featuredLinksTitle: "Featured Links",
@@ -25,6 +28,8 @@ const translations = {
     tedTalksDesc: "Curated collection of the most viewed talks on body language, public speaking, and vocal tone",
     myProjects: "View My Projects",
     myProjectsDesc: "Tools, plugins, and creations I've developed in communication technology",
+    testimonials: "Testimonials & Reviews",
+    testimonialsDesc: "What clients say about my lectures and training sessions",
     
     // Workshop selection
     workshopSelection: "What interests you?",
@@ -63,8 +68,11 @@ const translations = {
   he: {
     // Hero section
     title: "גבי אהרון",
-    subtitle: "מנהל | מרצה לשפת גוף ועמידה מול קהל | מהנדס מכונות",
-    quote: "עוזר לאנשים להתחבר עם אחרים דרך תנועה, נוכחות וטכנולוגיה.",
+    subtitle: "מנהל | מרצה לשפת גוף ועמידה מול קהל | מהנדס מכונות | חובב בינה מלאכותית",
+    quote: "הבמה הכי גדולה היא החיים עצמם.",
+    
+    // Profile hover text
+    profileHoverText: "היי, אני גבי אהרון - מנהל, מהנדס מכונות ואיש של אנשים. בשנים האחרונות עובד עם מגוון רחב של אנשים - בני נוער, יזמים ומורים במטרה לחשוף את הפוטנציאל הסמוי שיש בכל אחד מאיתנו להשפיע, לשכנע ולהוביל שינוי. היכולת לעמוד מול קהל בביטחון, להשתמש בשפת גוף מדויקת ולהעביר מסר חזק, היא לא רק כלי - היא נשק סודי. זה המפתח שפותח דלתות בכל תחומי החיים. אני לא מבטיח קסמים, אבל מבטיח להעניק כלים פרקטיים שיעזרו לכם ולכן לשפר כל הרצאה או אינטרקציה שתקיימו מהיום והלאה.",
     
     // Navigation
     switchLanguage: "English",
@@ -76,16 +84,18 @@ const translations = {
     email: "אימייל",
     
     // Ticker
-    ticker: "🎤 הזמנות עכשיו: הרצאות וסדנאות בנושא שפת גוף ודיבור מול קהל! צור קשר עם גבי בוואטסאפ - לחץ כאן",
+    ticker: "✨ גלה את השפה הסודית שכולנו מדברים בלי לדעת! הרצאות וסדנאות שפת גוף שיגלו לך עולם חדש של תקשורת. הצטרף אליי! ←",
     
     // Featured links
     featuredLinksTitle: "קישורים מומלצים",
     bookLecture: "הזמן הרצאה או סדנה",
     bookLectureDesc: "מפגשים אינטראקטיביים על תקשורת ושפת גוף",
-    tedTalks: "צפה בהרצאות מומלצות בנושא שפת גוף",
+    tedTalks: "צפה בהרצאות טד מומלצות בנושא שפת גוף",
     tedTalksDesc: "אוסף מובחר של ההרצאות הנצפות ביותר בנושא שפת גוף, עמידה מול קהל וטון דיבור",
     myProjects: "צפה בפרויקטים שלי",
     myProjectsDesc: "כלים, תוספים ויצירות שפיתחתי בתחום טכנולוגיית התקשורת",
+    testimonials: "המלצות ומשובים",
+    testimonialsDesc: "מה אומרים לקוחות על ההרצאות והסדנאות שלי",
     
     // Workshop selection
     workshopSelection: "במה אתה מתעניין?",

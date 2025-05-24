@@ -14,7 +14,8 @@ import {
   Globe,
   Play,
   X,
-  Code
+  Code,
+  Star
 } from "lucide-react";
 import { useRouter } from 'next/router';
 import { useLanguage } from './_app';
@@ -29,6 +30,9 @@ export default function Home() {
   const [showTedTalks, setShowTedTalks] = useState(false);
   const [showWorkshopSelection, setShowWorkshopSelection] = useState(false);
   const [showAdminButton, setShowAdminButton] = useState(false);
+  const [showProfileTooltip, setShowProfileTooltip] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [screenWidth, setScreenWidth] = useState(0);
   
   // הפונקציה לתרגום טקסט
   const t = (key) => {
@@ -84,8 +88,21 @@ export default function Home() {
       }
     };
     
+    // הגדרת רוחב המסך
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+    
+    // הגדרה ראשונית
+    handleResize();
+    
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   // פונקציות לטיפול בלחיצות
@@ -126,31 +143,36 @@ export default function Home() {
       title: "Your Body Language May Shape Who You Are",
       speaker: "Amy Cuddy",
       url: "https://www.ted.com/talks/amy_cuddy_your_body_language_may_shape_who_you_are",
-      views: "71M+ views"
+      views: "71M+ views",
+      image: "https://img.youtube.com/vi/Ks-_Mh1QhMc/mqdefault.jpg"
     },
     {
       title: "How to Speak So That People Want to Listen",
       speaker: "Julian Treasure",
       url: "https://www.ted.com/talks/julian_treasure_how_to_speak_so_that_people_want_to_listen",
-      views: "50M+ views"
+      views: "50M+ views",
+      image: "https://img.youtube.com/vi/eIho2S0ZahI/mqdefault.jpg"
     },
     {
       title: "The Power of Vulnerability",
       speaker: "Brené Brown",
       url: "https://www.ted.com/talks/brene_brown_the_power_of_vulnerability",
-      views: "62M+ views"
+      views: "62M+ views",
+      image: "https://img.youtube.com/vi/iCvmsMzlF7o/mqdefault.jpg"
     },
     {
       title: "The Puzzle of Motivation",
       speaker: "Dan Pink",
       url: "https://www.ted.com/talks/dan_pink_the_puzzle_of_motivation",
-      views: "29M+ views"
+      views: "29M+ views",
+      image: "https://img.youtube.com/vi/rrkrvAUbU9Y/mqdefault.jpg"
     },
     {
       title: "The Hidden Power of Social Networks",
       speaker: "Nicholas Christakis",
       url: "https://www.ted.com/talks/nicholas_christakis_the_hidden_influence_of_social_networks",
-      views: "4M+ views"
+      views: "4M+ views",
+      image: "https://img.youtube.com/vi/2U-tOghblfE/mqdefault.jpg"
     }
   ];
 
@@ -178,8 +200,27 @@ export default function Home() {
       icon: <Sparkles className="w-6 h-6" />,
       url: "/projects",
       color: "bg-gradient-to-r from-purple-600 to-pink-600"
+    },
+    {
+      title: "testimonials",
+      description: "testimonialsDesc",
+      icon: <Star className="w-6 h-6" />,
+      url: "/testimonials",
+      color: "bg-gradient-to-r from-yellow-500 to-orange-500"
     }
   ];
+
+  // פונקציות לטיפול במיקום העכבר
+  const handleMouseMove = (e) => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleProfileHover = (e, show) => {
+    setShowProfileTooltip(show);
+    if (show) {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    }
+  };
 
   return (
     <div className={`min-h-screen w-full bg-gradient-to-b from-gray-900 via-gray-900 to-black text-white overflow-hidden relative ${language === 'he' ? 'rtl' : 'ltr'}`}>
@@ -247,8 +288,11 @@ export default function Home() {
             className="relative mx-auto mb-6 sm:mb-8 z-50 animate-float"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
+            onMouseEnter={(e) => handleProfileHover(e, true)}
+            onMouseLeave={(e) => handleProfileHover(e, false)}
+            onMouseMove={handleMouseMove}
           >
-            <div className="w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 rounded-full overflow-hidden mx-auto relative z-50">
+            <div className="w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 rounded-full overflow-hidden mx-auto relative z-50 cursor-pointer">
               {/* Glowing background effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-600 opacity-60 rounded-full animate-glow-pulse z-10" style={{ animationDuration: '3s' }}></div>
               
@@ -275,10 +319,13 @@ export default function Home() {
           
           {/* Name and title */}
           <motion.h1 
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-purple-200 hover:from-blue-200 hover:to-purple-300 transition-all duration-500 px-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-purple-200 hover:from-blue-200 hover:to-purple-300 transition-all duration-500 px-4 cursor-pointer"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            onMouseEnter={(e) => handleProfileHover(e, true)}
+            onMouseLeave={(e) => handleProfileHover(e, false)}
+            onMouseMove={handleMouseMove}
           >
             {t('title')}
           </motion.h1>
@@ -473,11 +520,21 @@ export default function Home() {
                     whileTap={{ scale: 0.98 }}
                   >
                     <div className="flex items-start gap-3">
-                      <Play className="w-5 h-5 text-red-500 mt-1 flex-shrink-0" />
-                      <div>
-                        <h4 className="font-semibold mb-1">{talk.title}</h4>
-                        <p className="text-gray-300 text-sm mb-1">{talk.speaker}</p>
-                        <p className="text-gray-400 text-xs">{talk.views}</p>
+                      <div className="flex-shrink-0">
+                        <img 
+                          src={talk.image} 
+                          alt={talk.title}
+                          className="w-28 h-auto rounded-md object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div className="flex items-start gap-3 flex-1">
+                        <Play className="w-5 h-5 text-red-500 mt-1 flex-shrink-0" />
+                        <div className="flex-1">
+                          <h4 className="font-semibold mb-1">{talk.title}</h4>
+                          <p className="text-gray-300 text-sm mb-1">{talk.speaker}</p>
+                          <p className="text-gray-400 text-xs">{talk.views}</p>
+                        </div>
                       </div>
                     </div>
                   </motion.a>
@@ -541,6 +598,42 @@ export default function Home() {
                 </motion.button>
               </div>
             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Profile Tooltip */}
+      <AnimatePresence>
+        {showProfileTooltip && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2, type: "spring", stiffness: 400, damping: 25 }}
+            className="fixed z-50 max-w-sm w-auto"
+            style={{ 
+              left: `${mousePosition.x + 15}px`, 
+              top: `${mousePosition.y - 10}px`,
+              pointerEvents: 'none',
+              transform: mousePosition.x > screenWidth * 0.7 ? 'translateX(-100%)' : 'none'
+            }}
+          >
+            <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-0.5 rounded-xl">
+              <div className="bg-gray-900 bg-opacity-95 backdrop-blur-md rounded-xl p-4 relative">
+                {/* Glowing background effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-600/10 rounded-xl"></div>
+                
+                <div className="relative z-10">
+                  <p className={`text-white leading-relaxed text-sm ${language === 'he' ? 'text-right' : 'text-left'}`}>
+                    {t('profileHoverText')}
+                  </p>
+                </div>
+
+                {/* Decorative elements */}
+                <div className="absolute top-1 right-1 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></div>
+                <div className="absolute bottom-1 left-1 w-1 h-1 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
