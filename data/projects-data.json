@@ -251,47 +251,5 @@
         "Artistic expression"
       ]
     }
-  },
-  {
-    "id": 7,
-    "title": {
-      "he": "תוסף טיפים בשפת גוף (עותק)",
-      "en": "Body Language Bot for Zoom (Copy)"
-    },
-    "description": {
-      "he": "תוסף כרום שמאפשר גישה מהירה למאות טיפים שונים בנושא שפת גוף ותקשורת לא מילולית",
-      "en": "A Zoom plugin that analyzes participants' body language during meetings and provides real-time feedback on engagement and presence levels."
-    },
-    "detailedDescription": {
-      "he": "התוסף מכיל את כל הטיפים שלמדתי, אספתי והשתמשתי ומאפשר לקטלג אותם על פי קטגוריות שונות כמו: הבעות פנים, שכנוע, משא ומתן, סגנונות תקשורת, עמידה מול קהל ועוד. \nבנוסף התוסף מייצר משימות שבועיות למשל: שים לב להבעות פנים של כעס לפחות במקרה אחד בו תיתקל השבוע. לאחר ביצוע המשימה ניתן לרשום משוב עבור מעקב והתקדמות. \n\nבנוסף קיימת פונקציה של \"טיקר\" שמאפשר טיפים רצים בתחתית המסך לצפייה רציפה. \n",
-      "en": "An innovative project that combines AI and computer vision for real-time body language analysis during Zoom meetings. The tool identifies movements, facial expressions and body postures and provides immediate feedback to the meeting host about participants' engagement levels. Perfect for organizations looking to improve their virtual meeting effectiveness."
-    },
-    "category": "plugin",
-    "date": "2025-05-23",
-    "image": "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&h=400&fit=crop",
-    "detailImage": "https://i.postimg.cc/HsHZCKGN/0-4.webp",
-    "link": "#zoom-body-language-bot",
-    "isVideo": false,
-    "technologies": [
-      "AI",
-      "Computer Vision",
-      "Zoom SDK",
-      "Python",
-      "TensorFlow"
-    ],
-    "status": "הושלם",
-    "features": {
-      "he": [
-        "תוסף",
-        "שינון",
-        "שימור ידע"
-      ],
-      "en": [
-        "Real-time analysis",
-        "Engagement feedback",
-        "Detailed reports",
-        "Zoom integration"
-      ]
-    }
   }
 ]
