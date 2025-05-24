@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   Instagram, 
   Linkedin, 
-  Youtube, 
   MessageCircle, 
   Mail, 
   ExternalLink, 
@@ -12,15 +11,24 @@ import {
   User, 
   Sparkles,
   ArrowRight,
-  Globe
+  Globe,
+  Play,
+  X,
+  Code
 } from "lucide-react";
 import { useRouter } from 'next/router';
 import { useLanguage } from './_app';
 import translations from '../translations';
+import Link from 'next/link';
 
 export default function Home() {
   const router = useRouter();
   const { language, setLanguage } = useLanguage();
+  
+  // מצב לניהול פתיחת חלונות
+  const [showTedTalks, setShowTedTalks] = useState(false);
+  const [showWorkshopSelection, setShowWorkshopSelection] = useState(false);
+  const [showAdminButton, setShowAdminButton] = useState(false);
   
   // הפונקציה לתרגום טקסט
   const t = (key) => {
@@ -38,126 +46,172 @@ export default function Home() {
   
   // Particle background animation effect
   const [particles, setParticles] = useState([]);
-  
-  useEffect(() => {
-    // Generate random particles for background effect
-    const generateParticles = () => {
-      const newParticles = [];
-      for (let i = 0; i < 50; i++) {
-        newParticles.push({
-          id: i,
-          x: Math.random() * 100,
-          y: Math.random() * 100,
-          size: Math.random() * 3 + 1,
-          opacity: Math.random() * 0.5 + 0.1,
-          speed: Math.random() * 0.2 + 0.1
-        });
-      }
-      setParticles(newParticles);
-    };
 
-    generateParticles();
-    
-    // Set up interval to update particle positions
-    const particleInterval = setInterval(() => {
-      setParticles(prevParticles => 
+  useEffect(() => {
+    // Create initial particles with responsive count
+    const particleCount = window.innerWidth < 768 ? 30 : 50; // Less particles on mobile
+    const initialParticles = Array.from({ length: particleCount }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 2 + 1,
+      opacity: Math.random() * 0.5 + 0.1,
+      speed: Math.random() * 0.1 + 0.05, // Different speeds for variety
+    }));
+    setParticles(initialParticles);
+
+    // Animate particles
+    const animateParticles = () => {
+      setParticles(prevParticles =>
         prevParticles.map(particle => ({
           ...particle,
-          y: particle.y > 100 ? 0 : particle.y + particle.speed,
-          x: particle.x + (Math.random() - 0.5) * 0.2
+          y: (particle.y + particle.speed) % 100,
+          opacity: Math.sin(Date.now() * 0.001 + particle.id) * 0.3 + 0.3,
         }))
       );
-    }, 50);
-    
-    return () => clearInterval(particleInterval);
+    };
+
+    const interval = setInterval(animateParticles, 100);
+    return () => clearInterval(interval);
   }, []);
 
-  // Social media links
+  useEffect(() => {
+    // הוספת מאזין לקיצור מקלדת סודי (Ctrl+Shift+A)
+    const handleKeyDown = (event) => {
+      if (event.ctrlKey && event.shiftKey && event.key === 'A') {
+        setShowAdminButton(true);
+        setTimeout(() => setShowAdminButton(false), 10000); // מסתיר אחרי 10 שניות
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // פונקציות לטיפול בלחיצות
+  const handleEmailClick = () => {
+    window.open('mailto:Gabiaharon@gmail.com', '_blank');
+  };
+
+  const handleWhatsAppClick = () => {
+    // השתמש במשתנה סביבה או קבוע מוצפן
+    const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '972546436659';
+    window.open(`https://wa.me/${phoneNumber}`, '_blank');
+  };
+
+  const handleTickerClick = () => {
+    handleWhatsAppClick();
+  };
+
+  const handleWorkshopSelection = (type) => {
+    setShowWorkshopSelection(false);
+    if (type === 'bodyLanguage') {
+      window.open('https://i.postimg.cc/C1XySqfJ/2.png', '_blank');
+    } else if (type === 'publicSpeaking') {
+      window.open('https://i.postimg.cc/RFNrkRqN/1.png', '_blank');
+    }
+  };
+
+  // Social media links (ללא TikTok ו-YouTube)
   const socialLinks = [
     { name: "instagram", icon: <Instagram className="w-5 h-5" />, url: "https://instagram.com/gabi.aharon", color: "from-purple-500 to-pink-500" },
     { name: "linkedin", icon: <Linkedin className="w-5 h-5" />, url: "https://linkedin.com/in/gabi-aharon", color: "from-blue-600 to-blue-400" },
-    { name: "tiktok", icon: <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"></path><path d="M15 9h0a4 4 0 0 1 4 4v0a4 4 0 0 1-4 4h0a4 4 0 0 1-4-4v0a4 4 0 0 1 4-4z"></path><path d="M8 21h8"></path><path d="M12 17v4"></path></svg>, url: "https://tiktok.com/@gabi.aharon", color: "from-black to-gray-800" },
-    { name: "youtube", icon: <Youtube className="w-5 h-5" />, url: "https://youtube.com/c/gabi-aharon", color: "from-red-600 to-red-500" },
-    { name: "whatsapp", icon: <MessageCircle className="w-5 h-5" />, url: "https://wa.me/123456789", color: "from-green-500 to-green-400" },
-    { name: "email", icon: <Mail className="w-5 h-5" />, url: "mailto:contact@gabi-aharon.com", color: "from-blue-400 to-indigo-400" }
+    { name: "whatsapp", icon: <MessageCircle className="w-5 h-5" />, onClick: handleWhatsAppClick, color: "from-green-500 to-green-400" },
+    { name: "email", icon: <Mail className="w-5 h-5" />, onClick: handleEmailClick, color: "from-blue-400 to-indigo-400" }
   ];
 
-  // AI Projects data
-  const aiProjects = [
+  // רשימת הרצאות TED מומלצות
+  const tedTalks = [
     {
-      title: "projectDigitalBody",
-      description: "projectDigitalBodyDesc",
-      imageUrl: "https://images.unsplash.com/photo-1591115765373-5207764f72e4?q=80&w=2070&auto=format&fit=crop",
-      projectUrl: "#digital-body-language"
+      title: "Your Body Language May Shape Who You Are",
+      speaker: "Amy Cuddy",
+      url: "https://www.ted.com/talks/amy_cuddy_your_body_language_may_shape_who_you_are",
+      views: "71M+ views"
     },
     {
-      title: "projectEmotionalGallery",
-      description: "projectEmotionalGalleryDesc",
-      imageUrl: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2065&auto=format&fit=crop",
-      projectUrl: "#emotional-ai-gallery"
+      title: "How to Speak So That People Want to Listen",
+      speaker: "Julian Treasure",
+      url: "https://www.ted.com/talks/julian_treasure_how_to_speak_so_that_people_want_to_listen",
+      views: "50M+ views"
     },
     {
-      title: "projectStory",
-      description: "projectStoryDesc",
-      imageUrl: "https://images.unsplash.com/photo-1546776310-eef45dd6d73c?q=80&w=2010&auto=format&fit=crop",
-      projectUrl: "#interactive-storytelling"
+      title: "The Power of Vulnerability",
+      speaker: "Brené Brown",
+      url: "https://www.ted.com/talks/brene_brown_the_power_of_vulnerability",
+      views: "62M+ views"
     },
     {
-      title: "projectPresence",
-      description: "projectPresenceDesc",
-      imageUrl: "https://images.unsplash.com/photo-1570610155223-66279ba81b41?q=80&w=1999&auto=format&fit=crop",
-      projectUrl: "#presence-analysis"
+      title: "The Puzzle of Motivation",
+      speaker: "Dan Pink",
+      url: "https://www.ted.com/talks/dan_pink_the_puzzle_of_motivation",
+      views: "29M+ views"
     },
     {
-      title: "projectCoach",
-      description: "projectCoachDesc",
-      imageUrl: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=2070&auto=format&fit=crop",
-      projectUrl: "#ai-communication-coach"
+      title: "The Hidden Power of Social Networks",
+      speaker: "Nicholas Christakis",
+      url: "https://www.ted.com/talks/nicholas_christakis_the_hidden_influence_of_social_networks",
+      views: "4M+ views"
     }
   ];
 
-  // Featured links data
+  
+
+  // Featured links data (עודכן)
   const featuredLinks = [
-    {
-      title: "watchTalk",
-      description: "watchTalkDesc",
-      icon: <Youtube className="w-6 h-6" />,
-      url: "#ted-talk",
-      color: "bg-gradient-to-r from-red-500 to-orange-500"
-    },
     {
       title: "bookLecture",
       description: "bookLectureDesc",
       icon: <Calendar className="w-6 h-6" />,
-      url: "#book-workshop",
+      onClick: () => setShowWorkshopSelection(true),
       color: "bg-gradient-to-r from-blue-600 to-indigo-600"
     },
     {
-      title: "courseTitle",
-      description: "courseDesc",
+      title: "tedTalks",
+      description: "tedTalksDesc",
       icon: <BookOpen className="w-6 h-6" />,
-      url: "#body-language-course",
+      onClick: () => setShowTedTalks(true),
       color: "bg-gradient-to-r from-emerald-500 to-teal-500"
     },
     {
-      title: "aiTools",
-      description: "aiToolsDesc",
+      title: "myProjects",
+      description: "myProjectsDesc",
       icon: <Sparkles className="w-6 h-6" />,
-      url: "#ai-tools",
+      url: "/projects",
       color: "bg-gradient-to-r from-purple-600 to-pink-600"
     }
   ];
 
   return (
     <div className={`min-h-screen w-full bg-gradient-to-b from-gray-900 via-gray-900 to-black text-white overflow-hidden relative ${language === 'he' ? 'rtl' : 'ltr'}`}>
+      {/* לוגו */}
+      <div className="absolute top-4 left-4 z-40">
+        <img 
+          src="https://i.postimg.cc/j5MJ3Rmz/image.png" 
+          alt="Gabi Aharon Logo" 
+          className="h-12 w-auto transition-transform duration-300 hover:scale-110"
+        />
+      </div>
+
       {/* כפתור החלפת שפה */}
       <button 
         onClick={toggleLanguage}
-        className="absolute top-4 right-4 z-50 bg-gray-800 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-gray-700"
+        className="absolute top-4 right-4 z-40 bg-gray-800 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-gray-700"
       >
         <Globe className="w-4 h-4" />
         <span className="text-sm">{t('switchLanguage')}</span>
       </button>
+      
+      {/* כפתור אדמין נסתר */}
+      {showAdminButton && (
+        <Link 
+          href="/projects"
+          className="absolute top-16 right-4 z-40 bg-gray-800 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-gray-700"
+          title="מצב אדמין"
+        >
+          <Code className="w-4 h-4" />
+          <span className="text-sm">Admin</span>
+        </Link>
+      )}
       
       {/* Animated particles background */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -171,43 +225,57 @@ export default function Home() {
               width: `${particle.size}px`,
               height: `${particle.size}px`,
               opacity: particle.opacity,
-              transition: 'all 0.5s linear'
+              transition: 'all 0.5s linear',
+              zIndex: 1
             }}
           />
         ))}
       </div>
       
       {/* Content container */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-12">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 py-8">
         {/* Hero section */}
         <motion.section 
           id="hero"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center py-16 relative"
+          className="text-center py-8 sm:py-12 lg:py-16 relative"
         >
           {/* Profile photo with glowing effect */}
           <motion.div 
-            className="relative mx-auto mb-8"
+            className="relative mx-auto mb-6 sm:mb-8 z-50 animate-float"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <div className="w-48 h-48 sm:w-56 sm:h-56 rounded-full overflow-hidden mx-auto relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-600 opacity-50 rounded-full animate-pulse" style={{ animationDuration: '3s' }}></div>
+            <div className="w-40 h-40 sm:w-48 sm:h-48 lg:w-56 lg:h-56 rounded-full overflow-hidden mx-auto relative z-50">
+              {/* Glowing background effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-600 opacity-60 rounded-full animate-glow-pulse z-10" style={{ animationDuration: '3s' }}></div>
+              
+              {/* Main profile image */}
               <img 
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/9d57c5_Untitleddesign1.png" 
                 alt="Gabi Aharon" 
-                className="w-full h-full object-cover rounded-full p-1 relative z-20"
-                style={{ position: 'relative', zIndex: 20 }}
+                className="w-full h-full object-cover object-center rounded-full relative z-50 ring-2 sm:ring-4 ring-white ring-opacity-20 shadow-2xl hover:ring-opacity-40 transition-all duration-300"
+                style={{ 
+                  position: 'relative', 
+                  zIndex: 50,
+                  objectFit: 'cover',
+                  objectPosition: 'center center'
+                }}
               />
+              
+              {/* Extra glow layer for emphasis */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-30 blur-lg z-0"></div>
             </div>
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 opacity-20 blur-xl -z-10"></div>
+            
+            {/* Outer glow effect */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 opacity-20 blur-2xl scale-110 z-0 animate-gradient"></div>
           </motion.div>
           
           {/* Name and title */}
           <motion.h1 
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-purple-200 hover:from-blue-200 hover:to-purple-300 transition-all duration-500 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -219,15 +287,18 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
+            className="relative px-4"
           >
-            <p className="text-lg text-gray-300 font-light mb-4">
+            <p className="text-base sm:text-lg text-gray-300 font-light mb-4 hover:text-gray-200 transition-colors duration-300">
               {t('subtitle')}
             </p>
             
-            <div className="max-w-2xl mx-auto">
-              <p className="text-xl text-gray-200 italic">
+            <div className="max-w-2xl mx-auto relative">
+              <p className="text-lg sm:text-xl text-gray-200 italic relative z-10 hover:text-white transition-colors duration-300">
                 "{t('quote')}"
               </p>
+              {/* Subtle background glow for quote */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-xl rounded-lg"></div>
             </div>
           </motion.div>
         </motion.section>
@@ -240,14 +311,11 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="py-10"
         >
-          <div className="grid grid-cols-3 md:grid-cols-6 gap-4 max-w-3xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-lg mx-auto">
             {socialLinks.map((link, index) => (
-              <motion.a
+              <motion.div
                 key={link.name}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`flex flex-col items-center bg-gradient-to-r ${link.color} p-0.5 rounded-xl`}
+                className={`group flex flex-col items-center bg-gradient-to-r ${link.color} p-0.5 rounded-xl cursor-pointer relative overflow-hidden`}
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
@@ -257,36 +325,44 @@ export default function Home() {
                   y: 0, 
                   transition: { delay: 0.3 + index * 0.1 } 
                 }}
+                onClick={link.onClick || (() => window.open(link.url, '_blank'))}
               >
-                <div className="w-full h-full flex flex-col items-center justify-center bg-gray-900 bg-opacity-90 backdrop-blur-sm rounded-xl p-4">
-                  <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gray-800 bg-opacity-50 mb-2">
+                {/* Animated background gradient */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-full group-hover:-translate-x-full transition-transform duration-700"></div>
+                
+                <div className="w-full h-full flex flex-col items-center justify-center bg-gray-900 bg-opacity-90 backdrop-blur-sm rounded-xl p-4 relative z-10">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gray-800 bg-opacity-50 mb-2 group-hover:bg-opacity-70 transition-all duration-300 group-hover:scale-110">
                     {link.icon}
                   </div>
-                  <span className="text-xs mt-1">{t(link.name)}</span>
+                  <span className="text-xs mt-1 group-hover:font-medium transition-all duration-300">{t(link.name)}</span>
                 </div>
-              </motion.a>
+              </motion.div>
             ))}
           </div>
         </motion.section>
         
         {/* Animated ticker for contact */}
         <motion.div 
-          className="py-4 mt-6 mb-10 relative overflow-hidden"
+          className="py-4 mt-6 mb-10 relative overflow-hidden cursor-pointer group"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
+          onClick={handleTickerClick}
         >
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 backdrop-blur-md rounded-full p-0.5">
-            <div className="bg-gray-900 bg-opacity-80 backdrop-blur-md rounded-full py-3 px-4 relative overflow-hidden">
-              <div className="animate-marquee whitespace-nowrap flex items-center">
-                <span className="text-sm sm:text-base flex items-center mx-4">
-                  {t('ticker')}
+          <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 backdrop-blur-md rounded-full p-0.5 animate-gradient group-hover:shadow-lg group-hover:shadow-purple-500/20 transition-all duration-300">
+            <div className="bg-gray-900 bg-opacity-80 backdrop-blur-md rounded-full py-3 px-4 relative overflow-hidden group-hover:bg-opacity-70 transition-all duration-300">
+              {/* Glowing background on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              <div className="animate-marquee whitespace-nowrap flex items-center relative z-10">
+                <span className="text-sm sm:text-base flex items-center mx-4 group-hover:font-medium transition-all duration-300">
+                  💬 {t('ticker')}
                 </span>
-                <span className="text-sm sm:text-base flex items-center mx-4">
-                  {t('ticker')}
+                <span className="text-sm sm:text-base flex items-center mx-4 group-hover:font-medium transition-all duration-300">
+                  📞 {t('ticker')}
                 </span>
-                <span className="text-sm sm:text-base flex items-center mx-4">
-                  {t('ticker')}
+                <span className="text-sm sm:text-base flex items-center mx-4 group-hover:font-medium transition-all duration-300">
+                  ✨ {t('ticker')}
                 </span>
               </div>
             </div>
@@ -303,96 +379,44 @@ export default function Home() {
         >
           <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">{t('featuredLinksTitle')}</h2>
           
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid gap-4">
             {featuredLinks.map((link, index) => (
-              <motion.a
+              <motion.div
                 key={link.title}
-                href={link.url}
-                className="block group"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="block group cursor-pointer"
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ 
                   opacity: 1, 
                   y: 0,
                   transition: { delay: 0.4 + index * 0.1 }
                 }}
+                onClick={link.onClick || (() => window.open(link.url, '_self'))}
               >
-                <div className={`h-full ${link.color} p-0.5 rounded-xl`}>
-                  <div className="h-full bg-gray-900 bg-opacity-90 backdrop-blur-sm rounded-xl p-6 flex items-center transition-all duration-300 group-hover:bg-opacity-75">
-                    <div className="mr-4">
-                      <div className="w-12 h-12 rounded-full flex items-center justify-center bg-gray-800 bg-opacity-50">
+                <div className={`${link.color} p-0.5 rounded-xl`}>
+                  <div className="bg-gray-900 bg-opacity-90 backdrop-blur-sm rounded-xl px-6 py-4 h-full">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full bg-white bg-opacity-15 flex items-center justify-center flex-shrink-0">
                         {link.icon}
                       </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-lg font-bold mb-1 text-right">{t(link.title)}</h3>
+                        <p className="text-gray-300 text-sm text-right leading-relaxed">{t(link.description)}</p>
+                      </div>
+                      <div className="flex items-center text-white group-hover:text-blue-200 transition-colors">
+                        <span className="text-sm font-medium ml-2">לחץ כאן</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-bold mb-1">{t(link.title)}</h3>
-                      <p className="text-sm text-gray-300">{t(link.description)}</p>
-                    </div>
-                    <motion.div 
-                      className="ml-2"
-                      initial={{ x: 0 }}
-                      whileHover={{ x: 5 }}
-                    >
-                      <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
-                    </motion.div>
                   </div>
                 </div>
-              </motion.a>
-            ))}
-          </div>
-        </motion.section>
-        
-        {/* AI Projects */}
-        <motion.section 
-          id="projects"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="py-16"
-        >
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">{t('projectsTitle')}</h2>
-          <p className="text-center text-gray-300 mb-10 max-w-2xl mx-auto">{t('projectsSubtitle')}</p>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            {aiProjects.map((project, index) => (
-              <motion.div 
-                key={project.title}
-                className="group"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ 
-                  opacity: 1, 
-                  y: 0,
-                  transition: { delay: 0.5 + index * 0.1 }
-                }}
-                whileHover={{ y: -5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <a href={project.projectUrl} className="block">
-                  <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-0.5 rounded-xl h-full">
-                    <div className="bg-gray-900 rounded-xl overflow-hidden h-full">
-                      <div className="h-48 overflow-hidden">
-                        <img 
-                          src={project.imageUrl} 
-                          alt={t(project.title)} 
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                      </div>
-                      <div className="p-5">
-                        <h3 className="text-xl font-bold mb-2">{t(project.title)}</h3>
-                        <p className="text-gray-300 text-sm mb-4">{t(project.description)}</p>
-                        <div className="flex items-center text-blue-400 group-hover:text-blue-300 transition-colors">
-                          <span className="text-sm font-medium">{t('viewProject')}</span>
-                          <ExternalLink className="w-4 h-4 ml-2" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
               </motion.div>
             ))}
           </div>
         </motion.section>
+
+        
         
         {/* Footer */}
         <motion.footer 
@@ -409,6 +433,117 @@ export default function Home() {
           <p className="text-xs text-gray-500 mt-4">{t('copyright')}</p>
         </motion.footer>
       </div>
+
+      {/* TED Talks Modal */}
+      <AnimatePresence>
+        {showTedTalks && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4"
+            onClick={() => setShowTedTalks(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-gray-900 rounded-xl p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-2xl font-bold">{t('tedTalksTitle')}</h3>
+                <button
+                  onClick={() => setShowTedTalks(false)}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+              
+              <div className="space-y-4">
+                {tedTalks.map((talk, index) => (
+                  <motion.a
+                    key={index}
+                    href={talk.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="flex items-start gap-3">
+                      <Play className="w-5 h-5 text-red-500 mt-1 flex-shrink-0" />
+                      <div>
+                        <h4 className="font-semibold mb-1">{talk.title}</h4>
+                        <p className="text-gray-300 text-sm mb-1">{talk.speaker}</p>
+                        <p className="text-gray-400 text-xs">{talk.views}</p>
+                      </div>
+                    </div>
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Workshop Selection Modal */}
+      <AnimatePresence>
+        {showWorkshopSelection && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4"
+            onClick={() => setShowWorkshopSelection(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-gray-900 rounded-xl p-6 max-w-md w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-2xl font-bold">{t('workshopSelection')}</h3>
+                <button
+                  onClick={() => setShowWorkshopSelection(false)}
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+              
+              <div className="space-y-4">
+                <motion.button
+                  onClick={() => handleWorkshopSelection('bodyLanguage')}
+                  className="w-full p-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg text-right transition-all hover:from-purple-700 hover:to-pink-700"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="flex items-center gap-3">
+                    <User className="w-5 h-5" />
+                    <span className="font-medium">{t('bodyLanguageOption')}</span>
+                  </div>
+                </motion.button>
+                
+                <motion.button
+                  onClick={() => handleWorkshopSelection('publicSpeaking')}
+                  className="w-full p-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg text-right transition-all hover:from-blue-700 hover:to-indigo-700"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="flex items-center gap-3">
+                    <MessageCircle className="w-5 h-5" />
+                    <span className="font-medium">{t('publicSpeakingOption')}</span>
+                  </div>
+                </motion.button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 } 

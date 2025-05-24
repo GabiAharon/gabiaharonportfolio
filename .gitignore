@@ -30,4 +30,11 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts 
+next-env.d.ts
+
+# Personal/local files
+cursor_react.md
+dev-tools.bat
+pages/projects_backup.js
+update-github.bat
+update-github.ps1 

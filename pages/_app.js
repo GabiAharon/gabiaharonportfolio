@@ -16,13 +16,23 @@ function MyApp({ Component, pageProps }) {
   // ברירת מחדל עברית
   const [language, setLanguage] = useState('he');
   
-  // טעינת ההעדפה מהדפדפן אם זמינה
+  // טעינת ההעדפה מהדפדפן אם זמינה - בוטל כדי שהעברית תהיה תמיד ברירת המחדל
   useEffect(() => {
     if (typeof window !== 'undefined') {
+      // איפוס כל העדפת שפה קודמת
+      localStorage.removeItem('language');
+      
+      // הגדרת כיוון RTL כברירת מחדל
+      document.documentElement.dir = 'rtl';
+      document.documentElement.lang = 'he';
+      
+      // בוטל על מנת לשים עברית כברירת מחדל תמיד
+      /* 
       const savedLanguage = localStorage.getItem('language');
       if (savedLanguage) {
         setLanguage(savedLanguage);
       }
+      */
     }
   }, []);
   

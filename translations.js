@@ -2,7 +2,7 @@ const translations = {
   en: {
     // Hero section
     title: "Gabi Aharon",
-    subtitle: "Lecturer | Mechanical Engineer | Expert in Body Language & Public Speaking",
+    subtitle: "Manager | Body Language & Public Speaking Lecturer | Mechanical Engineer",
     quote: "Helping people connect with others through movement, presence, and technology.",
     
     // Navigation
@@ -11,8 +11,6 @@ const translations = {
     // Social media
     instagram: "Instagram",
     linkedin: "LinkedIn",
-    tiktok: "TikTok",
-    youtube: "YouTube",
     whatsapp: "WhatsApp",
     email: "Email",
     
@@ -21,14 +19,20 @@ const translations = {
     
     // Featured links
     featuredLinksTitle: "Featured Links",
-    watchTalk: "Watch My TED-style Talk",
-    watchTalkDesc: "The Science of Presence: How Body Language Shapes Our Reality",
     bookLecture: "Book a Lecture or Workshop",
     bookLectureDesc: "Interactive sessions on communication & body language",
-    courseTitle: "Learn About My Body Language Course",
-    courseDesc: "Master the art of non-verbal communication",
-    aiTools: "Explore My AI Tools & Resources",
-    aiToolsDesc: "Free resources to improve your communication skills",
+    tedTalks: "Watch Recommended TED Talks on Body Language",
+    tedTalksDesc: "Curated collection of the most viewed talks on body language, public speaking, and vocal tone",
+    myProjects: "View My Projects",
+    myProjectsDesc: "Tools, plugins, and creations I've developed in communication technology",
+    
+    // Workshop selection
+    workshopSelection: "What interests you?",
+    bodyLanguageOption: "Body Language & Non-Verbal Communication",
+    publicSpeakingOption: "Public Speaking & Presentation Skills",
+    
+    // TED Talks
+    tedTalksTitle: "Recommended TED Talks",
     
     // Projects section
     projectsTitle: "My Creative Projects in AI",
@@ -59,7 +63,7 @@ const translations = {
   he: {
     // Hero section
     title: "גבי אהרון",
-    subtitle: "מרצה | מהנדס מכונות | מומחה בשפת גוף ודיבור מול קהל",
+    subtitle: "מנהל | מרצה לשפת גוף ועמידה מול קהל | מהנדס מכונות",
     quote: "עוזר לאנשים להתחבר עם אחרים דרך תנועה, נוכחות וטכנולוגיה.",
     
     // Navigation
@@ -68,8 +72,6 @@ const translations = {
     // Social media
     instagram: "אינסטגרם",
     linkedin: "לינקדאין",
-    tiktok: "טיקטוק",
-    youtube: "יוטיוב",
     whatsapp: "וואטסאפ",
     email: "אימייל",
     
@@ -78,14 +80,20 @@ const translations = {
     
     // Featured links
     featuredLinksTitle: "קישורים מומלצים",
-    watchTalk: "צפה בהרצאה בסגנון TED",
-    watchTalkDesc: "המדע של נוכחות: איך שפת גוף מעצבת את המציאות שלנו",
     bookLecture: "הזמן הרצאה או סדנה",
     bookLectureDesc: "מפגשים אינטראקטיביים על תקשורת ושפת גוף",
-    courseTitle: "לימודי קורס שפת הגוף שלי",
-    courseDesc: "שלוט באמנות התקשורת הלא מילולית",
-    aiTools: "גלה את כלי הבינה המלאכותית שלי",
-    aiToolsDesc: "משאבים חינמיים לשיפור מיומנויות התקשורת שלך",
+    tedTalks: "צפה בהרצאות מומלצות בנושא שפת גוף",
+    tedTalksDesc: "אוסף מובחר של ההרצאות הנצפות ביותר בנושא שפת גוף, עמידה מול קהל וטון דיבור",
+    myProjects: "צפה בפרויקטים שלי",
+    myProjectsDesc: "כלים, תוספים ויצירות שפיתחתי בתחום טכנולוגיית התקשורת",
+    
+    // Workshop selection
+    workshopSelection: "במה אתה מתעניין?",
+    bodyLanguageOption: "שפת גוף ותקשורת לא מילולית",
+    publicSpeakingOption: "עמידה מול קהל ומיומנויות מצגת",
+    
+    // TED Talks
+    tedTalksTitle: "הרצאות TED מומלצות",
     
     // Projects section
     projectsTitle: "הפרויקטים היצירתיים שלי בבינה מלאכותית",
