@@ -1,5 +1,46 @@
 [
   {
+    "id": 7,
+    "title": {
+      "he": "סרטון דמויות אספנות-",
+      "en": "New Project"
+    },
+    "description": {
+      "he": "יצירת דמויות אספנות של הצוות לעבודה לכבוד חג הפסח. ",
+      "en": "Short description of the new project"
+    },
+    "detailedDescription": {
+      "he": "כאן יופיע תיאור מפורט של הפרויקט. זהו המקום להרחיב על המטרות, השיטות והתוצאות.",
+      "en": "Here is a detailed description of the project. This is the place to expand on the goals, methods and results."
+    },
+    "category": "video",
+    "date": "2025-05-24",
+    "image": "https://i.postimg.cc/XqKSckjD/11.png",
+    "detailImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
+    "link": "https://vimeo.com/1087339107?share=copy",
+    "isVideo": true,
+    "technologies": [
+      "Technology 1",
+      "Technology 2",
+      "Technology 3"
+    ],
+    "status": "פורסם",
+    "features": {
+      "he": [
+        "תכונה 1",
+        "תכונה 2",
+        "תכונה 3",
+        "תכונה 4"
+      ],
+      "en": [
+        "Feature 1",
+        "Feature 2",
+        "Feature 3",
+        "Feature 4"
+      ]
+    }
+  },
+  {
     "id": 1,
     "title": {
       "he": "תוסף טיפים בשפת גוף",
@@ -38,47 +79,6 @@
         "Engagement feedback",
         "Detailed reports",
         "Zoom integration"
-      ]
-    }
-  },
-  {
-    "id": 7,
-    "title": {
-      "he": "סרטון דמויות אספנות-",
-      "en": "New Project"
-    },
-    "description": {
-      "he": "יצירת דמויות אספנות של הצוות לעבודה לכבוד חג הפסח. ",
-      "en": "Short description of the new project"
-    },
-    "detailedDescription": {
-      "he": "כאן יופיע תיאור מפורט של הפרויקט. זהו המקום להרחיב על המטרות, השיטות והתוצאות.",
-      "en": "Here is a detailed description of the project. This is the place to expand on the goals, methods and results."
-    },
-    "category": "video",
-    "date": "2025-05-24",
-    "image": "https://i.postimg.cc/XqKSckjD/11.png",
-    "detailImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
-    "link": "https://vimeo.com/1087339107?share=copy",
-    "isVideo": true,
-    "technologies": [
-      "Technology 1",
-      "Technology 2",
-      "Technology 3"
-    ],
-    "status": "פורסם",
-    "features": {
-      "he": [
-        "תכונה 1",
-        "תכונה 2",
-        "תכונה 3",
-        "תכונה 4"
-      ],
-      "en": [
-        "Feature 1",
-        "Feature 2",
-        "Feature 3",
-        "Feature 4"
       ]
     }
   },
