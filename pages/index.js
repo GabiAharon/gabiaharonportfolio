@@ -480,7 +480,6 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.2 }}
         >
-          <p className="text-gray-300 mb-3">"{t('footerQuote')}"</p>
           <p className="text-sm text-gray-400 flex items-center justify-center">
             <Sparkles className="w-4 h-4 mr-1" />
             {t('aiPowered')} ✨
