@@ -181,7 +181,7 @@
       "en": "AI-powered analysis of non-verbal cues in virtual meetings - a tool that helps managers better understand their employees in remote work."
     },
     "detailedDescription": {
-      "he": "הרעיון נולד מהצורך החוזר בליווי צמוד לעובדים חדשים – משימה שדורשת זמן רב. רציתי לאפשר להם גישה עצמאית ונוחה, שתתן תחושת ביטחון כבר מהיום הראשון. המדריך מאפשר היכרות עם התרבות הארגונית, עם אוצר המילים הייחודי לארגון, ועם המערכות שאיתן עובדים בפועל.\nההדרכה מסתיימת במבחן קצר שבודק עד כמה העובד החדש הצליח להבין ולהכיר את העולם של הארגון ואת המערכות השונות.",
+      "he": "מערכת חכמה שנולדה מהצורך שלי לנהל ראיונות למועמדים בצורה יותר מסודרת עם שאלות מכוונות - אישיות ומקצועיות. במהלך הראיון ניתן לסכם את תשובות המועמד, לפתוח את קובץ קו\"ח בצד, לעבוד על פי זמנים מוגדרים מראש ולבסוף לייצא את הסיכום לקובץ PDF או למייל בלחיצת כפתור.\n\nלמי זה מיועד?\nלמנהלים בארגון שמראיינים מועמדים לצוותים – במיוחד כשיש הרבה ראיונות בחודש, וצריך סטנדרט מסודר ויעיל.\n",
       "en": "An advanced platform for analyzing digital body language in the modern workplace. The tool analyzes behavioral patterns in virtual meetings, including eye contact, posture, facial expressions and engagement. Provides organizations with deep insights into team dynamics and helps improve communication and motivation in remote work."
     },
     "category": "tool",
@@ -192,16 +192,18 @@
     "isVideo": false,
     "technologies": [
       "Cursor AI",
-      "Chat GPT"
+      "Chat GPT",
+      "notebooklm"
     ],
     "status": "הושלם",
     "features": {
       "he": [
-        "חוויית קליטה דיגיטלית",
-        "נגישות מיידית למידע",
-        "מבחן מסכם",
-        "שפה ארגונית אחידה",
-        "חיסכון בזמן חפיפה"
+        "טפסי ראיון חכמים",
+        "סנכרון קורות חיים",
+        "ייצוא לפידיאף",
+        "ניהול זמנים",
+        "תבנית דיווח למייל",
+        "תמיכה בקליטת עובדים"
       ],
       "en": [
         "Behavioral pattern analysis",
