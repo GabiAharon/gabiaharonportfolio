@@ -32,11 +32,18 @@ export default function Flyer() {
                 {/* Flyer Image */}
                 <div className="order-2 md:order-1">
                   <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img 
-                      src="/images/gabi-aharon-flyer.jpg" 
-                      alt="פלאייר הרצאות גבי אהרון - תקשורת לא מילולית"
-                      className="w-full h-auto"
-                    />
+                    <div className="w-full h-96 bg-gradient-to-br from-orange-400 via-red-500 to-purple-600 flex items-center justify-center text-white">
+                      <div className="text-center p-8">
+                        <h3 className="text-2xl font-bold mb-4">גבי אהרון</h3>
+                        <h4 className="text-xl mb-4">תקשורת לא מילולית</h4>
+                        <div className="space-y-2 text-sm">
+                          <p>🎯 שפת גוף ותקשורת לא מילולית</p>
+                          <p>🎤 עמידה מול קהל ומיומנויות מצגת</p>
+                          <p>📞 להזמנות: 054-643-6659</p>
+                          <p>📧 Gabiaharon@gmail.com</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -62,21 +69,55 @@ export default function Flyer() {
 
                   {/* Action Buttons */}
                   <div className="space-y-4">
-                    <a 
-                      href="/images/gabi-aharon-flyer.jpg" 
-                      download="gabi-aharon-flyer.jpg"
+                    <button 
+                      onClick={() => {
+                        // יצירת פלאייר דיגיטלי להורדה
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        canvas.width = 800;
+                        canvas.height = 1200;
+                        
+                        // רקע גרדיאנט
+                        const gradient = ctx.createLinearGradient(0, 0, 800, 1200);
+                        gradient.addColorStop(0, '#fb923c');
+                        gradient.addColorStop(0.5, '#ef4444');
+                        gradient.addColorStop(1, '#9333ea');
+                        ctx.fillStyle = gradient;
+                        ctx.fillRect(0, 0, 800, 1200);
+                        
+                        // טקסט
+                        ctx.fillStyle = 'white';
+                        ctx.textAlign = 'center';
+                        ctx.font = 'bold 48px Arial';
+                        ctx.fillText('גבי אהרון', 400, 200);
+                        
+                        ctx.font = 'bold 36px Arial';
+                        ctx.fillText('תקשורת לא מילולית', 400, 280);
+                        
+                        ctx.font = '24px Arial';
+                        ctx.fillText('🎯 שפת גוף ותקשורת לא מילולית', 400, 400);
+                        ctx.fillText('🎤 עמידה מול קהל ומיומנויות מצגת', 400, 450);
+                        ctx.fillText('📞 להזמנות: 054-643-6659', 400, 550);
+                        ctx.fillText('📧 Gabiaharon@gmail.com', 400, 600);
+                        
+                        // הורדה
+                        const link = document.createElement('a');
+                        link.download = 'gabi-aharon-flyer.png';
+                        link.href = canvas.toDataURL();
+                        link.click();
+                      }}
                       className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
                     >
                       <Download className="w-5 h-5" />
                       הורד פלאייר
-                    </a>
+                    </button>
                     
                     <button 
                       onClick={() => {
                         if (navigator.share) {
                           navigator.share({
                             title: 'פלאייר הרצאות גבי אהרון',
-                            text: 'הרצאות מרתקות בנושאי תקשורת לא מילולית',
+                            text: 'הרצאות מרתקות בנושאי תקשורת לא מילולית - גבי אהרון',
                             url: window.location.href
                           });
                         } else {
@@ -104,16 +145,18 @@ export default function Flyer() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
-                  href="mailto:gabi@example.com" 
+                  href="mailto:Gabiaharon@gmail.com" 
                   className="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300"
                 >
                   📧 שלח מייל
                 </a>
                 <a 
-                  href="tel:+972-50-123-4567" 
+                  href="https://wa.me/972546436659" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300"
                 >
-                  📞 התקשר עכשיו
+                  📞 וואטסאפ
                 </a>
               </div>
             </div>

@@ -122,11 +122,8 @@ export default function Home() {
 
   const handleWorkshopSelection = (type) => {
     setShowWorkshopSelection(false);
-    if (type === 'bodyLanguage') {
-      window.open('https://i.postimg.cc/C1XySqfJ/2.png', '_blank');
-    } else if (type === 'publicSpeaking') {
-      window.open('https://i.postimg.cc/RFNrkRqN/1.png', '_blank');
-    }
+    // הפניה לדף הפלאייר במקום קישורים חיצוניים
+    window.open('/flyer', '_blank');
   };
 
   // Social media links (ללא TikTok ו-YouTube)
