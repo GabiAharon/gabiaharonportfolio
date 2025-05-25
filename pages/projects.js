@@ -128,6 +128,29 @@ const initialProjectsData = [
   }
 ];
 
+// רשימת כלי AI זמינים
+const availableAITools = [
+  "Cursor AI",
+  "Chat GPT", 
+  "Claude AI",
+  "Windsurf",
+  "Gemini",
+  "Imagenfx",
+  "Sora",
+  "Ideogram",
+  "Midjourney",
+  "Reve AI",
+  "Kling AI",
+  "Google Veo 2",
+  "Google Veo 3",
+  "Dreamina",
+  "Pika Labs",
+  "Higgsfiled",
+  "Suno AI",
+  "Eleven Labs",
+  "Filmora"
+];
+
 // תרגומים מקומיים לעמוד
 const projectTranslations = {
   he: {
@@ -143,7 +166,7 @@ const projectTranslations = {
     viewProject: "צפה בפרויקט",
     watchVideo: "צפה בסרטון",
     switchLanguage: "English",
-    technologies: "טכנולוגיות",
+    technologies: "כלי AI לפרויקט",
     status: "סטטוס",
     noProjects: "אין פרויקטים בקטגוריה זו כרגע",
     quickView: "צפייה מהירה",
@@ -164,7 +187,11 @@ const projectTranslations = {
     changesMade: "השינויים נשמרו בהצלחה!",
     editingInstructions: "במצב עריכה: לחץ על כפתורי העריכה (🧡) כדי לערוך פרויקטים",
     imagePreview: "תצוגה מקדימה",
-    enterImageUrl: "הכנס כתובת תמונה חדשה"
+    enterImageUrl: "הכנס כתובת תמונה חדשה",
+    aiTools: "כלי AI לפרויקט",
+    selectAITools: "בחר כלי AI",
+    addCustomTool: "הוסף כלי חדש",
+    customToolPlaceholder: "שם כלי AI חדש"
   },
   en: {
     projectsPageTitle: "My Projects",
@@ -179,7 +206,7 @@ const projectTranslations = {
     viewProject: "View Project",
     watchVideo: "Watch Video",
     switchLanguage: "עברית",
-    technologies: "Technologies",
+    technologies: "AI Tools for Project",
     status: "Status",
     noProjects: "No projects in this category yet",
     quickView: "Quick View",
@@ -200,7 +227,11 @@ const projectTranslations = {
     changesMade: "Changes saved successfully!",
     editingInstructions: "Edit Mode: Click the edit buttons (🧡) to edit projects",
     imagePreview: "Preview",
-    enterImageUrl: "Enter new image URL"
+    enterImageUrl: "Enter new image URL",
+    aiTools: "AI Tools for Project",
+    selectAITools: "Select AI Tools",
+    addCustomTool: "Add Custom Tool",
+    customToolPlaceholder: "New AI Tool Name"
   }
 };
 
@@ -215,6 +246,9 @@ export default function Projects() {
   const [editForm, setEditForm] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [showAdminButton, setShowAdminButton] = useState(false);
+  const [customAITools, setCustomAITools] = useState([]);
+  const [selectedAITools, setSelectedAITools] = useState([]);
+  const [newCustomTool, setNewCustomTool] = useState('');
   
   // וידוא שהשפה היא עברית בטעינה ראשונית
   useEffect(() => {
@@ -227,6 +261,12 @@ export default function Projects() {
   useEffect(() => {
     loadProjectsData();
     
+    // טעינת כלי AI מותאמים אישית מ-localStorage
+    const savedCustomTools = localStorage.getItem('customAITools');
+    if (savedCustomTools) {
+      setCustomAITools(JSON.parse(savedCustomTools));
+    }
+    
     // הוספת מאזין לקיצור מקלדת סודי (Ctrl+Shift+A)
     const handleKeyDown = (event) => {
       if (event.ctrlKey && event.shiftKey && event.key === 'A') {
@@ -238,6 +278,33 @@ export default function Projects() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
+
+  // פונקציה לקבלת כל כלי ה-AI הזמינים (מובנים + מותאמים אישית)
+  const getAllAITools = () => {
+    return [...availableAITools, ...customAITools];
+  };
+
+  // פונקציה להוספת כלי AI מותאם אישית
+  const addCustomAITool = () => {
+    if (newCustomTool.trim() && !getAllAITools().includes(newCustomTool.trim())) {
+      const updatedCustomTools = [...customAITools, newCustomTool.trim()];
+      setCustomAITools(updatedCustomTools);
+      localStorage.setItem('customAITools', JSON.stringify(updatedCustomTools));
+      setNewCustomTool('');
+      
+      // הוסף את הכלי החדש לרשימת הכלים הנבחרים
+      setSelectedAITools([...selectedAITools, newCustomTool.trim()]);
+    }
+  };
+
+  // פונקציה לטיפול בבחירת כלי AI
+  const handleAIToolToggle = (tool) => {
+    setSelectedAITools(prev => 
+      prev.includes(tool) 
+        ? prev.filter(t => t !== tool)
+        : [...prev, tool]
+    );
+  };
 
   const loadProjectsData = async () => {
     try {
@@ -370,6 +437,7 @@ export default function Projects() {
   const startEditingProject = (project, inModal = false) => {
     setEditingProject(project.id);
     setEditingInModal(inModal);
+    setSelectedAITools(project.technologies || []);
     setEditForm({
       title: { ...project.title },
       description: { ...project.description },
@@ -398,7 +466,7 @@ export default function Projects() {
           detailedDescription: editForm.detailedDescription,
           category: editForm.category,
           status: editForm.status,
-          technologies: editForm.technologies ? editForm.technologies.split(',').map(t => t.trim()) : project.technologies,
+          technologies: selectedAITools.length > 0 ? selectedAITools : (editForm.technologies ? editForm.technologies.split(',').map(t => t.trim()) : project.technologies),
           features: {
             he: editForm.features.he.split(',').map(f => f.trim()),
             en: editForm.features.en.split(',').map(f => f.trim())
@@ -423,6 +491,7 @@ export default function Projects() {
     setEditingProject(null);
     setEditingInModal(false);
     setEditForm({});
+    setSelectedAITools([]);
     
     // עדכון נתונים ב-localStorage
     saveToLocalStorage(updatedProjects);
@@ -442,6 +511,7 @@ export default function Projects() {
     setEditingProject(null);
     setEditingInModal(false);
     setEditForm({});
+    setSelectedAITools([]);
   };
 
   // פונקציה לשכפול פרויקט
@@ -1001,10 +1071,10 @@ myusername/myrepo/ghp_abc123xyz...
                   whileHover={{ scale: editingProject === project.id ? 1 : 1.02 }}
                   whileTap={{ scale: editingProject === project.id ? 1 : 0.98 }}
                 >
-                  <div className={`${editingProject === project.id && !editingInModal ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-blue-500 to-purple-600'} p-0.5 rounded-xl h-full`}>
-                    <div className="bg-gray-900 rounded-xl overflow-hidden h-full">
+                  <div className={`${editingProject === project.id && !editingInModal ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-blue-500 to-purple-600'} p-0.5 rounded-xl`}>
+                    <div className="bg-gray-900 rounded-xl overflow-hidden h-full flex flex-col min-h-[500px]">
                       {/* תמונת הפרויקט */}
-                      <div className="relative h-48 overflow-hidden">
+                      <div className="relative h-48 overflow-hidden flex-shrink-0">
                         <img 
                           src={project.image} 
                           alt={project.title[language]} 
@@ -1095,10 +1165,10 @@ myusername/myrepo/ghp_abc123xyz...
                       </div>
                       
                       {/* תוכן הפרויקט */}
-                      <div className="p-5">
+                      <div className="p-5 flex flex-col flex-1">
                         {editingProject === project.id && !editingInModal ? (
                           // מצב עריכה בכרטיס
-                          <div className="space-y-3">
+                          <div className="space-y-3 flex-1">
                             <input
                               type="text"
                               placeholder={t('projectTitle')}
@@ -1168,13 +1238,64 @@ myusername/myrepo/ghp_abc123xyz...
                             </div>
                             
                             {/* עריכת טכנולוגיות */}
-                            <input
-                              type="text"
-                              placeholder="טכנולוגיות (מופרדות בפסיק)"
-                              value={editForm.technologies || ''}
-                              onChange={(e) => setEditForm({ ...editForm, technologies: e.target.value })}
-                              className="w-full bg-gray-800 text-white border border-gray-600 rounded px-3 py-2 text-sm"
-                            />
+                            <div className="border-t border-gray-700 pt-3">
+                              <label className="block text-sm text-gray-400 mb-2">{t('aiTools')}</label>
+                              
+                              {/* רשימת כלי AI זמינים */}
+                              <div className="mb-3 max-h-60 overflow-y-auto border border-gray-600 rounded p-4 bg-gray-800">
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                                  {getAllAITools().map((tool, index) => (
+                                    <label key={index} className="flex items-center gap-2 text-sm cursor-pointer hover:bg-gray-700 p-2 rounded">
+                                      <input
+                                        type="checkbox"
+                                        checked={selectedAITools.includes(tool)}
+                                        onChange={() => handleAIToolToggle(tool)}
+                                        className="w-4 h-4"
+                                      />
+                                      <span className="text-gray-300">{tool}</span>
+                                    </label>
+                                  ))}
+                                </div>
+                              </div>
+                              
+                              {/* הוספת כלי חדש */}
+                              <div className="flex gap-2 mb-3">
+                                <input
+                                  type="text"
+                                  placeholder={t('customToolPlaceholder')}
+                                  value={newCustomTool}
+                                  onChange={(e) => setNewCustomTool(e.target.value)}
+                                  className="flex-1 bg-gray-700 text-white border border-gray-600 rounded px-3 py-2 text-sm"
+                                  onKeyPress={(e) => e.key === 'Enter' && addCustomAITool()}
+                                />
+                                <button
+                                  onClick={addCustomAITool}
+                                  className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
+                                >
+                                  {t('addCustomTool')}
+                                </button>
+                              </div>
+                              
+                              {/* תצוגת כלים נבחרים */}
+                              {selectedAITools.length > 0 && (
+                                <div>
+                                  <p className="text-sm text-gray-400 mb-2">כלים נבחרים:</p>
+                                  <div className="flex flex-wrap gap-2">
+                                    {selectedAITools.map((tool, index) => (
+                                      <span key={index} className="bg-blue-600 text-sm px-3 py-1 rounded flex items-center gap-2">
+                                        {tool}
+                                        <button
+                                          onClick={() => handleAIToolToggle(tool)}
+                                          className="text-blue-200 hover:text-white font-bold"
+                                        >
+                                          ×
+                                        </button>
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
                             
                             {/* שדה קישור לסרטון - מופיע רק כאשר הקטגוריה היא סרטון */}
                             {editForm.category === 'video' && (
@@ -1221,38 +1342,43 @@ myusername/myrepo/ghp_abc123xyz...
                               </div>
                             </div>
                             
+                            {/* ספייסר שדוחף את הכפתור לתחתית */}
+                            <div className="flex-1 min-h-0"></div>
+                            
                             {/* כפתור צפייה מהירה */}
-                            {project.isVideo && project.link ? (
-                              // שני כפתורים לפרויקטי סרטון
-                              <div className="flex flex-col gap-2 mt-auto">
+                            <div className="mt-auto pt-4">
+                              {project.isVideo && project.link ? (
+                                // שני כפתורים לפרויקטי סרטון
+                                <div className="flex flex-col gap-2">
+                                  <button
+                                    onClick={() => setSelectedProject(project)}
+                                    className="flex items-center justify-center gap-2 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors"
+                                  >
+                                    <ExternalLink className="w-4 h-4" />
+                                    <span>מידע נוסף על הפרויקט</span>
+                                  </button>
+                                  <a
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors"
+                                    onClick={(e) => e.stopPropagation()}
+                                  >
+                                    <Play className="w-4 h-4" />
+                                    <span>{t('watchVideo')}</span>
+                                  </a>
+                                </div>
+                              ) : (
+                                // כפתור לצפייה מהירה
                                 <button
                                   onClick={() => setSelectedProject(project)}
                                   className="flex items-center justify-center gap-2 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors"
                                 >
                                   <ExternalLink className="w-4 h-4" />
-                                  <span>מידע נוסף על הפרויקט</span>
+                                  <span>{t('quickView')}</span>
                                 </button>
-                                <a
-                                  href={project.link}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors"
-                                  onClick={(e) => e.stopPropagation()}
-                                >
-                                  <Play className="w-4 h-4" />
-                                  <span>{t('watchVideo')}</span>
-                                </a>
-                              </div>
-                            ) : (
-                              // כפתור לצפייה מהירה
-                              <button
-                                onClick={() => setSelectedProject(project)}
-                                className="flex items-center justify-center gap-2 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors mt-auto"
-                              >
-                                <ExternalLink className="w-4 h-4" />
-                                <span>{t('quickView')}</span>
-                              </button>
-                            )}
+                              )}
+                            </div>
                           </>
                         )}
                       </div>
@@ -1530,6 +1656,66 @@ myusername/myrepo/ghp_abc123xyz...
                           </div>
                         )}
                       </div>
+                    </div>
+
+                    {/* עריכת כלי AI */}
+                    <div>
+                      <label className="block text-sm font-medium mb-2">{t('aiTools')}</label>
+                      
+                      {/* רשימת כלי AI זמינים */}
+                      <div className="mb-3 max-h-60 overflow-y-auto border border-gray-600 rounded p-4 bg-gray-800">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                          {getAllAITools().map((tool, index) => (
+                            <label key={index} className="flex items-center gap-2 text-sm cursor-pointer hover:bg-gray-700 p-2 rounded">
+                              <input
+                                type="checkbox"
+                                checked={selectedAITools.includes(tool)}
+                                onChange={() => handleAIToolToggle(tool)}
+                                className="w-4 h-4"
+                              />
+                              <span className="text-gray-300">{tool}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* הוספת כלי חדש */}
+                      <div className="flex gap-2 mb-3">
+                        <input
+                          type="text"
+                          placeholder={t('customToolPlaceholder')}
+                          value={newCustomTool}
+                          onChange={(e) => setNewCustomTool(e.target.value)}
+                          className="flex-1 bg-gray-700 text-white border border-gray-600 rounded px-3 py-2 text-sm"
+                          onKeyPress={(e) => e.key === 'Enter' && addCustomAITool()}
+                        />
+                        <button
+                          onClick={addCustomAITool}
+                          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition-colors"
+                        >
+                          {t('addCustomTool')}
+                        </button>
+                      </div>
+                      
+                      {/* תצוגת כלים נבחרים */}
+                      {selectedAITools.length > 0 && (
+                        <div>
+                          <p className="text-sm text-gray-400 mb-2">כלים נבחרים:</p>
+                          <div className="flex flex-wrap gap-2">
+                            {selectedAITools.map((tool, index) => (
+                              <span key={index} className="bg-blue-600 text-sm px-3 py-1 rounded flex items-center gap-2">
+                                {tool}
+                                <button
+                                  onClick={() => handleAIToolToggle(tool)}
+                                  className="text-blue-200 hover:text-white font-bold"
+                                >
+                                  ×
+                                </button>
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     {/* שדה קישור לסרטון במודל - מופיע רק אם הקטגוריה היא סרטון */}
