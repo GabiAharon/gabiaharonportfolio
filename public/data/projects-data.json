@@ -297,48 +297,5 @@
         "Artistic expression"
       ]
     }
-  },
-  {
-    "id": 8,
-    "title": {
-      "he": "שפת גוף דיגיטלית (עותק)",
-      "en": "Digital Body Language (Copy)"
-    },
-    "description": {
-      "he": "ניתוח מבוסס בינה מלאכותית של רמזים לא מילוליים בפגישות וירטואליות - כלי שעוזר למנהלים להבין טוב יותר את עובדיהם בעבודה מרחוק.",
-      "en": "AI-powered analysis of non-verbal cues in virtual meetings - a tool that helps managers better understand their employees in remote work."
-    },
-    "detailedDescription": {
-      "he": "פלטפורמה מתקדמת לניתוח שפת הגוף הדיגיטלית במקום העבודה המודרני. הכלי מנתח דפוסי התנהגות בפגישות וירטואליות, כולל קשר עין, תנוחה, הבעות פנים ומעורבות. מספק לארגונים תובנות עמוקות על דינמיקות הצוות ומסייע בשיפור התקשורת והמוטיבציה בעבודה מרחוק.",
-      "en": "An advanced platform for analyzing digital body language in the modern workplace. The tool analyzes behavioral patterns in virtual meetings, including eye contact, posture, facial expressions and engagement. Provides organizations with deep insights into team dynamics and helps improve communication and motivation in remote work."
-    },
-    "category": "tool",
-    "date": "2025-05-25",
-    "image": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
-    "detailImage": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
-    "link": "#digital-body-language",
-    "isVideo": false,
-    "technologies": [
-      "OpenCV",
-      "TensorFlow",
-      "WebRTC",
-      "React",
-      "Node.js"
-    ],
-    "status": "בפיתוח",
-    "features": {
-      "he": [
-        "ניתוח דפוסי התנהגות",
-        "תובנות על דינמיקות צוות",
-        "דוחות ממוחשבים",
-        "אינטגרציה עם מערכות HR"
-      ],
-      "en": [
-        "Behavioral pattern analysis",
-        "Team dynamics insights",
-        "Automated reports",
-        "HR systems integration"
-      ]
-    }
   }
 ]
