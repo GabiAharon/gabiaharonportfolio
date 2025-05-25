@@ -188,9 +188,16 @@ export default function Home() {
       color: "bg-gradient-to-r from-blue-600 to-indigo-600"
     },
     {
+      title: "flyer",
+      description: "flyerDesc",
+      icon: <BookOpen className="w-6 h-6" />,
+      url: "/flyer",
+      color: "bg-gradient-to-r from-orange-500 to-red-500"
+    },
+    {
       title: "tedTalks",
       description: "tedTalksDesc",
-      icon: <BookOpen className="w-6 h-6" />,
+      icon: <Play className="w-6 h-6" />,
       onClick: () => setShowTedTalks(true),
       color: "bg-gradient-to-r from-emerald-500 to-teal-500"
     },
