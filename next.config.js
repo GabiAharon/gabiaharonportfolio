@@ -5,8 +5,8 @@ const nextConfig = {
   output: 'export',
   images: { unoptimized: true },
   trailingSlash: true,
-  assetPrefix: '/gabiaharonportfolio/',
-  basePath: '/gabiaharonportfolio'
+  assetPrefix: process.env.NODE_ENV === 'production' ? '' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '' : ''
 }
 
 module.exports = nextConfig 
