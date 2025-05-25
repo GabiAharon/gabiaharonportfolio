@@ -135,10 +135,6 @@ export default function Home() {
       link.download = 'gabi-aharon-public-speaking-flyer.jpg';
       link.click();
     }
-    // גם פתיחת דף הפלאייר למידע נוסף
-    setTimeout(() => {
-      window.open('/flyer', '_blank');
-    }, 500);
   };
 
   // Social media links (ללא TikTok ו-YouTube)
@@ -203,7 +199,7 @@ export default function Home() {
       title: "flyer",
       description: "flyerDesc",
       icon: <BookOpen className="w-6 h-6" />,
-      url: "/flyer",
+      onClick: () => setShowWorkshopSelection(true),
       color: "bg-gradient-to-r from-orange-500 to-red-500"
     },
     {
