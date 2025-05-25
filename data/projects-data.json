@@ -309,13 +309,13 @@
       "en": "A tool that helps speakers improve their stage presence through body movement analysis and personalized recommendations."
     },
     "detailedDescription": {
-      "he": "תוסף נגיש לכרום שמכיל את כל כלי הAI הנפוצים ומחולק על פי קטגוריות. \nנבנה ע\"י Cursor AI",
+      "he": "דף נחיתה אישי שמרכז את כל מה שאני עושה -מההרצאות והפרויקטים הטכנולוגיים, ועד עולמות הניהול, שפת הגוף והבינה המלאכותית.\n\nלמה זה נבנה?\nרציתי ליצור עוגן אחד ברור, מקצועי ונגיש – שדרכו כל מי שפוגש אותי (בלינקדאין, בהרצאה או בכנס) יוכל להבין מי אני ומה אני מציע בלחיצה אחת.\n\nלמי זה מיועד?\nללקוחות פוטנציאליים, מנהלים, מרצים, סטודנטים, אנשי חינוך – ובעצם כל מי שיכול למצוא עניין בהרצאות, בשיתופי פעולה או בפרויקטים שלי.\n\nאיך זה נבנה?\nהקוד העיצוב והתשתית נבנו ב-Cursor, לאחר מכן העלאה לגיטהאב ומשם הועלה ב-Netlify. כל שינוי נשמר אוטומטית בגיטהאב וישנה פונקציית עריכה לכלל האתר ללא צורך לגשת שוב לCursor מלבד שינויים מהותיים. \n\nמה מיוחד בזה?\nהאתר מחולק לפי עולמות התוכן שלי, כולל מעבר חלק בין פרויקטים, הרצאות ודף יצירת קשר.\nדף הפרויקטים כולל סיכומים תמציתיים עם קישורים לפירוט מלא, מה שמאפשר למבקר לצלול לעומק – או פשוט להתרשם מהרוח הכללית.",
       "en": "An advanced application that uses AI to analyze and improve speakers' stage presence. The tool analyzes body movements, voice, speech pace and audience alignment, providing personalized recommendations for improvement. Includes interactive training and simulations of various speaking scenarios."
     },
     "category": "interface",
     "date": "2025-05-25",
     "image": "https://i.postimg.cc/W3BKVDSG/Screenshot-2025-05-25-2331432.png",
-    "detailImage": "https://i.postimg.cc/yd96SJbN/Screenshot-2025-05-23-171315.png",
+    "detailImage": "https://i.postimg.cc/W3BKVDSG/Screenshot-2025-05-25-2331432.png",
     "link": "#ai-presence-generator",
     "isVideo": false,
     "technologies": [
@@ -326,8 +326,11 @@
     "status": "הושלם",
     "features": {
       "he": [
-        "כלי AI",
-        "נגישות"
+        "הצגת זהות מקצועית",
+        "איחוד תחומי פעילות",
+        "ניווט קל",
+        "עיצוב רספונסיבי",
+        "נראות מקצועית"
       ],
       "en": [
         "Body movement analysis",
