@@ -189,13 +189,6 @@ export default function Home() {
   // Featured links data (עודכן)
   const featuredLinks = [
     {
-      title: "bookLecture",
-      description: "bookLectureDesc",
-      icon: <Calendar className="w-6 h-6" />,
-      onClick: () => setShowWorkshopSelection(true),
-      color: "bg-gradient-to-r from-blue-600 to-indigo-600"
-    },
-    {
       title: "flyer",
       description: "flyerDesc",
       icon: <BookOpen className="w-6 h-6" />,
