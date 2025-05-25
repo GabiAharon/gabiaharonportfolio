@@ -28,8 +28,8 @@ const translations = {
     flyerDesc: "Choose your lecture type and download the professional flyer",
     tedTalks: "Watch Recommended TED Talks on Body Language",
     tedTalksDesc: "Curated collection of the most viewed talks on body language, public speaking, and vocal tone",
-    myProjects: "View My Projects",
-    myProjectsDesc: "Tools, plugins, and creations I've developed in communication technology",
+    myProjects: "My Generative AI Work",
+    myProjectsDesc: "A selection of projects, tools, plugins and creations I've developed at the intersection of technology, design, lectures and artificial intelligence",
     testimonials: "Testimonials & Reviews",
     testimonialsDesc: "What clients say about my lectures and training sessions",
     
@@ -96,8 +96,8 @@ const translations = {
     flyerDesc: "בחר את סוג ההרצאה והורד את הפלייר המקצועי",
     tedTalks: "צפה בהרצאות טד מומלצות בנושא שפת גוף",
     tedTalksDesc: "אוסף מובחר של ההרצאות הנצפות ביותר בנושא שפת גוף, עמידה מול קהל וטון דיבור",
-    myProjects: "צפה בפרויקטים שלי",
-    myProjectsDesc: "כלים, תוספים ויצירות שפיתחתי בתחום טכנולוגיית התקשורת",
+    myProjects: "העבודות שלי בעולם ה-Generative AI",
+    myProjectsDesc: "מבחר פרויקטים, כלים, תוספים ויצירות שפיתחתי במפגש שבין טכנולוגיה, עיצוב, הרצאות ובינה מלאכותית",
     testimonials: "המלצות ומשובים",
     testimonialsDesc: "מה אומרים לקוחות על ההרצאות והסדנאות שלי",
     
