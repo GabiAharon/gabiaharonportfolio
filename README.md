@@ -1,8 +1,11 @@
-# Gabi Aharon Portfolio
+# 🌟 Gabi Aharon Portfolio
 
 A modern, animated portfolio website built with Next.js, Tailwind CSS, and Framer Motion.
 
-## Features
+## 🚀 Live Demo
+**[Visit Website](https://gabiaaharon.github.io/gabiaharonportfolio/)**
+
+## ✨ Features
 
 - Responsive design for all device sizes
 - Animated UI elements using Framer Motion
@@ -12,7 +15,7 @@ A modern, animated portfolio website built with Next.js, Tailwind CSS, and Frame
 - Projects showcase
 - Animated ticker for announcements
 
-## Getting Started
+## 🛠️ Getting Started
 
 ### Prerequisites
 
@@ -40,19 +43,43 @@ yarn dev
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-## Technologies Used
+## 🌐 GitHub Pages Setup
 
-- Next.js
-- React
-- Tailwind CSS
-- Framer Motion
-- Lucide React (for icons)
+To deploy to GitHub Pages, ensure your repository settings are configured correctly:
 
-## Project Structure
+1. Go to **Settings** → **Pages**
+2. Under **Source**, select **GitHub Actions** (not Deploy from a branch)
+3. The workflow will automatically deploy when you push to the master branch
+
+## 🎨 Technologies Used
+
+- [Next.js](https://nextjs.org/)
+- [React](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Lucide React](https://lucide.dev/) (for icons)
+
+## 📁 Project Structure
 
 - `pages/index.js` - Main home page component
-- `components/Layout.js` - Layout component with global styles
-- `styles/globals.css` - Global CSS with Tailwind imports
+- `components/` - Reusable components
+  - `Layout.js` - Main layout wrapper
+  - `LanguageToggle.js` - Language switcher component
+  - `Navbar.js` - Navigation component
+  - `TestimonialsSection.js` - Client testimonials
+- `data/` - Static data files
+  - `testimonials-data.json` - Client testimonials data
+- `styles/` - Global styles and Tailwind configuration
+- `public/` - Static assets
 
-## Build Trigger
-This line was added to trigger a new build.
+## 🚀 Deployment
+
+The site is automatically deployed to GitHub Pages when you push to the master branch. The deployment process:
+
+1. Builds the Next.js app with static export
+2. Uploads the built files to GitHub Pages
+3. Makes the site available at the GitHub Pages URL
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
