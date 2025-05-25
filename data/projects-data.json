@@ -20,10 +20,15 @@
     "link": "https://vimeo.com/1086929819",
     "isVideo": true,
     "technologies": [
-      "Video Production",
-      "Storytelling",
-      "Music",
-      "Personal Expression"
+      "Reve AI",
+      "Filmora",
+      "Suno AI",
+      "Eleven Labs",
+      "Dreamina",
+      "Kling AI",
+      "Sora",
+      "Chat GPT",
+      "Imagenfx"
     ],
     "status": "פורסם",
     "features": {
@@ -45,15 +50,15 @@
     "id": 7,
     "title": {
       "he": "סרטון דמויות אספנות ",
-      "en": "New Project"
+      "en": "Collectible Characters Video"
     },
     "description": {
       "he": "יצירת דמויות אספנות של הצוות לעבודה לכבוד חג הפסח. ",
-      "en": "Short description of the new project"
+      "en": "Creating collectible characters of the work team in honor of Passover holiday."
     },
     "detailedDescription": {
-      "he": "כאן יופיע תיאור מפורט של הפרויקט. זהו המקום להרחיב על המטרות, השיטות והתוצאות.",
-      "en": "Here is a detailed description of the project. This is the place to expand on the goals, methods and results."
+      "he": "פרויקט יצירתי שבו יצרתי דמויות אספנות דיגיטליות של חברי הצוות במקום העבודה לכבוד חג הפסח. הפרויקט כלל עיצוב אישי לכל חבר צוות, יצירת אלמנטים ויזואליים ייחודיים ועריכת סרטון מקצועי המציג את התוצאה הסופית.",
+      "en": "A creative project where I created digital collectible characters of team members at work in honor of Passover holiday. The project included personal design for each team member, creating unique visual elements and professional video editing showcasing the final result."
     },
     "category": "video",
     "date": "2025-05-24",
@@ -62,23 +67,25 @@
     "link": "https://i.postimg.cc/XqKSckjD/11.png",
     "isVideo": true,
     "technologies": [
-      "Technology 1",
-      "Technology 2",
-      "Technology 3"
+      "Digital Design",
+      "Character Creation",
+      "Video Editing",
+      "Graphic Design",
+      "Creative Direction"
     ],
     "status": "פורסם",
     "features": {
       "he": [
-        "תכונה 1",
-        "תכונה 2",
-        "תכונה 3",
-        "תכונה 4"
+        "עיצוב דמויות אישי",
+        "יצירה דיגיטלית",
+        "עריכת סרטון מקצועית",
+        "פרויקט חגיגי לצוות"
       ],
       "en": [
-        "Feature 1",
-        "Feature 2",
-        "Feature 3",
-        "Feature 4"
+        "Personal character design",
+        "Digital creation",
+        "Professional video editing",
+        "Festive team project"
       ]
     }
   },
@@ -86,15 +93,15 @@
     "id": 1,
     "title": {
       "he": "תוסף טיפים בשפת גוף",
-      "en": "Body Language Bot for Zoom"
+      "en": "Body Language Tips Extension"
     },
     "description": {
       "he": "תוסף כרום שמאפשר גישה מהירה למאות טיפים שונים בנושא שפת גוף ותקשורת לא מילולית",
-      "en": "A Zoom plugin that analyzes participants' body language during meetings and provides real-time feedback on engagement and presence levels."
+      "en": "A Chrome extension that provides quick access to hundreds of different tips on body language and non-verbal communication"
     },
     "detailedDescription": {
       "he": "התוסף מכיל את כל הטיפים שלמדתי, אספתי והשתמשתי ומאפשר לקטלג אותם על פי קטגוריות שונות כמו: הבעות פנים, שכנוע, משא ומתן, סגנונות תקשורת, עמידה מול קהל ועוד. \nבנוסף התוסף מייצר משימות שבועיות למשל: שים לב להבעות פנים של כעס לפחות במקרה אחד בו תיתקל השבוע. לאחר ביצוע המשימה ניתן לרשום משוב עבור מעקב והתקדמות. \n\nבנוסף קיימת פונקציה של \"טיקר\" שמאפשר טיפים רצים בתחתית המסך לצפייה רציפה. \n",
-      "en": "An innovative project that combines AI and computer vision for real-time body language analysis during Zoom meetings. The tool identifies movements, facial expressions and body postures and provides immediate feedback to the meeting host about participants' engagement levels. Perfect for organizations looking to improve their virtual meeting effectiveness."
+      "en": "The extension contains all the tips I've learned, collected and used, and allows cataloging them by different categories such as: facial expressions, persuasion, negotiation, communication styles, public speaking and more. \nAdditionally, the extension generates weekly tasks, for example: pay attention to angry facial expressions in at least one case you encounter this week. After completing the task, you can record feedback for tracking and progress. \n\nThere's also a 'ticker' function that allows running tips at the bottom of the screen for continuous viewing."
     },
     "category": "plugin",
     "date": "2024-12-01",
@@ -103,24 +110,27 @@
     "link": "#zoom-body-language-bot",
     "isVideo": false,
     "technologies": [
-      "AI",
-      "Computer Vision",
-      "Zoom SDK",
-      "Python",
-      "TensorFlow"
+      "Chrome Extension",
+      "JavaScript",
+      "HTML/CSS",
+      "Local Storage",
+      "UI/UX Design"
     ],
     "status": "הושלם",
     "features": {
       "he": [
-        "תוסף",
-        "שינון",
-        "שימור ידע"
+        "מאות טיפים בשפת גוף",
+        "קטלוג לפי קטגוריות",
+        "משימות שבועיות",
+        "מעקב התקדמות",
+        "טיקר טיפים רץ"
       ],
       "en": [
-        "Real-time analysis",
-        "Engagement feedback",
-        "Detailed reports",
-        "Zoom integration"
+        "Hundreds of body language tips",
+        "Categorized catalog",
+        "Weekly tasks",
+        "Progress tracking",
+        "Running tips ticker"
       ]
     }
   },
@@ -128,15 +138,15 @@
     "id": 2,
     "title": {
       "he": "תוסף כלי AI ",
-      "en": "AI Presence Generator"
+      "en": "AI Tools Extension"
     },
     "description": {
       "he": "תוסף כלי AI",
-      "en": "A tool that helps speakers improve their stage presence through body movement analysis and personalized recommendations."
+      "en": "A Chrome extension containing popular AI tools organized by categories"
     },
     "detailedDescription": {
       "he": "תוסף נגיש לכרום שמכיל את כל כלי הAI הנפוצים ומחולק על פי קטגוריות. \nנבנה ע\"י Cursor AI",
-      "en": "An advanced application that uses AI to analyze and improve speakers' stage presence. The tool analyzes body movements, voice, speech pace and audience alignment, providing personalized recommendations for improvement. Includes interactive training and simulations of various speaking scenarios."
+      "en": "An accessible Chrome extension that contains all popular AI tools organized by categories. \nBuilt with Cursor AI"
     },
     "category": "tool",
     "date": "2024-11-15",
@@ -145,23 +155,25 @@
     "link": "#ai-presence-generator",
     "isVideo": false,
     "technologies": [
-      "Machine Learning",
-      "Motion Detection",
-      "React",
-      "Voice Analysis",
-      "WebRTC"
+      "Chrome Extension",
+      "JavaScript",
+      "HTML/CSS",
+      "Cursor AI",
+      "UI/UX Design"
     ],
     "status": "הושלם",
     "features": {
       "he": [
-        "כלי AI",
-        "נגישות"
+        "כלי AI מאורגנים",
+        "חלוקה לקטגוריות",
+        "גישה מהירה",
+        "ממשק נגיש"
       ],
       "en": [
-        "Body movement analysis",
-        "Voice analysis",
-        "Personal recommendations",
-        "Interactive training"
+        "Organized AI tools",
+        "Categorized layout",
+        "Quick access",
+        "Accessible interface"
       ]
     }
   },
