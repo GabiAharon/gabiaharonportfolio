@@ -122,8 +122,23 @@ export default function Home() {
 
   const handleWorkshopSelection = (type) => {
     setShowWorkshopSelection(false);
-    // הפניה לדף הפלאייר במקום קישורים חיצוניים
-    window.open('/flyer', '_blank');
+    if (type === 'bodyLanguage') {
+      // הפניה ישירה להורדת פלאייר שפת גוף
+      const link = document.createElement('a');
+      link.href = '/images/lectureflyer2.jpg';
+      link.download = 'gabi-aharon-body-language-flyer.jpg';
+      link.click();
+    } else if (type === 'publicSpeaking') {
+      // הפניה ישירה להורדת פלאייר עמידה מול קהל
+      const link = document.createElement('a');
+      link.href = '/images/lectureflyer1.jpg';
+      link.download = 'gabi-aharon-public-speaking-flyer.jpg';
+      link.click();
+    }
+    // גם פתיחת דף הפלאייר למידע נוסף
+    setTimeout(() => {
+      window.open('/flyer', '_blank');
+    }, 500);
   };
 
   // Social media links (ללא TikTok ו-YouTube)
