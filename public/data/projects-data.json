@@ -297,5 +297,44 @@
         "Artistic expression"
       ]
     }
+  },
+  {
+    "id": 8,
+    "title": {
+      "he": "Gabi Aharon -Landing Page",
+      "en": "AI Presence Generator (Copy)"
+    },
+    "description": {
+      "he": "דף נחיתה אישי שמשלב את כל העולמות שלי: שפת גוף, הרצאות, פרויקטים עם בינה מלאכותית וניסיון ניהולי – כולל קישורים, תיק עבודות ודף יצירת קשר.\n",
+      "en": "A tool that helps speakers improve their stage presence through body movement analysis and personalized recommendations."
+    },
+    "detailedDescription": {
+      "he": "תוסף נגיש לכרום שמכיל את כל כלי הAI הנפוצים ומחולק על פי קטגוריות. \nנבנה ע\"י Cursor AI",
+      "en": "An advanced application that uses AI to analyze and improve speakers' stage presence. The tool analyzes body movements, voice, speech pace and audience alignment, providing personalized recommendations for improvement. Includes interactive training and simulations of various speaking scenarios."
+    },
+    "category": "interface",
+    "date": "2025-05-25",
+    "image": "https://i.postimg.cc/W3BKVDSG/Screenshot-2025-05-25-2331432.png",
+    "detailImage": "https://i.postimg.cc/yd96SJbN/Screenshot-2025-05-23-171315.png",
+    "link": "#ai-presence-generator",
+    "isVideo": false,
+    "technologies": [
+      "React",
+      "Cursor AI",
+      "Chat GPT"
+    ],
+    "status": "הושלם",
+    "features": {
+      "he": [
+        "כלי AI",
+        "נגישות"
+      ],
+      "en": [
+        "Body movement analysis",
+        "Voice analysis",
+        "Personal recommendations",
+        "Interactive training"
+      ]
+    }
   }
 ]
