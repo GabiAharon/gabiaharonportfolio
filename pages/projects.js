@@ -827,6 +827,66 @@ myusername/myrepo/ghp_abc123xyz...
     }
   };
 
+  // פונקציה לסנכרון נתונים מ-GitHub
+  const syncFromGitHub = async () => {
+    try {
+      const githubToken = localStorage.getItem('githubToken');
+      const repoOwner = localStorage.getItem('githubUsername') || 'GabiAharon';
+      const repoName = localStorage.getItem('githubRepo') || 'gabiaharonportfolio';
+      
+      if (!githubToken) {
+        alert('❌ לא נמצא טוקן GitHub. השתמש בכפתור הגיבוי כדי להגדיר טוקן.');
+        return false;
+      }
+
+      const response = await fetch(
+        `https://api.github.com/repos/${repoOwner}/${repoName}/contents/data/projects-data.json`,
+        {
+          headers: {
+            'Authorization': `token ${githubToken}`,
+            'Accept': 'application/vnd.github.v3+json',
+          }
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`שגיאה בקריאת נתונים מ-GitHub: ${response.status}`);
+      }
+
+      const fileData = await response.json();
+      const content = atob(fileData.content);
+      const githubData = JSON.parse(content);
+
+      // השווה עם הנתונים המקומיים
+      const localDataString = JSON.stringify(projectData);
+      const githubDataString = JSON.stringify(githubData);
+
+      if (localDataString === githubDataString) {
+        alert('✅ הנתונים כבר מסונכרנים!');
+        return true;
+      }
+
+      const userChoice = confirm(`🔄 נמצאו שינויים ב-GitHub!
+
+האם ברצונך לעדכן את הנתונים המקומיים עם הנתונים מ-GitHub?
+
+⚠️ זה יחליף את כל השינויים המקומיים שלא נשמרו!`);
+
+      if (userChoice) {
+        setProjectData(githubData);
+        saveToLocalStorage(githubData);
+        alert('✅ הנתונים עודכנו מ-GitHub בהצלחה!');
+        return true;
+      }
+
+      return false;
+    } catch (error) {
+      console.error('Error syncing from GitHub:', error);
+      alert(`❌ שגיאה בסנכרון מ-GitHub: ${error.message}`);
+      return false;
+    }
+  };
+
   // פונקציה ליצירת פרויקט חדש
   const createNewProject = () => {
     const newId = Math.max(...projectData.map(p => p.id), 0) + 1;
@@ -941,6 +1001,30 @@ myusername/myrepo/ghp_abc123xyz...
           </button>
         )}
 
+        {/* כפתור גיבוי ידני ל-GitHub */}
+        {isEditMode && (
+          <button 
+            onClick={async () => {
+              try {
+                const success = await saveToGitHub(projectData);
+                if (success) {
+                  alert('הנתונים נשמרו בהצלחה ל-GitHub! 🎉');
+                } else {
+                  alert('שגיאה בשמירה ל-GitHub. נסה שוב או בדוק את הטוקן.');
+                }
+              } catch (error) {
+                console.error('Error in manual backup:', error);
+                alert('שגיאה בשמירה ל-GitHub: ' + error.message);
+              }
+            }}
+            className="bg-yellow-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-yellow-700"
+            title="גיבוי ידני ל-GitHub"
+          >
+            <Upload className="w-4 h-4" />
+            <span className="text-xs hidden sm:inline">GitHub</span>
+          </button>
+        )}
+
         {isEditMode && (
           <button 
             onClick={uploadDataFile}
@@ -965,6 +1049,18 @@ myusername/myrepo/ghp_abc123xyz...
             title="איפוס הגדרות GitHub"
           >
             <Code className="w-4 h-4" />
+          </button>
+        )}
+
+        {/* כפתור סנכרון מ-GitHub */}
+        {isEditMode && (
+          <button 
+            onClick={syncFromGitHub}
+            className="bg-cyan-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-cyan-700"
+            title="סנכרון נתונים מ-GitHub"
+          >
+            <Download className="w-4 h-4" />
+            <span className="text-xs hidden sm:inline">Sync</span>
           </button>
         )}
       </div>
