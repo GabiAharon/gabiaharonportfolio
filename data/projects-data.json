@@ -214,49 +214,6 @@
     }
   },
   {
-    "id": 5,
-    "title": {
-      "he": "בניית דף נחיתה לעסק",
-      "en": "Presence Training App"
-    },
-    "description": {
-      "he": "אפליקציה מובילית שעוזרת למשתמשים להתרגל על דיבור מול קהל עם ניתוח מתקדם של שפת גוף ומתן משוב מיידי.",
-      "en": "A mobile app that helps users practice public speaking with advanced body language analysis and instant feedback."
-    },
-    "detailedDescription": {
-      "he": "אפליקציה מובילית מהפכנית שהופכת את האימון על דיבור מול קהל לנגיש וחכם. האפליקציה מנתחת את תנועות הגוף, הבעות הפנים והקול בזמן אמת ומספקת משוב מיידי ומותאם אישית. כוללת תרגילים מדורגים, הקלטות לביקורת עצמית ומעקב אחר התקדמות לאורך זמן.",
-      "en": "A revolutionary mobile application that makes public speaking training accessible and smart. The app analyzes body movements, facial expressions and voice in real-time, providing immediate and personalized feedback. Includes graduated exercises, recordings for self-review and progress tracking over time."
-    },
-    "category": "app",
-    "date": "2024-08-05",
-    "image": "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=600&h=400&fit=crop",
-    "detailImage": "https://i.postimg.cc/qR9wjcbM/11.png",
-    "link": "#presence-training-app",
-    "isVideo": false,
-    "technologies": [
-      "React Native",
-      "AI Analysis",
-      "Real-time Feedback",
-      "Voice Recognition",
-      "ML Kit"
-    ],
-    "status": "פורסם",
-    "features": {
-      "he": [
-        "ניתוח בזמן אמת",
-        "תרגילים מדורגים",
-        "מעקב התקדמות",
-        "הקלטות לביקורת"
-      ],
-      "en": [
-        "Real-time analysis",
-        "Graduated exercises",
-        "Progress tracking",
-        "Review recordings"
-      ]
-    }
-  },
-  {
     "id": 6,
     "title": {
       "he": "Legends (עותק)",
