@@ -132,11 +132,11 @@
   {
     "id": 2,
     "title": {
-      "he": "תוסף כלי AI ",
+      "he": "תוסף כלי AI לכרום",
       "en": "AI Presence Generator"
     },
     "description": {
-      "he": "תוסף כלי AI",
+      "he": "תוסף כלי AI לכרום",
       "en": "A tool that helps speakers improve their stage presence through body movement analysis and personalized recommendations."
     },
     "detailedDescription": {
@@ -150,11 +150,8 @@
     "link": "#ai-presence-generator",
     "isVideo": false,
     "technologies": [
-      "Machine Learning",
-      "Motion Detection",
       "React",
-      "Voice Analysis",
-      "WebRTC"
+      "Cursor AI"
     ],
     "status": "הושלם",
     "features": {
