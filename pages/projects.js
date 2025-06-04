@@ -408,6 +408,9 @@ export default function Projects() {
       setProjectData(updatedProjects);
       saveToLocalStorage(updatedProjects);
       
+      // שמירה אוטומטית ל-GitHub
+      const githubSaved = await saveToGitHub(updatedProjects);
+      
       // עדכון הפרויקט הנבחר אם הוא פתוח במודל
       if (selectedProject && selectedProject.id === editingProject) {
         const updatedProject = updatedProjects.find(p => p.id === editingProject);
@@ -418,10 +421,127 @@ export default function Projects() {
       setEditingInModal(false);
       setEditForm({});
       
-      alert(t('changesMade'));
+      // הודעה על הצלחה עם סטטוס GitHub
+      if (githubSaved) {
+        alert('🎉 הפרויקט נשמר בהצלחה!\n✅ נשמר לגיטהאב אוטומטית\nהאתר יתעדכן תוך דקה');
+      } else {
+        alert('⚠️ הפרויקט נשמר מקומית\n❌ שגיאה בשמירה לגיטהאב\n(בדוק את הטוקן או החיבור לאינטרנט)');
+      }
     } catch (error) {
       console.error('שגיאה בשמירת שינויים:', error);
       alert('❌ שגיאה בשמירת השינויים');
+    }
+  };
+
+  // פונקציה לשמירה אוטומטית ל-GitHub
+  const saveToGitHub = async (data) => {
+    try {
+      let githubToken = localStorage.getItem('githubToken');
+      let repoOwner = localStorage.getItem('githubUsername');
+      let repoName = localStorage.getItem('githubRepo');
+      
+      if (!githubToken || !repoOwner || !repoName) {
+        const defaultOwner = 'GabiAharon';
+        const defaultRepo = 'gabiaharonportfolio';
+        
+        const userChoice = confirm(`🚀 הגדרת GitHub אוטומטית
+
+האם ברצונך להשתמש בהגדרות הריפו שלך?
+${defaultOwner}/${defaultRepo}
+
+✅ כן - להמשיך עם הריפו שלי
+❌ לא - אני רוצה להגדיר פרטים אחרים`);
+        
+        if (userChoice) {
+          repoOwner = defaultOwner;
+          repoName = defaultRepo;
+          githubToken = prompt(`🔑 הכנס את הטוקן של GitHub שלך:`);
+        } else {
+          const userDetails = prompt(`🔧 הגדרת GitHub ידנית:
+
+הכנס בפורמט הבא:
+שם_משתמש/שם_ריפו/טוקן`);
+          
+          if (!userDetails) {
+            throw new Error('נדרשים פרטי GitHub');
+          }
+          
+          const parts = userDetails.split('/');
+          if (parts.length !== 3) {
+            throw new Error('פורמט לא נכון - צריך להיות: שם_משתמש/שם_ריפו/טוקן');
+          }
+          
+          repoOwner = parts[0].trim();
+          repoName = parts[1].trim();
+          githubToken = parts[2].trim();
+        }
+        
+        if (!githubToken) {
+          throw new Error('נדרש טוקן GitHub');
+        }
+        
+        localStorage.setItem('githubUsername', repoOwner);
+        localStorage.setItem('githubRepo', repoName);
+        localStorage.setItem('githubToken', githubToken);
+      }
+      
+      // הכנת תוכן הקובץ עם קידוד UTF-8
+      const fileContent = JSON.stringify(data, null, 2);
+      const base64Content = btoa(unescape(encodeURIComponent(fileContent)));
+      
+      // קבלת SHA הנוכחי של הקובץ
+      const currentFileResponse = await fetch(
+        `https://api.github.com/repos/${repoOwner}/${repoName}/contents/public/data/projects-data.json`,
+        {
+          headers: {
+            'Authorization': `token ${githubToken}`,
+            'Accept': 'application/vnd.github.v3+json',
+          }
+        }
+      );
+      
+      let sha = null;
+      if (currentFileResponse.ok) {
+        const currentFile = await currentFileResponse.json();
+        sha = currentFile.sha;
+      }
+
+      // עדכון הקובץ הציבורי (זה שהאתר קורא ממנו)
+      const commitResponse = await fetch(
+        `https://api.github.com/repos/${repoOwner}/${repoName}/contents/public/data/projects-data.json`,
+        {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${githubToken}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            message: `🔄 עדכון אוטומטי של נתוני פרויקטים - ${new Date().toLocaleString('he-IL')}`,
+            content: base64Content,
+            sha: sha
+          })
+        }
+      );
+
+      if (!commitResponse.ok) {
+        const errorData = await commitResponse.json();
+        throw new Error(`שגיאה בשמירה לגיטהאב: ${errorData.message || 'שגיאה לא ידועה'}`);
+      }
+
+      console.log('✅ נתוני פרויקטים נשמרו בהצלחה ל-GitHub');
+      return true;
+    } catch (error) {
+      console.error('❌ שגיאה בשמירה ל-GitHub:', error);
+      
+      // אם יש בעיית הרשאה, נמחק את הטוקן
+      if (error.message && (error.message.includes('401') || error.message.includes('token'))) {
+        localStorage.removeItem('githubToken');
+        localStorage.removeItem('githubUsername');
+        localStorage.removeItem('githubRepo');
+      }
+      
+      return false;
     }
   };
 
@@ -433,7 +553,7 @@ export default function Projects() {
     setImageInputUrl('');
   };
 
-  const duplicateProject = (project) => {
+  const duplicateProject = async (project) => {
     const newId = Math.max(...projectData.map(p => p.id), 0) + 1;
     const currentDate = new Date().toISOString().split('T')[0];
     
@@ -451,7 +571,15 @@ export default function Projects() {
     setProjectData(updatedProjects);
     saveToLocalStorage(updatedProjects);
     
-    alert(`✅ הפרויקט שוכפל בהצלחה!\nמזהה חדש: ${newId}`);
+    // שמירה אוטומטית ל-GitHub
+    const githubSaved = await saveToGitHub(updatedProjects);
+    
+    // הודעה על הצלחה עם סטטוס GitHub
+    if (githubSaved) {
+      alert(`✅ הפרויקט שוכפל בהצלחה!\nמזהה חדש: ${newId}\n✅ נשמר לגיטהאב אוטומטית\nהאתר יתעדכן תוך דקה`);
+    } else {
+      alert(`✅ הפרויקט שוכפל בהצלחה!\nמזהה חדש: ${newId}\n❌ שגיאה בשמירה לגיטהאב`);
+    }
   };
 
   const deleteProject = async (project) => {
@@ -460,12 +588,20 @@ export default function Projects() {
       setProjectData(updatedProjects);
       saveToLocalStorage(updatedProjects);
       
+      // שמירה אוטומטית ל-GitHub
+      const githubSaved = await saveToGitHub(updatedProjects);
+      
       // סגור את המודל אם הפרויקט שנמחק פתוח
       if (selectedProject && selectedProject.id === project.id) {
         setSelectedProject(null);
       }
       
-      alert('✅ הפרויקט נמחק בהצלחה');
+      // הודעה על הצלחה עם סטטוס GitHub
+      if (githubSaved) {
+        alert('🗑️ הפרויקט נמחק בהצלחה!\n✅ נשמר לגיטהאב אוטומטית\nהאתר יתעדכן תוך דקה');
+      } else {
+        alert('🗑️ הפרויקט נמחק מקומית\n❌ שגיאה בשמירה לגיטהאב');
+      }
     }
   };
 
@@ -554,7 +690,7 @@ export default function Projects() {
   };
 
   // פונקציה ליצירת פרויקט חדש
-  const createNewProject = () => {
+  const createNewProject = async () => {
     const newId = Math.max(...projectData.map(p => p.id), 0) + 1;
     const currentDate = new Date().toISOString().split('T')[0];
     
@@ -590,13 +726,21 @@ export default function Projects() {
     setProjectData(updatedProjects);
     saveToLocalStorage(updatedProjects);
     
+    // שמירה אוטומטית ל-GitHub
+    const githubSaved = await saveToGitHub(updatedProjects);
+    
     // מיד פתח את הפרויקט החדש לעריכה
     startEditingProject(newProject, false);
     
     // גלול למעלה
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    alert(`✅ נוצר פרויקט חדש (ID: ${newId})!\nכעת ערוך את הפרטים לפי הצורך.`);
+    // הודעה על הצלחה עם סטטוס GitHub
+    if (githubSaved) {
+      alert(`✅ נוצר פרויקט חדש (ID: ${newId})!\n✅ נשמר לגיטהאב אוטומטית\nהאתר יתעדכן תוך דקה\nכעת ערוך את הפרטים לפי הצורך.`);
+    } else {
+      alert(`✅ נוצר פרויקט חדש (ID: ${newId})!\n❌ שגיאה בשמירה לגיטהאב\nכעת ערוך את הפרטים לפי הצורך.`);
+    }
   };
 
   return (
