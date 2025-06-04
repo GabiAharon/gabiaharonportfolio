@@ -173,37 +173,37 @@
   {
     "id": 4,
     "title": {
-      "he": "שפת גוף דיגיטלית",
+      "he": "Your Interview",
       "en": "Digital Body Language"
     },
     "description": {
-      "he": "ניתוח מבוסס בינה מלאכותית של רמזים לא מילוליים בפגישות וירטואליות - כלי שעוזר למנהלים להבין טוב יותר את עובדיהם בעבודה מרחוק.",
+      "he": "מערכת דיגיטלית לניהול וסיכום ראיונות עבודה – מלווה אותך בזמן אמת עם שאלות, טיימר, מקום להערות וייצוא הסיכום בסוף.",
       "en": "AI-powered analysis of non-verbal cues in virtual meetings - a tool that helps managers better understand their employees in remote work."
     },
     "detailedDescription": {
-      "he": "פלטפורמה מתקדמת לניתוח שפת הגוף הדיגיטלית במקום העבודה המודרני. הכלי מנתח דפוסי התנהגות בפגישות וירטואליות, כולל קשר עין, תנוחה, הבעות פנים ומעורבות. מספק לארגונים תובנות עמוקות על דינמיקות הצוות ומסייע בשיפור התקשורת והמוטיבציה בעבודה מרחוק.",
+      "he": "מערכת חכמה שנולדה מהצורך שלי לנהל ראיונות למועמדים בצורה יותר מסודרת עם שאלות מכוונות - אישיות ומקצועיות. במהלך הראיון ניתן לסכם את תשובות המועמד, לפתוח את קובץ קו\"ח בצד, לעבוד על פי זמנים מוגדרים מראש ולבסוף לייצא את הסיכום לקובץ PDF או למייל בלחיצת כפתור.\n\nלמי זה מיועד?\nלמנהלים בארגון שמראיינים מועמדים לצוותים – במיוחד כשיש הרבה ראיונות בחודש, וצריך סטנדרט מסודר ויעיל.\n",
       "en": "An advanced platform for analyzing digital body language in the modern workplace. The tool analyzes behavioral patterns in virtual meetings, including eye contact, posture, facial expressions and engagement. Provides organizations with deep insights into team dynamics and helps improve communication and motivation in remote work."
     },
     "category": "tool",
     "date": "2024-09-10",
     "image": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
-    "detailImage": "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
+    "detailImage": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
     "link": "#digital-body-language",
     "isVideo": false,
     "technologies": [
-      "OpenCV",
-      "TensorFlow",
-      "WebRTC",
-      "React",
-      "Node.js"
+      "Cursor AI",
+      "Chat GPT",
+      "notebooklm"
     ],
-    "status": "בפיתוח",
+    "status": "הושלם",
     "features": {
       "he": [
-        "ניתוח דפוסי התנהגות",
-        "תובנות על דינמיקות צוות",
-        "דוחות ממוחשבים",
-        "אינטגרציה עם מערכות HR"
+        "טפסי ראיון חכמים",
+        "סנכרון קורות חיים",
+        "ייצוא לפידיאף",
+        "ניהול זמנים",
+        "תבנית דיווח למייל",
+        "תמיכה בקליטת עובדים"
       ],
       "en": [
         "Behavioral pattern analysis",
@@ -216,7 +216,7 @@
   {
     "id": 5,
     "title": {
-      "he": "אפליקציית אימון נוכחות",
+      "he": "בניית דף נחיתה לעסק",
       "en": "Presence Training App"
     },
     "description": {
@@ -230,7 +230,7 @@
     "category": "app",
     "date": "2024-08-05",
     "image": "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=600&h=400&fit=crop",
-    "detailImage": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
+    "detailImage": "https://i.postimg.cc/qR9wjcbM/11.png",
     "link": "#presence-training-app",
     "isVideo": false,
     "technologies": [
@@ -295,6 +295,48 @@
         "Connection between music and dreams",
         "Reflections on imagination and reality",
         "Artistic expression"
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "title": {
+      "he": "Gabi Aharon -Landing Page",
+      "en": "AI Presence Generator (Copy)"
+    },
+    "description": {
+      "he": "דף נחיתה אישי שמשלב את כל העולמות שלי: שפת גוף, הרצאות, פרויקטים עם בינה מלאכותית וניסיון ניהולי – כולל קישורים, תיק עבודות ודף יצירת קשר.\n",
+      "en": "A tool that helps speakers improve their stage presence through body movement analysis and personalized recommendations."
+    },
+    "detailedDescription": {
+      "he": "דף נחיתה אישי שמרכז את כל מה שאני עושה -מההרצאות והפרויקטים הטכנולוגיים, ועד עולמות הניהול, שפת הגוף והבינה המלאכותית.\n\nלמה זה נבנה?\nרציתי ליצור עוגן אחד ברור, מקצועי ונגיש – שדרכו כל מי שפוגש אותי (בלינקדאין, בהרצאה או בכנס) יוכל להבין מי אני ומה אני מציע בלחיצה אחת.\n\nלמי זה מיועד?\nללקוחות פוטנציאליים, מנהלים, מרצים, סטודנטים, אנשי חינוך – ובעצם כל מי שיכול למצוא עניין בהרצאות, בשיתופי פעולה או בפרויקטים שלי.\n\nאיך זה נבנה?\nהקוד העיצוב והתשתית נבנו ב-Cursor, לאחר מכן העלאה לגיטהאב ומשם הועלה ב-Netlify. כל שינוי נשמר אוטומטית בגיטהאב וישנה פונקציית עריכה לכלל האתר ללא צורך לגשת שוב לCursor מלבד שינויים מהותיים. \n\nמה מיוחד בזה?\nהאתר מחולק לפי עולמות התוכן שלי, כולל מעבר חלק בין פרויקטים, הרצאות ודף יצירת קשר.\nדף הפרויקטים כולל סיכומים תמציתיים עם קישורים לפירוט מלא, מה שמאפשר למבקר לצלול לעומק – או פשוט להתרשם מהרוח הכללית.",
+      "en": "An advanced application that uses AI to analyze and improve speakers' stage presence. The tool analyzes body movements, voice, speech pace and audience alignment, providing personalized recommendations for improvement. Includes interactive training and simulations of various speaking scenarios."
+    },
+    "category": "interface",
+    "date": "2025-05-25",
+    "image": "https://i.postimg.cc/W3BKVDSG/Screenshot-2025-05-25-2331432.png",
+    "detailImage": "https://i.postimg.cc/W3BKVDSG/Screenshot-2025-05-25-2331432.png",
+    "link": "#ai-presence-generator",
+    "isVideo": false,
+    "technologies": [
+      "React",
+      "Cursor AI",
+      "Chat GPT"
+    ],
+    "status": "הושלם",
+    "features": {
+      "he": [
+        "הצגת זהות מקצועית",
+        "איחוד תחומי פעילות",
+        "ניווט קל",
+        "עיצוב רספונסיבי",
+        "נראות מקצועית"
+      ],
+      "en": [
+        "Body movement analysis",
+        "Voice analysis",
+        "Personal recommendations",
+        "Interactive training"
       ]
     }
   }
