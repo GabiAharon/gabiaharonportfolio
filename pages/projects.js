@@ -270,6 +270,7 @@ export default function Projects() {
     // הוספת מאזין לקיצור מקלדת סודי (Ctrl+Shift+A)
     const handleKeyDown = (event) => {
       if (event.ctrlKey && event.shiftKey && event.key === 'A') {
+        console.log('🔑 קיצור מקלדת זוהה! מציג כפתור אדמין...');
         setShowAdminButton(true);
         setTimeout(() => setShowAdminButton(false), 10000); // מסתיר אחרי 10 שניות
       }
@@ -308,10 +309,44 @@ export default function Projects() {
 
   const loadProjectsData = async () => {
     try {
-      // נסה לטעון נתונים מ-localStorage קודם
+      // נסה לטעון נתונים מ-GitHub קודם (אם יש טוקן)
+      const githubToken = localStorage.getItem('githubToken');
+      if (githubToken) {
+        try {
+          const repoOwner = localStorage.getItem('githubUsername') || 'GabiAharon';
+          const repoName = localStorage.getItem('githubRepo') || 'gabiaharonportfolio';
+          
+          const response = await fetch(
+            `https://api.github.com/repos/${repoOwner}/${repoName}/contents/data/projects-data.json`,
+            {
+              headers: {
+                'Authorization': `token ${githubToken}`,
+                'Accept': 'application/vnd.github.v3+json',
+              }
+            }
+          );
+
+          if (response.ok) {
+            const fileData = await response.json();
+            const content = atob(fileData.content);
+            const githubData = JSON.parse(content);
+            
+            console.log('✅ נתונים נטענו מ-GitHub בהצלחה!');
+            setProjectData(githubData);
+            saveToLocalStorage(githubData); // שמור גם מקומית כגיבוי
+            setIsLoading(false);
+            return;
+          }
+        } catch (githubError) {
+          console.log('⚠️ לא ניתן לטעון מ-GitHub, מנסה מקומית...', githubError.message);
+        }
+      }
+
+      // אם לא הצליח לטעון מ-GitHub, נסה לטעון נתונים מ-localStorage
       const savedData = localStorage.getItem('projectsData');
       if (savedData) {
         const parsedData = JSON.parse(savedData);
+        console.log('📱 נתונים נטענו מ-localStorage');
         setProjectData(parsedData);
         setIsLoading(false);
         return;
@@ -321,9 +356,11 @@ export default function Projects() {
       const response = await fetch('/data/projects-data.json');
       if (response.ok) {
         const data = await response.json();
+        console.log('📁 נתונים נטענו מקובץ מקומי');
         setProjectData(data);
       } else {
         // במקרה של שגיאה, השתמש בנתונים הראשוניים
+        console.log('🔄 משתמש בנתונים ראשוניים');
         setProjectData(initialProjectsData);
       }
     } catch (error) {
@@ -496,13 +533,18 @@ export default function Projects() {
     // עדכון נתונים ב-localStorage
     saveToLocalStorage(updatedProjects);
     
-    // שמירה אוטומטית לגיטהאב
-    const githubSaved = await saveToGitHub(updatedProjects);
-    
-    if (githubSaved) {
-      alert('🎉 השינויים נשמרו בהצלחה!\n✅ נשמר לגיטהאב אוטומטית\n🔄 האתר יתעדכן תוך דקה-שתיים');
-    } else {
-      alert('⚠️ השינויים נשמרו מקומית\n❌ שגיאה בשמירה לגיטהאב\n\n💡 בדוק את הטוקן או נסה שוב');
+    // שמירה אוטומטית לגיטהאב - תמיד!
+    try {
+      const githubSaved = await saveToGitHub(updatedProjects);
+      
+      if (githubSaved) {
+        alert('🎉 השינויים נשמרו בהצלחה!\n✅ נשמר לגיטהאב אוטומטית\n🔄 האתר יתעדכן תוך דקה-שתיים\n\n💡 עכשיו תוכל לעבוד מכל מחשב ללא בעיות!');
+      } else {
+        alert('⚠️ השינויים נשמרו מקומית\n❌ שגיאה בשמירה לגיטהאב\n\n💡 לחץ על הכפתור הכחול כדי לנסות שוב');
+      }
+    } catch (error) {
+      console.error('Auto-save to GitHub failed:', error);
+      alert('⚠️ השינויים נשמרו מקומית\n❌ שגיאה בשמירה אוטומטית לגיטהאב\n\n💡 לחץ על הכפתור הכחול כדי לנסות שוב');
     }
   };
 
@@ -1025,6 +1067,28 @@ myusername/myrepo/ghp_abc123xyz...
           </button>
         )}
 
+        {/* כפתור גיבוי ידני ל-GitHub - גלוי תמיד */}
+        <button 
+          onClick={async () => {
+            try {
+              const success = await saveToGitHub(projectData);
+              if (success) {
+                alert('הנתונים נשמרו בהצלחה ל-GitHub! 🎉');
+              } else {
+                alert('שגיאה בשמירה ל-GitHub. נסה שוב או בדוק את הטוקן.');
+              }
+            } catch (error) {
+              console.error('Error in manual backup:', error);
+              alert('שגיאה בשמירה ל-GitHub: ' + error.message);
+            }
+          }}
+          className="bg-yellow-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-yellow-700"
+          title="גיבוי ידני ל-GitHub"
+        >
+          <Upload className="w-4 h-4" />
+          <span className="text-xs hidden sm:inline">GitHub</span>
+        </button>
+
         {isEditMode && (
           <button 
             onClick={uploadDataFile}
@@ -1052,17 +1116,15 @@ myusername/myrepo/ghp_abc123xyz...
           </button>
         )}
 
-        {/* כפתור סנכרון מ-GitHub */}
-        {isEditMode && (
-          <button 
-            onClick={syncFromGitHub}
-            className="bg-cyan-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-cyan-700"
-            title="סנכרון נתונים מ-GitHub"
-          >
-            <Download className="w-4 h-4" />
-            <span className="text-xs hidden sm:inline">Sync</span>
-          </button>
-        )}
+        {/* כפתור סנכרון מ-GitHub - גלוי תמיד */}
+        <button 
+          onClick={syncFromGitHub}
+          className="bg-cyan-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-cyan-700"
+          title="סנכרון נתונים מ-GitHub"
+        >
+          <Download className="w-4 h-4" />
+          <span className="text-xs hidden sm:inline">Sync</span>
+        </button>
       </div>
 
       {/* מחוון טעינה */}
