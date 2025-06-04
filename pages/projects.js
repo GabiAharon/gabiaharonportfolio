@@ -633,48 +633,85 @@ export default function Projects() {
         )}
         
         {isEditMode && (
-          <button 
-            onClick={() => {
-              setIsEditMode(false);
-              setEditingProject(null);
-              setEditingInModal(false);
-              setEditForm({});
-            }}
-            className="bg-red-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-red-700"
-            title={t('exitEditMode')}
-          >
-            <X className="w-4 h-4" />
-          </button>
-        )}
+          <>
+            <button 
+              onClick={() => {
+                setIsEditMode(false);
+                setEditingProject(null);
+                setEditingInModal(false);
+                setEditForm({});
+              }}
+              className="bg-red-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-red-700"
+              title={t('exitEditMode')}
+            >
+              <X className="w-4 h-4" />
+            </button>
 
-        {isEditMode && (
-          <button 
-            onClick={resetToOriginalData}
-            className="bg-yellow-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-yellow-700"
-            title="איפוס לנתונים מקוריים"
-          >
-            <Trash2 className="w-4 h-4" />
-          </button>
-        )}
+            <button 
+              onClick={resetToOriginalData}
+              className="bg-yellow-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-yellow-700"
+              title="איפוס לנתונים מקוריים"
+            >
+              <Trash2 className="w-4 h-4" />
+            </button>
 
-        {isEditMode && (
-          <button 
-            onClick={() => downloadUpdatedData(projectData)}
-            className="bg-green-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-green-700"
-            title="הורד נתונים נוכחיים"
-          >
-            <Download className="w-4 h-4" />
-          </button>
-        )}
+            <button 
+              onClick={() => downloadUpdatedData(projectData)}
+              className="bg-green-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-green-700"
+              title="הורד נתונים נוכחיים"
+            >
+              <Download className="w-4 h-4" />
+            </button>
 
-        {isEditMode && (
-          <button 
-            onClick={uploadDataFile}
-            className="bg-blue-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-blue-700"
-            title="העלה קובץ נתונים"
-          >
-            <Upload className="w-4 h-4" />
-          </button>
+            <button 
+              onClick={uploadDataFile}
+              className="bg-blue-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-blue-700"
+              title="העלה קובץ נתונים"
+            >
+              <Upload className="w-4 h-4" />
+            </button>
+
+            <button 
+              onClick={() => {
+                const token = localStorage.getItem('githubToken');
+                const username = localStorage.getItem('githubUsername');
+                const repo = localStorage.getItem('githubRepo');
+                
+                if (token && username && repo) {
+                  const choice = confirm(`🔧 הגדרות GitHub נוכחיות:
+                  
+📁 Repository: ${username}/${repo}
+🔑 Token: ${token.substring(0, 4)}...${token.slice(-4)}
+
+✅ לבדוק חיבור
+❌ למחוק הגדרות`);
+                  
+                  if (choice) {
+                    // בדיקת חיבור
+                    saveToGitHub(projectData).then(success => {
+                      if (success) {
+                        alert('✅ החיבור ל-GitHub תקין!');
+                      } else {
+                        alert('❌ בעיה בחיבור ל-GitHub\nבדוק את הטוקן והרשאות');
+                      }
+                    });
+                  } else {
+                    // מחיקת הגדרות
+                    localStorage.removeItem('githubToken');
+                    localStorage.removeItem('githubUsername');
+                    localStorage.removeItem('githubRepo');
+                    alert('🗑️ הגדרות GitHub נמחקו');
+                  }
+                } else {
+                  alert('⚙️ לא נמצאו הגדרות GitHub\nהשמירה הבאה תפתח את חלון ההגדרה');
+                }
+              }}
+              className="bg-purple-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-purple-700"
+              title="הגדרות GitHub"
+            >
+              <span className="text-xs">⚙️</span>
+            </button>
+          </>
         )}
       </div>
 
