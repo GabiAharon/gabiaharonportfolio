@@ -1,5 +1,53 @@
 [
   {
+    "id": 9,
+    "title": {
+      "he": "תוסף Suno AI - יצירת פרומפטים מוזיקליים חכמים",
+      "en": "Suno AI Extension - Intelligent Music Prompt Generator"
+    },
+    "description": {
+      "he": "תוסף חכם ליצירת פרומפטים מוזיקליים מתקדמים עבור Suno AI - מנתח טקסטים ומייצר הוראות מדויקות ליצירת מוזיקה איכותית.",
+      "en": "An intelligent extension for creating advanced musical prompts for Suno AI - analyzes texts and generates precise instructions for quality music creation."
+    },
+    "detailedDescription": {
+      "he": "תוסף מתקדם שנועד לשפר משמעותית את איכות המוזיקה הנוצרת ב-Suno AI. התוסף מנתח את הטקסט שהמשתמש מכניס ומייצר פרומפטים מוזיקליים מותאמים אישית הכוללים:\n\n• זיהוי סגנון מוזיקלי מתאים\n• הצעת אלמנטים מוזיקליים (קצב, כלים, מבנה)\n• אופטימיזציה של הטקסט למוזיקה\n• המלצות לשיפור הפרומפט\n\nהתוסף פותח מתוך הצורך שלי ליצור מוזיקה איכותית יותר לפרויקטים שלי, במיוחד לסרטונים כמו 'Legends'. במקום לנסות ולטעות עם פרומפטים, התוסף מספק כיוון מקצועי ומדויק.\n\nמה מיוחד בו?\n• ממשק ידידותי ופשוט לשימוש\n• ניתוח חכם של כוונת המשתמש\n• ספרייה נרחבת של סגנונות מוזיקליים\n• המלצות מבוססות ניסיון מעשי",
+      "en": "An advanced extension designed to significantly improve the quality of music created in Suno AI. The extension analyzes the text the user enters and generates personalized musical prompts that include:\n\n• Identification of appropriate musical style\n• Suggestion of musical elements (rhythm, instruments, structure)\n• Text optimization for music\n• Recommendations for prompt improvement\n\nThe extension was developed from my need to create higher quality music for my projects, especially for videos like 'Legends'. Instead of trial and error with prompts, the extension provides professional and precise direction.\n\nWhat's special about it?\n• User-friendly and simple interface\n• Smart analysis of user intent\n• Extensive library of musical styles\n• Recommendations based on practical experience"
+    },
+    "category": "plugin",
+    "date": "2025-05-26",
+    "image": "https://i.postimg.cc/G3yMNKbp/intelligent-suno-prompt.png",
+    "detailImage": "https://i.postimg.cc/G3yMNKbp/intelligent-suno-prompt.png",
+    "link": "#suno-ai-extension",
+    "isVideo": false,
+    "technologies": [
+      "Chrome Extension",
+      "JavaScript",
+      "Suno AI API",
+      "Chat GPT",
+      "Natural Language Processing",
+      "Music Theory"
+    ],
+    "status": "הושלם",
+    "features": {
+      "he": [
+        "ניתוח טקסט חכם",
+        "יצירת פרומפטים מוזיקליים",
+        "זיהוי סגנונות מוזיקה",
+        "אופטימיזציה אוטומטית",
+        "ממשק פשוט ונוח",
+        "תמיכה במגוון סגנונות"
+      ],
+      "en": [
+        "Smart text analysis",
+        "Musical prompt generation",
+        "Music style recognition",
+        "Automatic optimization",
+        "Simple and convenient interface",
+        "Support for various styles"
+      ]
+    }
+  },
+  {
     "id": 3,
     "title": {
       "he": "Legends",
