@@ -15,37 +15,64 @@ export const useLanguage = () => useContext(LanguageContext);
 function MyApp({ Component, pageProps }) {
   // ברירת מחדל עברית
   const [language, setLanguage] = useState('he');
+  const [isLoaded, setIsLoaded] = useState(false);
   
-  // טעינת ההעדפה מהדפדפן אם זמינה - בוטל כדי שהעברית תהיה תמיד ברירת המחדל
+  // טעינת שפה מ-localStorage רק אחרי שהקומפוננטה נטענת
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      // איפוס כל העדפת שפה קודמת
-      localStorage.removeItem('language');
-      
-      // הגדרת כיוון RTL כברירת מחדל
+      try {
+        const savedLanguage = localStorage.getItem('gabiPortfolioLanguage');
+        console.log('🔍 Checking saved language:', savedLanguage);
+        
+        if (savedLanguage === 'en' || savedLanguage === 'he') {
+          console.log('✅ Setting language to:', savedLanguage);
+          setLanguage(savedLanguage);
+          document.documentElement.dir = savedLanguage === 'he' ? 'rtl' : 'ltr';
+          document.documentElement.lang = savedLanguage;
+        } else {
+          console.log('🔧 No valid saved language, setting Hebrew as default');
+          setLanguage('he');
+          localStorage.setItem('gabiPortfolioLanguage', 'he');
       document.documentElement.dir = 'rtl';
       document.documentElement.lang = 'he';
-      
-      // בוטל על מנת לשים עברית כברירת מחדל תמיד
-      /* 
-      const savedLanguage = localStorage.getItem('language');
-      if (savedLanguage) {
-        setLanguage(savedLanguage);
+        }
+      } catch (error) {
+        console.error('Error loading language:', error);
+        setLanguage('he');
+      } finally {
+        setIsLoaded(true);
       }
-      */
     }
   }, []);
   
-  // עדכון ההעדפה בדפדפן בכל שינוי שפה
-  const handleSetLanguage = (lang) => {
-    setLanguage(lang);
+  // פונקציה לשינוי השפה
+  const handleSetLanguage = (newLang) => {
+    console.log('🔄 Changing language to:', newLang);
+    setLanguage(newLang);
+    
     if (typeof window !== 'undefined') {
-      localStorage.setItem('language', lang);
-      // עדכון כיוון המסמך
-      document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
-      document.documentElement.lang = lang;
+      try {
+        localStorage.setItem('gabiPortfolioLanguage', newLang);
+        document.documentElement.dir = newLang === 'he' ? 'rtl' : 'ltr';
+        document.documentElement.lang = newLang;
+        console.log('✅ Language saved successfully:', newLang);
+      } catch (error) {
+        console.error('Error saving language:', error);
+      }
     }
   };
+  
+  // הצגת מסך טעינה עד שהשפה נטענת
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+        <div className="text-white text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-4"></div>
+          <p>טוען...</p>
+        </div>
+      </div>
+    );
+  }
   
   return (
     <LanguageContext.Provider 

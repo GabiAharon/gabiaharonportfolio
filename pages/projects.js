@@ -1,132 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ExternalLink, Calendar, Globe, Play, Code, X, Edit3, Save, Trash2, Download, Upload, Copy, ArrowUp, ArrowDown } from "lucide-react";
+import { ArrowLeft, ExternalLink, Calendar, Globe, Play, Code, X, Edit3, Save, Trash2, Download, Upload, Copy, ArrowUp, ArrowDown, Camera, Image } from "lucide-react";
 import Link from 'next/link';
 import { useLanguage } from './_app';
-
-// נתוני הפרויקטים (עם מידע מפורט לצפייה מהירה)
-const initialProjectsData = [
-  {
-    id: 1,
-    title: { he: "בוט שפת גוף לזום", en: "Body Language Bot for Zoom" },
-    description: { 
-      he: "תוסף לזום שמנתח את שפת הגוף של המשתתפים במפגש ונותן משוב בזמן אמת על רמת האנגייג'מנט והנוכחות.", 
-      en: "A Zoom plugin that analyzes participants' body language during meetings and provides real-time feedback on engagement and presence levels." 
-    },
-    detailedDescription: {
-      he: "פרויקט חדשני שמשלב בינה מלאכותית וראייה ממוחשבת לניתוח שפת גוף בזמן אמת במהלך פגישות זום. הכלי מזהה תנועות, הבעות פנים ותנוחות גוף ומספק משוב מיידי למארח הפגישה על רמת המעורבות של המשתתפים. מתאים במיוחד לארגונים שרוצים לשפר את יעילות הפגישות הוירטואליות שלהם.",
-      en: "An innovative project that combines AI and computer vision for real-time body language analysis during Zoom meetings. The tool identifies movements, facial expressions and body postures and provides immediate feedback to the meeting host about participants' engagement levels. Perfect for organizations looking to improve their virtual meeting effectiveness."
-    },
-    category: "plugin",
-    date: "2024-12-01",
-    image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&h=400&fit=crop",
-    detailImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop",
-    link: "#zoom-body-language-bot",
-    isVideo: false,
-    technologies: ["AI", "Computer Vision", "Zoom SDK", "Python", "TensorFlow"],
-    status: "בפיתוח",
-    features: {
-      he: ["ניתוח בזמן אמת", "משוב על מעורבות", "דוחות מפורטים", "אינטגרציה עם זום"],
-      en: ["Real-time analysis", "Engagement feedback", "Detailed reports", "Zoom integration"]
-    }
-  },
-  {
-    id: 2,
-    title: { he: "מחולל נוכחות AI", en: "AI Presence Generator" },
-    description: { 
-      he: "כלי שעוזר לדוברים לשפר את הנוכחות שלהם על הבמה באמצעות ניתוח תנועות גוף ומתן המלצות מותאמות אישית.", 
-      en: "A tool that helps speakers improve their stage presence through body movement analysis and personalized recommendations." 
-    },
-    detailedDescription: {
-      he: "אפליקציה מתקדמת שמשתמשת בבינה מלאכותית כדי לנתח ולשפר את הנוכחות הבמתית של דוברים. הכלי מנתח תנועות גוף, קול, קצב דיבור ויישור עם הקהל, ומספק המלצות מותאמות אישית לשיפור. כולל אימונים אינטראקטיביים וסימולציות של מצבי דיבור שונים.",
-      en: "An advanced application that uses AI to analyze and improve speakers' stage presence. The tool analyzes body movements, voice, speech pace and audience alignment, providing personalized recommendations for improvement. Includes interactive training and simulations of various speaking scenarios."
-    },
-    category: "tool",
-    date: "2024-11-15",
-    image: "https://images.unsplash.com/photo-1515378791036-0648a814c963?w=600&h=400&fit=crop",
-    detailImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
-    link: "https://gabiaharon.com/tools/presence-generator",
-    isVideo: false,
-    technologies: ["Machine Learning", "Motion Detection", "React", "Voice Analysis", "WebRTC"],
-    status: "הושלם",
-    features: {
-      he: ["ניתוח תנועות גוף", "ניתוח קול", "המלצות אישיות", "אימונים אינטראקטיביים"],
-      en: ["Body movement analysis", "Voice analysis", "Personal recommendations", "Interactive training"]
-    }
-  },
-  {
-    id: 3,
-    title: { he: "Legends", en: "Legends" },
-    description: { 
-      he: "סרטון אישי על עולם הדימיונות, אגדות המוזיקה שמלוות אותי, והקשר בין חלומות למציאות.", 
-      en: "A personal video about the world of imagination, music legends that accompany me, and the connection between dreams and reality." 
-    },
-    detailedDescription: {
-      he: "מכירים את הרגע ההוא? הרגע שבו אתם נוסעים אל תוך עולם של דמיונות, אל אשליות, אל האדם שתמיד חלמתם להיות? את הטקסט הזה כתבתי לפני לא מעט זמן, והוא מספר על 'ספר הדימיונות' שכל אחד מאיתנו כותב במהלך החיים. בדמיון שלנו אנחנו יכולים להיות הכול, גם דברים שברור לנו שלעולם לא נהיה. התרופה עבורי (כמו בטח לא מעט מכם) לעולם האמיתי תמיד הייתה מוזיקה. בסרטון הזה ניסיתי לחבר בין המוזיקה, אגדות המוזיקה שאני מרגיש שמלוות אותי כל החיים, לבין מי ומה שאני ואולי כולנו מנסים להיות בעולם, כל אחד בדרך שלו.",
-      en: "Do you know that moment? The moment when you travel into a world of fantasies, into illusions, into the person you always dreamed of being? I wrote this text quite some time ago, and it tells about the 'book of imagination' that each of us writes throughout life. In our imagination we can be everything, even things we know we will never be. The remedy for me (like probably many of you) to the real world has always been music. In this video I tried to connect between music, the music legends that I feel have accompanied me all my life, and who and what I and perhaps all of us are trying to be in the world, each in their own way."
-    },
-    category: "video",
-    date: "2024-10-20",
-    image: "https://images.unsplash.com/photo-1478720568477-b0ac8e6b9899?w=600&h=400&fit=crop",
-    detailImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop",
-    link: "https://vimeo.com/1086929819",
-    isVideo: true,
-    technologies: ["Video Production", "Storytelling", "Music", "Personal Expression"],
-    status: "פורסם",
-    features: {
-      he: ["סיפור אישי", "חיבור בין מוזיקה לחלומות", "הרהורים על דמיון ומציאות", "ביטוי אומנותי"],
-      en: ["Personal story", "Connection between music and dreams", "Reflections on imagination and reality", "Artistic expression"]
-    }
-  },
-  {
-    id: 4,
-    title: { he: "שפת גוף דיגיטלית", en: "Digital Body Language" },
-    description: { 
-      he: "ניתוח מבוסס בינה מלאכותית של רמזים לא מילוליים בפגישות וירטואליות - כלי שעוזר למנהלים להבין טוב יותר את עובדיהם בעבודה מרחוק.", 
-      en: "AI-powered analysis of non-verbal cues in virtual meetings - a tool that helps managers better understand their employees in remote work." 
-    },
-    detailedDescription: {
-      he: "פלטפורמה מתקדמת לניתוח שפת הגוף הדיגיטלית במקום העבודה המודרני. הכלי מנתח דפוסי התנהגות בפגישות וירטואליות, כולל קשר עין, תנוחה, הבעות פנים ומעורבות. מספק לארגונים תובנות עמוקות על דינמיקות הצוות ומסייע בשיפור התקשורת והמוטיבציה בעבודה מרחוק.",
-      en: "An advanced platform for analyzing digital body language in the modern workplace. The tool analyzes behavioral patterns in virtual meetings, including eye contact, posture, facial expressions and engagement. Provides organizations with deep insights into team dynamics and helps improve communication and motivation in remote work."
-    },
-    category: "tool",
-    date: "2024-09-10",
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
-    detailImage: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop",
-    link: "https://gabiaharon.com/tools/digital-body-language",
-    isVideo: false,
-    technologies: ["OpenCV", "TensorFlow", "WebRTC", "React", "Node.js"],
-    status: "בפיתוח",
-    features: {
-      he: ["ניתוח דפוסי התנהגות", "תובנות על דינמיקות צוות", "דוחות ממוחשבים", "אינטגרציה עם מערכות HR"],
-      en: ["Behavioral pattern analysis", "Team dynamics insights", "Automated reports", "HR systems integration"]
-    }
-  },
-  {
-    id: 5,
-    title: { he: "אפליקציית אימון נוכחות", en: "Presence Training App" },
-    description: { 
-      he: "אפליקציה מובילית שעוזרת למשתמשים להתרגל על דיבור מול קהל עם ניתוח מתקדם של שפת גוף ומתן משוב מיידי.", 
-      en: "A mobile app that helps users practice public speaking with advanced body language analysis and instant feedback." 
-    },
-    detailedDescription: {
-      he: "אפליקציה מובילית מהפכנית שהופכת את האימון על דיבור מול קהל לנגיש וחכם. האפליקציה מנתחת את תנועות הגוף, הבעות הפנים והקול בזמן אמת ומספקת משוב מיידי ומותאם אישית. כוללת תרגילים מדורגים, הקלטות לביקורת עצמית ומעקב אחר התקדמות לאורך זמן.",
-      en: "A revolutionary mobile application that makes public speaking training accessible and smart. The app analyzes body movements, facial expressions and voice in real-time, providing immediate and personalized feedback. Includes graduated exercises, recordings for self-review and progress tracking over time."
-    },
-    category: "app",
-    date: "2024-08-05",
-    image: "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=600&h=400&fit=crop",
-    detailImage: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop",
-    link: "#presence-training-app",
-    isVideo: false,
-    technologies: ["React Native", "AI Analysis", "Real-time Feedback", "Voice Recognition", "ML Kit"],
-    status: "פורסם",
-    features: {
-      he: ["ניתוח בזמן אמת", "תרגילים מדורגים", "מעקב התקדמות", "הקלטות לביקורת"],
-      en: ["Real-time analysis", "Graduated exercises", "Progress tracking", "Review recordings"]
-    }
-  }
-];
 
 // רשימת כלי AI זמינים
 const availableAITools = [
@@ -148,7 +24,26 @@ const availableAITools = [
   "Higgsfiled",
   "Suno AI",
   "Eleven Labs",
-  "Filmora"
+  "Filmora",
+  "React",
+  "Next.js",
+  "Python",
+  "TensorFlow",
+  "OpenCV",
+  "Machine Learning",
+  "Computer Vision",
+  "WebRTC",
+  "Node.js",
+  "Video Production",
+  "Storytelling",
+  "Music",
+  "Voice Recognition",
+  "React Native",
+  "ML Kit",
+  "Motion Detection",
+  "Voice Analysis",
+  "Natural Language Processing",
+  "Music Theory"
 ];
 
 // תרגומים מקומיים לעמוד
@@ -191,7 +86,8 @@ const projectTranslations = {
     aiTools: "כלי AI לפרויקט",
     selectAITools: "בחר כלי AI",
     addCustomTool: "הוסף כלי חדש",
-    customToolPlaceholder: "שם כלי AI חדש"
+    customToolPlaceholder: "שם כלי AI חדש",
+    editInModal: "ערוך במודל"
   },
   en: {
     projectsPageTitle: "My Projects",
@@ -208,7 +104,7 @@ const projectTranslations = {
     switchLanguage: "עברית",
     technologies: "AI Tools for Project",
     status: "Status",
-    noProjects: "No projects in this category yet",
+    noProjects: "No projects in this category at the moment",
     quickView: "Quick View",
     detailedDescription: "Detailed Description",
     keyFeatures: "Key Features",
@@ -225,191 +121,173 @@ const projectTranslations = {
     projectImage: "Card Image URL",
     projectDetailImage: "Detail Image URL",
     changesMade: "Changes saved successfully!",
-    editingInstructions: "Edit Mode: Click the edit buttons (🧡) to edit projects",
-    imagePreview: "Preview",
+    editingInstructions: "In edit mode: Click the edit buttons (🧡) to edit projects",
+    imagePreview: "Image Preview",
     enterImageUrl: "Enter new image URL",
     aiTools: "AI Tools for Project",
     selectAITools: "Select AI Tools",
     addCustomTool: "Add Custom Tool",
-    customToolPlaceholder: "New AI Tool Name"
+    customToolPlaceholder: "Custom AI Tool Name",
+    editInModal: "Edit in Modal"
   }
 };
 
 export default function Projects() {
-  const { language, setLanguage } = useLanguage();
+  const { language, toggleLanguage } = useLanguage();
+  const [projectData, setProjectData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [showAdminButton, setShowAdminButton] = useState(false);
   const [editingProject, setEditingProject] = useState(null);
   const [editingInModal, setEditingInModal] = useState(false);
-  const [projectData, setProjectData] = useState([]);
   const [editForm, setEditForm] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [showAdminButton, setShowAdminButton] = useState(false);
-  const [customAITools, setCustomAITools] = useState([]);
-  const [selectedAITools, setSelectedAITools] = useState([]);
-  const [newCustomTool, setNewCustomTool] = useState('');
-  
-  // טעינת נתונים מהקובץ JSON ו-localStorage
+  const [customAITool, setCustomAITool] = useState('');
+  const [showImagePicker, setShowImagePicker] = useState(false);
+  const [imageInputUrl, setImageInputUrl] = useState('');
+  const [editingImageType, setEditingImageType] = useState(''); // 'image' or 'detailImage'
+
   useEffect(() => {
     loadProjectsData();
     
-    // טעינת כלי AI מותאמים אישית מ-localStorage
-    const savedCustomTools = localStorage.getItem('customAITools');
-    if (savedCustomTools) {
-      setCustomAITools(JSON.parse(savedCustomTools));
-    }
-    
-    // הוספת מאזין לקיצור מקלדת סודי (Ctrl+Shift+A)
     const handleKeyDown = (event) => {
       if (event.ctrlKey && event.shiftKey && event.key === 'A') {
-        console.log('🔑 קיצור מקלדת זוהה! מציג כפתור אדמין...');
+        event.preventDefault();
         setShowAdminButton(true);
-        setTimeout(() => setShowAdminButton(false), 10000); // מסתיר אחרי 10 שניות
       }
     };
-    
+
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // פונקציה לקבלת כל כלי ה-AI הזמינים (מובנים + מותאמים אישית)
   const getAllAITools = () => {
-    return [...availableAITools, ...customAITools];
+    const currentTools = editForm.technologies || [];
+    return [...new Set([...availableAITools, ...currentTools])];
   };
 
-  // פונקציה להוספת כלי AI מותאם אישית
   const addCustomAITool = () => {
-    if (newCustomTool.trim() && !getAllAITools().includes(newCustomTool.trim())) {
-      const updatedCustomTools = [...customAITools, newCustomTool.trim()];
-      setCustomAITools(updatedCustomTools);
-      localStorage.setItem('customAITools', JSON.stringify(updatedCustomTools));
-      setNewCustomTool('');
-      
-      // הוסף את הכלי החדש לרשימת הכלים הנבחרים
-      setSelectedAITools([...selectedAITools, newCustomTool.trim()]);
+    if (customAITool.trim() && !getAllAITools().includes(customAITool.trim())) {
+      const newTool = customAITool.trim();
+      const updatedTools = [...(editForm.technologies || []), newTool];
+      setEditForm({
+        ...editForm,
+        technologies: updatedTools
+      });
+      setCustomAITool('');
     }
   };
 
-  // פונקציה לטיפול בבחירת כלי AI
   const handleAIToolToggle = (tool) => {
-    setSelectedAITools(prev => 
-      prev.includes(tool) 
-        ? prev.filter(t => t !== tool)
-        : [...prev, tool]
-    );
+    const currentTools = editForm.technologies || [];
+    const updatedTools = currentTools.includes(tool)
+      ? currentTools.filter(t => t !== tool)
+      : [...currentTools, tool];
+    
+    setEditForm({
+      ...editForm,
+      technologies: updatedTools
+    });
   };
 
   const loadProjectsData = async () => {
     try {
-      // נסה לטעון נתונים מ-GitHub קודם (אם יש טוקן)
-      const githubToken = localStorage.getItem('githubToken');
-      if (githubToken) {
+      setIsLoading(true);
+      
+      // ניסיון לטעון מ-localStorage קודם
+      const localData = localStorage.getItem('projectsData');
+      if (localData) {
         try {
-          const repoOwner = localStorage.getItem('githubUsername') || 'GabiAharon';
-          const repoName = localStorage.getItem('githubRepo') || 'gabiaharonportfolio';
-          
-          const response = await fetch(
-            `https://api.github.com/repos/${repoOwner}/${repoName}/contents/data/projects-data.json`,
-            {
-              headers: {
-                'Authorization': `token ${githubToken}`,
-                'Accept': 'application/vnd.github.v3+json',
-              }
-            }
-          );
-
-          if (response.ok) {
-            const fileData = await response.json();
-            // תיקון טיפול בקידוד UTF-8
-            let content;
-            try {
-              // נסה תחילה עם atob רגיל
-              content = atob(fileData.content);
-              // אם התוכן נראה כמו gibberish, נסה עם decodeURIComponent
-              if (content.includes('Ã') || content.includes('â')) {
-                content = decodeURIComponent(escape(atob(fileData.content)));
-              }
-            } catch (e) {
-              // אם atob נכשל, נסה TextDecoder
-              const bytes = Uint8Array.from(atob(fileData.content), c => c.charCodeAt(0));
-              content = new TextDecoder('utf-8').decode(bytes);
-            }
-            
-            const githubData = JSON.parse(content);
-            
-            console.log('✅ נתונים נטענו מ-GitHub בהצלחה!');
-            setProjectData(githubData);
-            saveToLocalStorage(githubData); // שמור גם מקומית כגיבוי
+          const parsedData = JSON.parse(localData);
+          if (Array.isArray(parsedData) && parsedData.length > 0) {
+            console.log('✅ נתונים נטענו מ-localStorage');
+            setProjectData(parsedData);
             setIsLoading(false);
             return;
           }
-        } catch (githubError) {
-          console.log('⚠️ לא ניתן לטעון מ-GitHub, מנסה מקומית...', githubError.message);
+        } catch (e) {
+          console.warn('⚠️ שגיאה בפרסור נתוני localStorage:', e);
         }
       }
 
-      // אם לא הצליח לטעון מ-GitHub, נסה לטעון נתונים מ-localStorage
-      const savedData = localStorage.getItem('projectsData');
-      if (savedData) {
-        const parsedData = JSON.parse(savedData);
-        console.log('📱 נתונים נטענו מ-localStorage');
-        setProjectData(parsedData);
-        setIsLoading(false);
-        return;
+      // אם אין נתונים ב-localStorage, טען מהקובץ
+      console.log('📁 טוען נתונים מקובץ JSON...');
+      const response = await fetch('/data/projects-data.json');
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      if (!Array.isArray(data)) {
+        throw new Error('הנתונים שנטענו אינם מערך תקין');
       }
 
-      // אם אין נתונים ב-localStorage, טען מהקובץ JSON
-      const response = await fetch('/data/projects-data.json', {
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8'
-        }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        console.log('📁 נתונים נטענו מקובץ מקומי');
-        setProjectData(data);
-      } else {
-        // במקרה של שגיאה, השתמש בנתונים הראשוניים
-        console.log('🔄 משתמש בנתונים ראשוניים');
-        setProjectData(initialProjectsData);
-      }
+      console.log('✅ נתונים נטענו בהצלחה מהקובץ:', data.length, 'פרויקטים');
+      setProjectData(data);
+      
+      // שמור ב-localStorage לטעינה מהירה יותר בפעם הבאה
+      saveToLocalStorage(data);
+      
     } catch (error) {
-      console.error('Error loading projects data:', error);
-      // במקרה של שגיאה, השתמש בנתונים הראשוניים
-      setProjectData(initialProjectsData);
+      console.error('❌ שגיאה בטעינת נתוני פרויקטים:', error);
+      
+      // נתונים חלופיים במקרה של שגיאה
+      const fallbackData = [
+        {
+          id: 1,
+          title: { he: "פרויקט לדוגמה", en: "Example Project" },
+          description: { he: "תיאור הפרויקט", en: "Project description" },
+          detailedDescription: { he: "תיאור מפורט", en: "Detailed description" },
+          category: "tool",
+          date: "2024-01-01",
+          image: "https://images.unsplash.com/photo-1585974738771-84483dd9f89f?w=600&h=400&fit=crop",
+          detailImage: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
+          link: "#",
+          isVideo: false,
+          technologies: ["React", "Next.js"],
+          status: "בפיתוח",
+          features: { he: ["תכונה 1"], en: ["Feature 1"] }
+        }
+      ];
+      
+      setProjectData(fallbackData);
+      alert('⚠️ שגיאה בטעינת נתוני הפרויקטים. נטענו נתונים חלופיים.');
     } finally {
       setIsLoading(false);
     }
   };
-  
-  // פונקציה לשמירה ב-localStorage והורדת קובץ מעודכן
+
   const saveToLocalStorage = (data) => {
     try {
       localStorage.setItem('projectsData', JSON.stringify(data));
-      return true;
+      console.log('💾 נתונים נשמרו ב-localStorage');
     } catch (error) {
-      console.error('Error saving to localStorage:', error);
-      return false;
+      console.error('❌ שגיאה בשמירת נתונים ב-localStorage:', error);
     }
   };
 
-  // פונקציה להורדת קובץ JSON מעודכן
   const downloadUpdatedData = (data) => {
-    const jsonString = JSON.stringify(data, null, 2);
-    const blob = new Blob([jsonString], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'projects-data.json';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    try {
+      const jsonData = JSON.stringify(data, null, 2);
+      const blob = new Blob([jsonData], { type: 'application/json;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'projects-data-updated.json';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      console.log('📥 קובץ הנתונים הועבר להורדה');
+    } catch (error) {
+      console.error('❌ שגיאה בהורדת קובץ הנתונים:', error);
+      alert('שגיאה בהורדת הקובץ');
+    }
   };
 
-  // פונקציה להעלאת קובץ נתונים
   const uploadDataFile = () => {
     const input = document.createElement('input');
     input.type = 'file';
@@ -421,16 +299,15 @@ export default function Projects() {
         reader.onload = (e) => {
           try {
             const data = JSON.parse(e.target.result);
-            // ולידציה בסיסית
-            if (Array.isArray(data) && data.length > 0) {
+            if (Array.isArray(data)) {
               setProjectData(data);
               saveToLocalStorage(data);
-              alert('✅ הנתונים הועלו בהצלחה!\nהפרויקטים עודכנו למצב החדש.');
+              alert('✅ קובץ הנתונים נטען בהצלחה!');
             } else {
-              alert('❌ קובץ לא תקין. וודא שזה קובץ JSON עם נתוני פרויקטים.');
+              alert('❌ קובץ לא תקין - חייב להיות מערך של פרויקטים');
             }
           } catch (error) {
-            alert('❌ שגיאה בקריאת הקובץ. וודא שזה קובץ JSON תקין.');
+            alert('❌ שגיאה בקריאת הקובץ');
           }
         };
         reader.readAsText(file);
@@ -439,161 +316,159 @@ export default function Projects() {
     input.click();
   };
 
-  // פונקציה לאיפוס נתונים למקורי
   const resetToOriginalData = async () => {
-    if (confirm('האם אתה בטוח שברצונך לאפס את כל השינויים ולחזור לנתונים המקוריים?')) {
+    if (confirm('🔄 האם אתה בטוח שברצונך לאפס את כל הנתונים לגרסה המקורית?\nהפעולה תמחק את כל השינויים שביצעת.')) {
       try {
-        setProjectData(initialProjectsData);
-        saveToLocalStorage(initialProjectsData);
+        localStorage.removeItem('projectsData');
+        await loadProjectsData();
         setEditingProject(null);
         setEditingInModal(false);
         setEditForm({});
-        alert('הנתונים אופסו למצב המקורי!');
+        alert('✅ הנתונים אופסו לגרסה המקורית');
       } catch (error) {
-        alert('שגיאה באיפוס הנתונים');
+        alert('❌ שגיאה באיפוס הנתונים');
       }
     }
   };
-  
-  // פונקציה לתרגום
+
   const t = (key) => {
-    if (!language) return key;
     return projectTranslations[language]?.[key] || key;
   };
 
-  // פונקציה להחלפת השפה - ניהול השפה עובר דרך _app.js
-  const toggleLanguage = () => {
-    const newLang = language === 'he' ? 'en' : 'he';
-    setLanguage(newLang);
-  };
-
-  // פונקציה לכניסה למצב אדמין
   const checkAdminAccess = () => {
-    const password = prompt('הכנס סיסמת אדמין:');
-    // השתמש בסיסמה הקבועה 'gabi2024'
-    const adminPassword = 'gabi2024';
-    
-    if (password && password === adminPassword) {
+    const password = prompt("🔐 הכנס סיסמת אדמין:");
+    if (password === "gabi2024") {
       setIsEditMode(true);
-      alert('מצב עריכה מופעל! כעת תוכל לערוך פרויקטים.');
-    } else if (password !== null && password !== '') {
-      alert('סיסמה שגויה');
+      alert("✅ מצב עריכה הופעל!\nכעת ניתן לערוך פרויקטים.");
+    } else if (password) {
+      alert("❌ סיסמה שגויה");
     }
   };
 
-  // פונקציה להתחלת עריכה של פרויקט
   const startEditingProject = (project, inModal = false) => {
     setEditingProject(project.id);
     setEditingInModal(inModal);
-    setSelectedAITools(project.technologies || []);
+    
+    // מילוי הטופס הנוכחי
     setEditForm({
-      title: { ...project.title },
-      description: { ...project.description },
-      detailedDescription: { ...project.detailedDescription },
+      title_he: project.title.he,
+      title_en: project.title.en,
+      description_he: project.description.he,
+      description_en: project.description.en,
+      detailedDescription_he: project.detailedDescription.he,
+      detailedDescription_en: project.detailedDescription.en,
       category: project.category,
       status: project.status,
-      technologies: project.technologies.join(', '),
-      features: {
-        he: project.features.he.join(', '),
-        en: project.features.en.join(', ')
-      },
       image: project.image,
       detailImage: project.detailImage,
-      link: project.link || ''
+      link: project.link,
+      isVideo: project.isVideo,
+      technologies: [...project.technologies],
+      features_he: project.features.he.join(', '),
+      features_en: project.features.en.join(', ')
     });
   };
 
-  // פונקציה לשמירת שינויים
   const saveProjectChanges = async () => {
-    const updatedProjects = projectData.map(project => {
-      if (project.id === editingProject) {
-        return {
-          ...project,
-          title: editForm.title,
-          description: editForm.description,
-          detailedDescription: editForm.detailedDescription,
-          category: editForm.category,
-          status: editForm.status,
-          technologies: selectedAITools.length > 0 ? selectedAITools : (editForm.technologies ? editForm.technologies.split(',').map(t => t.trim()) : project.technologies),
-          features: {
-            he: editForm.features.he.split(',').map(f => f.trim()),
-            en: editForm.features.en.split(',').map(f => f.trim())
-          },
-          image: editForm.image,
-          detailImage: editForm.detailImage,
-          link: editForm.link || project.link,
-          isVideo: editForm.category === 'video' ? true : (editForm.category && editForm.category !== 'video' ? false : project.isVideo)
-        };
+    if (!editingProject) return;
+
+    try {
+      const updatedProjects = projectData.map(project => {
+        if (project.id === editingProject) {
+          return {
+            ...project,
+            title: {
+              he: editForm.title_he || project.title.he,
+              en: editForm.title_en || project.title.en
+            },
+            description: {
+              he: editForm.description_he || project.description.he,
+              en: editForm.description_en || project.description.en
+            },
+            detailedDescription: {
+              he: editForm.detailedDescription_he || project.detailedDescription.he,
+              en: editForm.detailedDescription_en || project.detailedDescription.en
+            },
+            category: editForm.category || project.category,
+            status: editForm.status || project.status,
+            image: editForm.image || project.image,
+            detailImage: editForm.detailImage || project.detailImage,
+            link: editForm.link || project.link,
+            isVideo: editForm.isVideo !== undefined ? editForm.isVideo : project.isVideo,
+            technologies: editForm.technologies || project.technologies,
+            features: {
+              he: (editForm.features_he || '').split(',').map(f => f.trim()).filter(f => f),
+              en: (editForm.features_en || '').split(',').map(f => f.trim()).filter(f => f)
+            }
+          };
+        }
+        return project;
+      });
+
+      setProjectData(updatedProjects);
+      saveToLocalStorage(updatedProjects);
+      
+      // עדכון הפרויקט הנבחר אם הוא פתוח במודל
+      if (selectedProject && selectedProject.id === editingProject) {
+        const updatedProject = updatedProjects.find(p => p.id === editingProject);
+        setSelectedProject(updatedProject);
       }
-      return project;
-    });
-    
-    setProjectData(updatedProjects);
-    
-    // עדכון הפרויקט הנבחר אם אנחנו עורכים במודל
-    if (editingInModal && selectedProject) {
-      const updatedProject = updatedProjects.find(p => p.id === selectedProject.id);
-      setSelectedProject(updatedProject);
+      
+      setEditingProject(null);
+      setEditingInModal(false);
+      setEditForm({});
+      
+      alert(t('changesMade'));
+    } catch (error) {
+      console.error('שגיאה בשמירת שינויים:', error);
+      alert('❌ שגיאה בשמירת השינויים');
     }
-    
-    setEditingProject(null);
-    setEditingInModal(false);
-    setEditForm({});
-    setSelectedAITools([]);
-    
-    // עדכון נתונים ב-localStorage
-    saveToLocalStorage(updatedProjects);
-    
-    alert('✅ השינויים נשמרו בהצלחה!');
   };
 
-  // פונקציה לביטול עריכה
   const cancelEditing = () => {
     setEditingProject(null);
     setEditingInModal(false);
     setEditForm({});
-    setSelectedAITools([]);
+    setShowImagePicker(false);
+    setImageInputUrl('');
   };
 
-  // פונקציה לשכפול פרויקט
   const duplicateProject = (project) => {
-    const newId = Math.max(...projectData.map(p => p.id)) + 1;
+    const newId = Math.max(...projectData.map(p => p.id), 0) + 1;
+    const currentDate = new Date().toISOString().split('T')[0];
+    
     const duplicatedProject = {
       ...project,
       id: newId,
-      title: { 
-        he: project.title.he + " (עותק)", 
-        en: project.title.en + " (Copy)" 
+      title: {
+        he: `${project.title.he} (עותק)`,
+        en: `${project.title.en} (Copy)`
       },
-      date: new Date().toISOString().split('T')[0] // תאריך היום
+      date: currentDate
     };
     
-    const updatedProjects = [...projectData, duplicatedProject];
+    const updatedProjects = [duplicatedProject, ...projectData];
     setProjectData(updatedProjects);
     saveToLocalStorage(updatedProjects);
     
-    alert(`✅ הפרויקט שוכפל בהצלחה!\nID חדש: ${newId}`);
+    alert(`✅ הפרויקט שוכפל בהצלחה!\nמזהה חדש: ${newId}`);
   };
 
-  // פונקציה למחיקת פרויקט
   const deleteProject = async (project) => {
-    if (confirm(`האם אתה בטוח שברצונך למחוק את הפרויקט?\n"${project.title[language]}"\n\n⚠️ פעולה זו אינה ניתנת לביטול!`)) {
+    if (confirm(`🗑️ האם אתה בטוח שברצונך למחוק את הפרויקט:\n"${project.title[language]}"?\n\nהפעולה לא ניתנת לביטול.`)) {
       const updatedProjects = projectData.filter(p => p.id !== project.id);
       setProjectData(updatedProjects);
       saveToLocalStorage(updatedProjects);
       
-      // אם אנחנו במודל והפרויקט הנמחק הוא הפתוח - סגור את המודל
+      // סגור את המודל אם הפרויקט שנמחק פתוח
       if (selectedProject && selectedProject.id === project.id) {
         setSelectedProject(null);
-        setEditingInModal(false);
-        setEditingProject(null);
       }
       
-      alert('🗑️ הפרויקט נמחק בהצלחה!');
+      alert('✅ הפרויקט נמחק בהצלחה');
     }
   };
 
-  // פונקציה להזזת פרויקט מעלה
   const moveProjectUp = async (project) => {
     const currentIndex = projectData.findIndex(p => p.id === project.id);
     if (currentIndex <= 0) return; // כבר במיקום הראשון או לא נמצא
@@ -619,6 +494,25 @@ export default function Projects() {
     
     setProjectData(updatedProjects);
     saveToLocalStorage(updatedProjects);
+  };
+
+  // פונקציה להחלפת תמונה
+  const handleImageChange = (imageType) => {
+    setEditingImageType(imageType);
+    setImageInputUrl(editForm[imageType] || '');
+    setShowImagePicker(true);
+  };
+
+  const saveImageChange = () => {
+    if (imageInputUrl.trim()) {
+      setEditForm({
+        ...editForm,
+        [editingImageType]: imageInputUrl.trim()
+      });
+    }
+    setShowImagePicker(false);
+    setImageInputUrl('');
+    setEditingImageType('');
   };
 
   // סינון פרויקטים לפי קטגוריה
@@ -866,7 +760,7 @@ export default function Projects() {
             </div>
           </motion.div>
 
-          {/* רשת הפרויקטים */}
+          {/* רשת הפרויקטים - תיקון גובה אחיד */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -882,12 +776,12 @@ export default function Projects() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="group cursor-pointer"
+                  className="group cursor-pointer flex"
                   whileHover={{ scale: editingProject === project.id ? 1 : 1.02 }}
                   whileTap={{ scale: editingProject === project.id ? 1 : 0.98 }}
                 >
-                  <div className={`${editingProject === project.id && !editingInModal ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-blue-500 to-purple-600'} p-0.5 rounded-xl`}>
-                    <div className="bg-gray-900 rounded-xl overflow-hidden h-full flex flex-col min-h-[500px]">
+                  <div className={`${editingProject === project.id && !editingInModal ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-blue-500 to-purple-600'} p-0.5 rounded-xl w-full flex`}>
+                    <div className="bg-gray-900 rounded-xl overflow-hidden flex flex-col w-full min-h-[600px]">
                       {/* תמונת הפרויקט */}
                       <div className="relative h-48 overflow-hidden flex-shrink-0">
                         <img 
@@ -981,96 +875,159 @@ export default function Projects() {
                       
                       {/* תוכן הפרויקט */}
                       <div className="p-5 flex flex-col flex-1">
+                        {editingProject === project.id && !editingInModal ? (
+                          /* מצב עריכה ישירה */
+                          <div className="space-y-3 flex-1 flex flex-col">
+                            <div>
+                              <label className="block text-sm font-medium text-gray-300 mb-1">כותרת עברית</label>
+                              <input
+                                type="text"
+                                value={editForm.title_he || ''}
+                                onChange={(e) => setEditForm({...editForm, title_he: e.target.value})}
+                                className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-sm"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium text-gray-300 mb-1">כותרת אנגלית</label>
+                              <input
+                                type="text"
+                                value={editForm.title_en || ''}
+                                onChange={(e) => setEditForm({...editForm, title_en: e.target.value})}
+                                className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-sm"
+                              />
+                            </div>
+                            <div className="flex-1">
+                              <label className="block text-sm font-medium text-gray-300 mb-1">תיאור קצר עברית</label>
+                              <textarea
+                                value={editForm.description_he || ''}
+                                onChange={(e) => setEditForm({...editForm, description_he: e.target.value})}
+                                className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-sm h-20 resize-none"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium text-gray-300 mb-1">סטטוס</label>
+                              <select
+                                value={editForm.status || ''}
+                                onChange={(e) => setEditForm({...editForm, status: e.target.value})}
+                                className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-sm"
+                              >
+                                <option value="בפיתוח">בפיתוח</option>
+                                <option value="הושלם">הושלם</option>
+                                <option value="פורסם">פורסם</option>
+                              </select>
+                            </div>
+                            <div>
+                              <label className="block text-sm font-medium text-gray-300 mb-1">קטגוריה</label>
+                              <select
+                                value={editForm.category || ''}
+                                onChange={(e) => setEditForm({...editForm, category: e.target.value})}
+                                className="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-sm"
+                              >
+                                <option value="plugin">תוספים</option>
+                                <option value="tool">כלים</option>
+                                <option value="video">סרטונים</option>
+                                <option value="interface">ממשקים</option>
+                                <option value="app">אפליקציות</option>
+                              </select>
+                            </div>
+                          </div>
+                        ) : (
+                          /* מצב צפייה רגיל */
                           <>
-                            <h3 className="text-xl font-bold mb-2 group-hover:text-blue-300 transition-colors">
+                            <h3 className="text-xl font-bold mb-2 group-hover:text-blue-300 transition-colors line-clamp-2">
                               {project.title[language]}
                             </h3>
-                            <p className="text-gray-300 text-sm mb-4 line-clamp-3">
-                              {project.description[language]}
-                            </p>
-                            
-                            {/* טכנולוגיות */}
-                            <div className="mb-4">
-                              <p className="text-xs text-gray-400 mb-2">{t('technologies')}:</p>
-                              <div className="flex flex-wrap gap-1">
-                                {project.technologies.slice(0, 3).map((tech, index) => (
-                                  <span key={index} className="bg-gray-700 text-xs px-2 py-1 rounded">
-                                    {tech}
-                                  </span>
-                                ))}
+                            <div className="flex-1 flex flex-col">
+                              <p className="text-gray-300 text-sm mb-4 line-clamp-3 flex-1">
+                                {project.description[language]}
+                              </p>
+                              
+                              {/* טכנולוגיות */}
+                              <div className="mb-4">
+                                <p className="text-xs text-gray-400 mb-2">{t('technologies')}:</p>
+                                <div className="flex flex-wrap gap-1">
+                                  {project.technologies.slice(0, 3).map((tech, index) => (
+                                    <span key={index} className="bg-gray-700 text-xs px-2 py-1 rounded">
+                                      {tech}
+                                    </span>
+                                  ))}
+                                  {project.technologies.length > 3 && (
+                                    <span className="bg-gray-600 text-xs px-2 py-1 rounded">
+                                      +{project.technologies.length - 3}
+                                    </span>
+                                  )}
+                                </div>
                               </div>
-                            </div>
-                            
-                            {/* מידע נוסף */}
-                            <div className="flex items-center justify-between text-xs text-gray-400 mb-4">
-                              <div className="flex items-center gap-1">
-                                <Calendar className="w-3 h-3" />
-                                <span>{formatDate(project.date)}</span>
+                              
+                              {/* מידע נוסף */}
+                              <div className="flex items-center justify-between text-xs text-gray-400 mb-4">
+                                <div className="flex items-center gap-1">
+                                  <Calendar className="w-3 h-3" />
+                                  <span>{formatDate(project.date)}</span>
+                                </div>
                               </div>
-                            </div>
-                            
-                            {/* ספייסר שדוחף את הכפתור לתחתית */}
-                            <div className="flex-1 min-h-0"></div>
-                            
-                          {/* כפתורי פעולה */}
-                            <div className="mt-auto pt-4">
-                              {project.isVideo && project.link ? (
-                                // שני כפתורים לפרויקטי סרטון
-                                <div className="flex flex-col gap-2">
+                              
+                              {/* כפתורי פעולה */}
+                              <div className="mt-auto">
+                                {project.isVideo && project.link && !project.link.includes('#') ? (
+                                  // שני כפתורים לפרויקטי סרטון
+                                  <div className="flex flex-col gap-2">
+                                    <button
+                                      onClick={() => setSelectedProject(project)}
+                                      className="flex items-center justify-center gap-2 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors text-sm"
+                                    >
+                                      <ExternalLink className="w-4 h-4" />
+                                      <span>מידע נוסף על הפרויקט</span>
+                                    </button>
+                                    <a
+                                      href={project.link}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors text-sm"
+                                      onClick={(e) => e.stopPropagation()}
+                                    >
+                                      <Play className="w-4 h-4" />
+                                      <span>{t('watchVideo')}</span>
+                                    </a>
+                                  </div>
+                                ) : project.category === 'tool' ? (
+                                  // כפתורים מיוחדים לכלים
+                                  <div className="flex flex-col gap-2">
+                                    <button
+                                      onClick={() => setSelectedProject(project)}
+                                      className="flex items-center justify-center gap-2 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors text-sm"
+                                    >
+                                      <ExternalLink className="w-4 h-4" />
+                                      <span>מידע נוסף על הכלי</span>
+                                    </button>
+                                    <button
+                                      onClick={() => {
+                                        if (project.link && project.link !== '#' && !project.link.includes('#')) {
+                                          window.open(project.link, '_blank');
+                                        } else {
+                                          alert('🔧 הכלי הזה עדיין בפיתוח!\nיהיה זמין בקרוב.');
+                                        }
+                                      }}
+                                      className="flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors text-sm"
+                                    >
+                                      <div className="w-4 h-4 flex items-center justify-center">⚙️</div>
+                                      <span>למעבר לכלי לחץ כאן</span>
+                                    </button>
+                                  </div>
+                                ) : (
+                                  // כפתור לצפייה מהירה
                                   <button
                                     onClick={() => setSelectedProject(project)}
-                                    className="flex items-center justify-center gap-2 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors"
+                                    className="flex items-center justify-center gap-2 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors text-sm"
                                   >
                                     <ExternalLink className="w-4 h-4" />
-                                    <span>מידע נוסף על הפרויקט</span>
+                                    <span>{t('quickView')}</span>
                                   </button>
-                                  <a
-                                    href={project.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors"
-                                    onClick={(e) => e.stopPropagation()}
-                                  >
-                                    <Play className="w-4 h-4" />
-                                    <span>{t('watchVideo')}</span>
-                                  </a>
-                                </div>
-                            ) : project.category === 'tool' ? (
-                              // כפתורים מיוחדים לכלים
-                              <div className="flex flex-col gap-2">
-                                <button
-                                  onClick={() => setSelectedProject(project)}
-                                  className="flex items-center justify-center gap-2 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors"
-                                >
-                                  <ExternalLink className="w-4 h-4" />
-                                  <span>מידע נוסף על הכלי</span>
-                                </button>
-                                <button
-                                  onClick={() => {
-                                    if (project.link && project.link !== '#' && !project.link.includes('#')) {
-                                      window.open(project.link, '_blank');
-                                    } else {
-                                      alert('🔧 הכלי הזה עדיין בפיתוח!\nיהיה זמין בקרוב.');
-                                    }
-                                  }}
-                                  className="flex items-center justify-center gap-2 w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg transition-colors"
-                                >
-                                  <div className="w-4 h-4 flex items-center justify-center">⚙️</div>
-                                  <span>למעבר לכלי לחץ כאן</span>
-                                </button>
+                                )}
                               </div>
-                              ) : (
-                                // כפתור לצפייה מהירה
-                                <button
-                                  onClick={() => setSelectedProject(project)}
-                                  className="flex items-center justify-center gap-2 w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-lg transition-colors"
-                                >
-                                  <ExternalLink className="w-4 h-4" />
-                                  <span>{t('quickView')}</span>
-                                </button>
-                              )}
                             </div>
                           </>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -1114,11 +1071,46 @@ export default function Projects() {
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              className="bg-gray-900 w-full max-w-2xl h-full max-h-[90vh] overflow-y-auto rounded-xl"
+              className="bg-gray-900 w-full max-w-4xl h-full max-h-[90vh] overflow-y-auto rounded-xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="sticky top-0 bg-gray-900 border-b border-gray-700 p-4 flex justify-between items-center">
                 <h3 className="text-xl font-bold">{selectedProject.title[language]}</h3>
+                <div className="flex items-center gap-2">
+                  {/* כפתורי עריכה במודל */}
+                  {isEditMode && (
+                    <>
+                      {editingInModal ? (
+                        <div className="flex gap-2">
+                          <button
+                            onClick={saveProjectChanges}
+                            className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded-lg flex items-center gap-2 transition-colors"
+                            title="שמור שינויים"
+                          >
+                            <Save className="w-4 h-4" />
+                            <span className="text-sm">שמור</span>
+                          </button>
+                          <button
+                            onClick={cancelEditing}
+                            className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-lg flex items-center gap-2 transition-colors"
+                            title="בטל עריכה"
+                          >
+                            <X className="w-4 h-4" />
+                            <span className="text-sm">בטל</span>
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => startEditingProject(selectedProject, true)}
+                          className="bg-orange-600 hover:bg-orange-700 text-white px-3 py-1 rounded-lg flex items-center gap-2 transition-colors"
+                          title="ערוך פרויקט במודל"
+                        >
+                          <Edit3 className="w-4 h-4" />
+                          <span className="text-sm">{t('editInModal')}</span>
+                        </button>
+                      )}
+                    </>
+                  )}
                   <button
                     onClick={() => {
                       setSelectedProject(null);
@@ -1130,9 +1122,230 @@ export default function Projects() {
                   >
                     <X className="w-6 h-6" />
                   </button>
+                </div>
               </div>
               
               <div className="p-6">
+                {editingInModal ? (
+                  /* מצב עריכה במודל */
+                  <div className="space-y-6">
+                    {/* תמונה מפורטת עם אפשרות עריכה */}
+                    <div>
+                      <label className="block text-lg font-semibold mb-3">תמונה מפורטת</label>
+                      <div className="relative">
+                        <img 
+                          src={editForm.detailImage || selectedProject.image} 
+                          alt={selectedProject.title[language]}
+                          className="w-full h-64 object-cover rounded-lg"
+                        />
+                        <button
+                          onClick={() => handleImageChange('detailImage')}
+                          className="absolute top-2 right-2 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full transition-colors"
+                          title="החלף תמונה מפורטת"
+                        >
+                          <Camera className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* כותרות */}
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">כותרת עברית</label>
+                        <input
+                          type="text"
+                          value={editForm.title_he || ''}
+                          onChange={(e) => setEditForm({...editForm, title_he: e.target.value})}
+                          className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">כותרת אנגלית</label>
+                        <input
+                          type="text"
+                          value={editForm.title_en || ''}
+                          onChange={(e) => setEditForm({...editForm, title_en: e.target.value})}
+                          className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2"
+                        />
+                      </div>
+                    </div>
+
+                    {/* תיאורים קצרים */}
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">תיאור קצר עברית</label>
+                        <textarea
+                          value={editForm.description_he || ''}
+                          onChange={(e) => setEditForm({...editForm, description_he: e.target.value})}
+                          className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 h-24"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">תיאור קצר אנגלית</label>
+                        <textarea
+                          value={editForm.description_en || ''}
+                          onChange={(e) => setEditForm({...editForm, description_en: e.target.value})}
+                          className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 h-24"
+                        />
+                      </div>
+                    </div>
+
+                    {/* תיאורים מפורטים */}
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">תיאור מפורט עברית</label>
+                        <textarea
+                          value={editForm.detailedDescription_he || ''}
+                          onChange={(e) => setEditForm({...editForm, detailedDescription_he: e.target.value})}
+                          className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 h-32"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">תיאור מפורט אנגלית</label>
+                        <textarea
+                          value={editForm.detailedDescription_en || ''}
+                          onChange={(e) => setEditForm({...editForm, detailedDescription_en: e.target.value})}
+                          className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 h-32"
+                        />
+                      </div>
+                    </div>
+
+                    {/* הגדרות כלליות */}
+                    <div className="grid md:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">קטגוריה</label>
+                        <select
+                          value={editForm.category || ''}
+                          onChange={(e) => setEditForm({...editForm, category: e.target.value})}
+                          className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2"
+                        >
+                          <option value="plugin">תוספים</option>
+                          <option value="tool">כלים</option>
+                          <option value="video">סרטונים</option>
+                          <option value="interface">ממשקים</option>
+                          <option value="app">אפליקציות</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">סטטוס</label>
+                        <select
+                          value={editForm.status || ''}
+                          onChange={(e) => setEditForm({...editForm, status: e.target.value})}
+                          className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2"
+                        >
+                          <option value="בפיתוח">בפיתוח</option>
+                          <option value="הושלם">הושלם</option>
+                          <option value="פורסם">פורסם</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">קישור לפרויקט</label>
+                        <input
+                          type="url"
+                          value={editForm.link || ''}
+                          onChange={(e) => setEditForm({...editForm, link: e.target.value})}
+                          className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2"
+                          placeholder="https://..."
+                        />
+                      </div>
+                    </div>
+
+                    {/* תמונת כרטיס */}
+                    <div>
+                      <label className="block text-sm font-medium mb-2">תמונת כרטיס</label>
+                      <div className="flex gap-2">
+                        <input
+                          type="url"
+                          value={editForm.image || ''}
+                          onChange={(e) => setEditForm({...editForm, image: e.target.value})}
+                          className="flex-1 bg-gray-800 border border-gray-600 rounded-lg px-3 py-2"
+                          placeholder="https://..."
+                        />
+                        <button
+                          onClick={() => handleImageChange('image')}
+                          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+                          title="החלף תמונת כרטיס"
+                        >
+                          <Camera className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* כלי AI */}
+                    <div>
+                      <label className="block text-sm font-medium mb-2">{t('aiTools')}</label>
+                      <div className="bg-gray-800 border border-gray-600 rounded-lg p-4">
+                        <div className="flex flex-wrap gap-2 mb-3">
+                          {getAllAITools().map((tool) => (
+                            <button
+                              key={tool}
+                              onClick={() => handleAIToolToggle(tool)}
+                              className={`px-3 py-1 rounded-full text-sm transition-colors ${
+                                (editForm.technologies || []).includes(tool)
+                                  ? 'bg-blue-600 text-white'
+                                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                              }`}
+                            >
+                              {tool}
+                            </button>
+                          ))}
+                        </div>
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            value={customAITool}
+                            onChange={(e) => setCustomAITool(e.target.value)}
+                            placeholder={t('customToolPlaceholder')}
+                            className="flex-1 bg-gray-700 border border-gray-600 rounded px-3 py-2 text-sm"
+                          />
+                          <button
+                            onClick={addCustomAITool}
+                            className="bg-green-600 hover:bg-green-700 text-white px-3 py-2 rounded text-sm transition-colors"
+                          >
+                            {t('addCustomTool')}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* תכונות */}
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2">תכונות עברית (מופרדות בפסיק)</label>
+                        <textarea
+                          value={editForm.features_he || ''}
+                          onChange={(e) => setEditForm({...editForm, features_he: e.target.value})}
+                          className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 h-24"
+                          placeholder="תכונה 1, תכונה 2, תכונה 3"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2">תכונות אנגלית (מופרדות בפסיק)</label>
+                        <textarea
+                          value={editForm.features_en || ''}
+                          onChange={(e) => setEditForm({...editForm, features_en: e.target.value})}
+                          className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2 h-24"
+                          placeholder="Feature 1, Feature 2, Feature 3"
+                        />
+                      </div>
+                    </div>
+
+                    {/* חוקי וידיאו */}
+                    <div>
+                      <label className="flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          checked={editForm.isVideo || false}
+                          onChange={(e) => setEditForm({...editForm, isVideo: e.target.checked})}
+                          className="rounded"
+                        />
+                        <span>זהו פרויקט וידיאו</span>
+                      </label>
+                    </div>
+                  </div>
+                ) : (
+                  /* מצב צפייה רגיל */
+                  <>
                     {/* תמונה מפורטת */}
                     <div className="mb-6">
                       <img 
@@ -1190,7 +1403,7 @@ export default function Projects() {
                     </div>
                     
                     {/* כפתור פעולה - רק לסרטונים */}
-                    {selectedProject.isVideo && (
+                    {selectedProject.isVideo && selectedProject.link && selectedProject.link !== '#' && (
                       <a
                         href={selectedProject.link}
                         target="_blank"
@@ -1200,7 +1413,76 @@ export default function Projects() {
                         <Play className="w-5 h-5" />
                         <span>{t('watchVideo')}</span>
                       </a>
+                    )}
+                  </>
                 )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* מודל החלפת תמונה */}
+      <AnimatePresence>
+        {showImagePicker && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black bg-opacity-80 z-60 flex items-center justify-center p-4"
+            onClick={() => setShowImagePicker(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-gray-900 w-full max-w-md rounded-xl p-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3 className="text-xl font-bold mb-4">{t('enterImageUrl')}</h3>
+              
+              <div className="space-y-4">
+                <input
+                  type="url"
+                  value={imageInputUrl}
+                  onChange={(e) => setImageInputUrl(e.target.value)}
+                  placeholder="https://example.com/image.jpg"
+                  className="w-full bg-gray-800 border border-gray-600 rounded-lg px-3 py-2"
+                  autoFocus
+                />
+                
+                {imageInputUrl && (
+                  <div>
+                    <label className="block text-sm font-medium mb-2">{t('imagePreview')}</label>
+                    <img 
+                      src={imageInputUrl} 
+                      alt="Preview"
+                      className="w-full h-32 object-cover rounded-lg"
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                    <div className="w-full h-32 bg-gray-700 rounded-lg flex items-center justify-center text-gray-400" style={{display: 'none'}}>
+                      לא ניתן לטעון תמונה
+                    </div>
+                  </div>
+                )}
+                
+                <div className="flex gap-2">
+                  <button
+                    onClick={saveImageChange}
+                    className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition-colors"
+                  >
+                    שמור
+                  </button>
+                  <button
+                    onClick={() => setShowImagePicker(false)}
+                    className="flex-1 bg-gray-600 hover:bg-gray-700 text-white py-2 rounded-lg transition-colors"
+                  >
+                    בטל
+                  </button>
+                </div>
               </div>
             </motion.div>
           </motion.div>
