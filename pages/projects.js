@@ -134,6 +134,11 @@ const projectTranslations = {
 
 export default function Projects() {
   const { language, toggleLanguage } = useLanguage();
+  
+  // Debug alert to confirm new code is loaded
+  React.useEffect(() => {
+    console.log('🎯 UPDATED PROJECTS PAGE LOADED - 2 IMAGES SHOULD BE VISIBLE IN MODAL EDIT');
+  }, []);
   const [projectData, setProjectData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
@@ -1346,22 +1351,67 @@ ${defaultOwner}/${defaultRepo}
                 {editingInModal ? (
                   /* מצב עריכה במודל */
                   <div className="space-y-6">
-                    {/* תמונה מפורטת עם אפשרות עריכה */}
+                    {console.log('🔄 מצב עריכה במודל נטען - SHOULD SHOW 2 IMAGES:', {
+                      editingInModal,
+                      selectedProject: selectedProject?.title,
+                      editForm: editForm,
+                      hasDetailImage: !!selectedProject?.detailImage,
+                      cardImage: editForm.image || selectedProject?.image,
+                      detailImage: editForm.detailImage || selectedProject?.detailImage
+                    })}
+                    {/* תמונות הפרויקט עם אפשרות עריכה */}
                     <div>
-                      <label className="block text-lg font-semibold mb-3">תמונה מפורטת</label>
-                      <div className="relative">
-                        <img 
-                          src={editForm.detailImage || selectedProject.image} 
-                          alt={selectedProject.title[language]}
-                          className="w-full h-64 object-cover rounded-lg"
-                        />
-                        <button
-                          onClick={() => handleImageChange('detailImage')}
-                          className="absolute top-2 right-2 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full transition-colors"
-                          title="החלף תמונה מפורטת"
-                        >
-                          <Camera className="w-4 h-4" />
-                        </button>
+                      <h3 className="text-xl font-bold mb-4 text-white">🖼️ תמונות הפרויקט</h3>
+                      <div className="grid md:grid-cols-2 gap-6">
+                        {/* תמונת כרטיס ראשית */}
+                        <div>
+                          <label className="block text-lg font-semibold mb-3 text-orange-400">🧡 תמונת כרטיס ראשית</label>
+                          <div className="relative">
+                            <img 
+                              src={editForm.image || selectedProject.image} 
+                              alt="תמונת כרטיס"
+                              className="w-full h-48 object-cover rounded-lg border-2 border-orange-400"
+                            />
+                            <button
+                              onClick={() => {
+                                console.log('🧡 נלחץ כפתור תמונת כרטיס');
+                                handleImageChange('image');
+                              }}
+                              className="absolute top-2 right-2 bg-orange-600 hover:bg-orange-700 text-white p-2 rounded-full transition-colors shadow-lg"
+                              title="החלף תמונת כרטיס ראשית"
+                            >
+                              <Camera className="w-4 h-4" />
+                            </button>
+                          </div>
+                          <p className="text-xs text-gray-400 mt-2">התמונה שתופיע בכרטיס הפרויקט</p>
+                        </div>
+
+                        {/* תמונה מפורטת */}
+                        <div>
+                          <label className="block text-lg font-semibold mb-3 text-blue-400">🔵 תמונה מפורטת</label>
+                          <div className="relative">
+                            <img 
+                              src={editForm.detailImage || selectedProject.detailImage || selectedProject.image} 
+                              alt="תמונה מפורטת"
+                              className="w-full h-48 object-cover rounded-lg border-2 border-blue-400"
+                              onError={(e) => {
+                                console.log('❌ שגיאה בטעינת תמונה מפורטת:', e.target.src);
+                                e.target.src = selectedProject.image;
+                              }}
+                            />
+                            <button
+                              onClick={() => {
+                                console.log('🔵 נלחץ כפתור תמונה מפורטת');
+                                handleImageChange('detailImage');
+                              }}
+                              className="absolute top-2 right-2 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full transition-colors shadow-lg"
+                              title="החלף תמונה מפורטת"
+                            >
+                              <Camera className="w-4 h-4" />
+                            </button>
+                          </div>
+                          <p className="text-xs text-gray-400 mt-2">התמונה שתופיע במצב צפייה מפורטת</p>
+                        </div>
                       </div>
                     </div>
 
@@ -1467,26 +1517,7 @@ ${defaultOwner}/${defaultRepo}
                       </div>
                     </div>
 
-                    {/* תמונת כרטיס */}
-                    <div>
-                      <label className="block text-sm font-medium mb-2">תמונת כרטיס</label>
-                      <div className="flex gap-2">
-                        <input
-                          type="url"
-                          value={editForm.image || ''}
-                          onChange={(e) => setEditForm({...editForm, image: e.target.value})}
-                          className="flex-1 bg-gray-800 border border-gray-600 rounded-lg px-3 py-2"
-                          placeholder="https://..."
-                        />
-                        <button
-                          onClick={() => handleImageChange('image')}
-                          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
-                          title="החלף תמונת כרטיס"
-                        >
-                          <Camera className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
+
 
                     {/* כלי AI */}
                     <div>
