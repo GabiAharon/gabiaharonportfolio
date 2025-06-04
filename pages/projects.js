@@ -1366,22 +1366,35 @@ ${defaultOwner}/${defaultRepo}
                         {/* תמונת כרטיס ראשית */}
                         <div>
                           <label className="block text-lg font-semibold mb-3 text-orange-400">🧡 תמונת כרטיס ראשית</label>
+                          
+                          {/* שדה קישור תמונת כרטיס */}
+                          <div className="mb-3">
+                            <label className="block text-sm font-medium mb-2">קישור לתמונת כרטיס</label>
+                            <div className="flex gap-2">
+                              <input
+                                type="url"
+                                value={editForm.image || ''}
+                                onChange={(e) => setEditForm({...editForm, image: e.target.value})}
+                                className="flex-1 bg-gray-800 border border-orange-400 rounded-lg px-3 py-2 text-sm"
+                                placeholder="https://i.postimg.cc/..."
+                              />
+                              <button
+                                onClick={() => handleImageChange('image')}
+                                className="bg-orange-600 hover:bg-orange-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center gap-1"
+                                title="פתח בוחר תמונה"
+                              >
+                                <Camera className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </div>
+
+                          {/* תצוגה מקדימה */}
                           <div className="relative">
                             <img 
                               src={editForm.image || selectedProject.image} 
                               alt="תמונת כרטיס"
                               className="w-full h-48 object-cover rounded-lg border-2 border-orange-400"
                             />
-                            <button
-                              onClick={() => {
-                                console.log('🧡 נלחץ כפתור תמונת כרטיס');
-                                handleImageChange('image');
-                              }}
-                              className="absolute top-2 right-2 bg-orange-600 hover:bg-orange-700 text-white p-2 rounded-full transition-colors shadow-lg"
-                              title="החלף תמונת כרטיס ראשית"
-                            >
-                              <Camera className="w-4 h-4" />
-                            </button>
                           </div>
                           <p className="text-xs text-gray-400 mt-2">התמונה שתופיע בכרטיס הפרויקט</p>
                         </div>
@@ -1389,6 +1402,29 @@ ${defaultOwner}/${defaultRepo}
                         {/* תמונה מפורטת */}
                         <div>
                           <label className="block text-lg font-semibold mb-3 text-blue-400">🔵 תמונה מפורטת</label>
+                          
+                          {/* שדה קישור תמונה מפורטת */}
+                          <div className="mb-3">
+                            <label className="block text-sm font-medium mb-2">קישור לתמונה מפורטת</label>
+                            <div className="flex gap-2">
+                              <input
+                                type="url"
+                                value={editForm.detailImage || ''}
+                                onChange={(e) => setEditForm({...editForm, detailImage: e.target.value})}
+                                className="flex-1 bg-gray-800 border border-blue-400 rounded-lg px-3 py-2 text-sm"
+                                placeholder="https://i.postimg.cc/..."
+                              />
+                              <button
+                                onClick={() => handleImageChange('detailImage')}
+                                className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg transition-colors flex items-center gap-1"
+                                title="פתח בוחר תמונה"
+                              >
+                                <Camera className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </div>
+
+                          {/* תצוגה מקדימה */}
                           <div className="relative">
                             <img 
                               src={editForm.detailImage || selectedProject.detailImage || selectedProject.image} 
@@ -1399,16 +1435,6 @@ ${defaultOwner}/${defaultRepo}
                                 e.target.src = selectedProject.image;
                               }}
                             />
-                            <button
-                              onClick={() => {
-                                console.log('🔵 נלחץ כפתור תמונה מפורטת');
-                                handleImageChange('detailImage');
-                              }}
-                              className="absolute top-2 right-2 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full transition-colors shadow-lg"
-                              title="החלף תמונה מפורטת"
-                            >
-                              <Camera className="w-4 h-4" />
-                            </button>
                           </div>
                           <p className="text-xs text-gray-400 mt-2">התמונה שתופיע במצב צפייה מפורטת</p>
                         </div>
