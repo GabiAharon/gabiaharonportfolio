@@ -2,48 +2,47 @@
   {
     "id": 9,
     "title": {
-      "he": "תוסף Suno AI - יצירת פרומפטים מוזיקליים חכמים",
-      "en": "Suno AI Extension - Intelligent Music Prompt Generator"
+      "he": "Intelligent Suno Prompt Generator - מחולל פרומפטים מוזיקליים חכם",
+      "en": "Intelligent Suno Prompt Generator"
     },
     "description": {
-      "he": "תוסף חכם ליצירת פרומפטים מוזיקליים מתקדמים עבור Suno AI - מנתח טקסטים ומייצר הוראות מדויקות ליצירת מוזיקה איכותית.",
-      "en": "An intelligent extension for creating advanced musical prompts for Suno AI - analyzes texts and generates precise instructions for quality music creation."
+      "he": "מחולל פרומפטים מוזיקליים חכם ל-Suno - מזהה סגנון שירים ומפיק תיאור מוזיקלי מדויק ב-120 תווים למקסימום איכות.",
+      "en": "Intelligent music prompt generator for Suno - identifies song styles and produces accurate musical descriptions in 120 characters for maximum quality."
     },
     "detailedDescription": {
-      "he": "תוסף מתקדם שנועד לשפר משמעותית את איכות המוזיקה הנוצרת ב-Suno AI. התוסף מנתח את הטקסט שהמשתמש מכניס ומייצר פרומפטים מוזיקליים מותאמים אישית הכוללים:\n\n• זיהוי סגנון מוזיקלי מתאים\n• הצעת אלמנטים מוזיקליים (קצב, כלים, מבנה)\n• אופטימיזציה של הטקסט למוזיקה\n• המלצות לשיפור הפרומפט\n\nהתוסף פותח מתוך הצורך שלי ליצור מוזיקה איכותית יותר לפרויקטים שלי, במיוחד לסרטונים כמו 'Legends'. במקום לנסות ולטעות עם פרומפטים, התוסף מספק כיוון מקצועי ומדויק.\n\nמה מיוחד בו?\n• ממשק ידידותי ופשוט לשימוש\n• ניתוח חכם של כוונת המשתמש\n• ספרייה נרחבת של סגנונות מוזיקליים\n• המלצות מבוססות ניסיון מעשי",
-      "en": "An advanced extension designed to significantly improve the quality of music created in Suno AI. The extension analyzes the text the user enters and generates personalized musical prompts that include:\n\n• Identification of appropriate musical style\n• Suggestion of musical elements (rhythm, instruments, structure)\n• Text optimization for music\n• Recommendations for prompt improvement\n\nThe extension was developed from my need to create higher quality music for my projects, especially for videos like 'Legends'. Instead of trial and error with prompts, the extension provides professional and precise direction.\n\nWhat's special about it?\n• User-friendly and simple interface\n• Smart analysis of user intent\n• Extensive library of musical styles\n• Recommendations based on practical experience"
+      "he": "התוסף \"Intelligent Music Prompt Generator for Suno\" הוא כלי מבוסס GPT שתוכנן במיוחד עבור יוצרים המשתמשים בפלטפורמת Suno ליצירת שירים. הוא מתפקד כמפיק מוזיקלי חכם שמסייע למשתמש לנסח תיאור סגנוני מדויק לשיר – בהתאם לדרישות Suno.\n\nאיך זה עובד?\nהמשתמש מתחיל בבחירת סגנון מוזיקה רצוי, ואם אינו בטוח, התוסף מבקש ממנו להזין שם של שיר או להקה אהובה. לאחר מכן, התוסף מנתח את המאפיינים המוזיקליים המרכזיים – כגון ז'אנר, טמפו, כלי נגינה, סגנון שירה ומצב רוח – וממיר אותם לפרומפט מוכן באורך של עד 120 תווים, המותאם באופן מושלם לשדה \"Style of Music\" ב-Suno.\n\nלמה זה חשוב?\nגם משתמשים חסרי רקע מוזיקלי יכולים לקבל תוצאה מקצועית ומדויקת שתוביל להפקה איכותית וקרובה לסגנון שאליו כיוונו. במקום לנסות ולטעות עם פרומפטים, התוסף מספק כיוון מקצועי ומדויק מיד.",
+      "en": "The 'Intelligent Music Prompt Generator for Suno' is a GPT-based tool designed specifically for creators using the Suno platform to create songs. It functions as a smart music producer that helps users formulate an accurate stylistic description for their song - according to Suno's requirements.\n\nHow it works:\nThe user starts by selecting a desired music style, and if unsure, the extension asks them to enter the name of a favorite song or band. The extension then analyzes the core musical characteristics - such as genre, tempo, instruments, vocal style and mood - and converts them into a ready prompt of up to 120 characters, perfectly adapted to the 'Style of Music' field in Suno.\n\nWhy is this important?\nEven users without musical background can get professional and accurate results that will lead to quality production close to the style they aimed for. Instead of trial and error with prompts, the extension provides professional and precise direction immediately."
     },
-    "category": "plugin",
-    "date": "2025-05-26",
-    "image": "https://i.postimg.cc/G3yMNKbp/intelligent-suno-prompt.png",
-    "detailImage": "https://i.postimg.cc/G3yMNKbp/intelligent-suno-prompt.png",
-    "link": "#suno-ai-extension",
+    "category": "tool",
+    "date": "2025-06-04",
+    "image": "https://i.postimg.cc/HLWnT45K/Chat-GPT-Image-Jun-4-2025-03-25-20-PM.png",
+    "detailImage": "https://i.postimg.cc/HLWnT45K/Chat-GPT-Image-Jun-4-2025-03-25-20-PM.png",
+    "link": "https://chatgpt.com/g/g-6759b6f36e948191bb7de5749cbfe5e1-intelligent-music-prompt-generator-for-suno",
     "isVideo": false,
     "technologies": [
-      "Chrome Extension",
-      "JavaScript",
-      "Suno AI API",
       "Chat GPT",
-      "Natural Language Processing",
-      "Music Theory"
+      "GPTs",
+      "Suno AI",
+      "Music Theory",
+      "Natural Language Processing"
     ],
     "status": "הושלם",
     "features": {
       "he": [
-        "ניתוח טקסט חכם",
-        "יצירת פרומפטים מוזיקליים",
-        "זיהוי סגנונות מוזיקה",
-        "אופטימיזציה אוטומטית",
+        "ניתוח סגנונות מוזיקליים",
+        "יצירת פרומפטים מדויקים",
+        "זיהוי אוטומטי של ז'אנרים",
+        "התאמה לדרישות Suno",
         "ממשק פשוט ונוח",
-        "תמיכה במגוון סגנונות"
+        "תמיכה במגוון רחב של סגנונות"
       ],
       "en": [
-        "Smart text analysis",
-        "Musical prompt generation",
-        "Music style recognition",
-        "Automatic optimization",
+        "Musical style analysis",
+        "Accurate prompt generation",
+        "Automatic genre recognition",
+        "Suno requirements adaptation",
         "Simple and convenient interface",
-        "Support for various styles"
+        "Support for wide range of styles"
       ]
     }
   },
@@ -180,7 +179,7 @@
   {
     "id": 2,
     "title": {
-      "he": "תוסף כלי AI לכרום",
+      "he": "תוסף כליי AI לכרום",
       "en": "AI Presence Generator"
     },
     "description": {

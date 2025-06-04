@@ -1,5 +1,42 @@
 [
   {
+    "id": 9,
+    "title": {
+      "he": "Intelligent Suno Prompt Generator",
+      "en": "New Project"
+    },
+    "description": {
+      "he": "מחולל פרומפטים מוזיקליים חכם ל-Suno-מזהה סגנון שירים ומפיק תיאור מוזיקלי מדויק ב-120 תווים.\n\n",
+      "en": "Short description of the new project"
+    },
+    "detailedDescription": {
+      "he": "התוסף \"Intelligent Music Prompt Generator for Suno\" הוא כלי מבוסס GPT שתוכנן במיוחד עבור יוצרים המשתמשים בפלטפורמת Suno ליצירת שירים. הוא מתפקד כמפיק מוזיקלי חכם שמסייע למשתמש לנסח תיאור סגנוני מדויק לשיר – בהתאם לדרישות Suno. המשתמש מתחיל בבחירת סגנון מוזיקה רצוי, ואם אינו בטוח, התוסף מבקש ממנו להזין שם של שיר או להקה אהובה. לאחר מכן, התוסף מנתח את המאפיינים המוזיקליים המרכזיים – כגון ז’אנר, טמפו, כלי נגינה, סגנון שירה ומצב רוח – וממיר אותם לפרומפט מוכן באורך של עד 120 תווים, המותאם באופן מושלם לשדה “Style of Music” ב-Suno. כך, גם משתמשים חסרי רקע מוזיקלי יכולים לקבל תוצאה מקצועית ומדויקת שתוביל להפקה איכותית וקרובה לסגנון שאליו כיוונו.",
+      "en": "Here is a detailed description of the project. This is the place to expand on the goals, methods and results."
+    },
+    "category": "tool",
+    "date": "2025-06-04",
+    "image": "https://i.postimg.cc/HLWnT45K/Chat-GPT-Image-Jun-4-2025-03-25-20-PM.png",
+    "detailImage": "https://i.postimg.cc/HLWnT45K/Chat-GPT-Image-Jun-4-2025-03-25-20-PM.png",
+    "link": "#new-project",
+    "isVideo": false,
+    "technologies": [
+      "Chat GPT",
+      "GPT'S"
+    ],
+    "status": "בפיתוח",
+    "features": {
+      "he": [
+        ""
+      ],
+      "en": [
+        "Feature 1",
+        "Feature 2",
+        "Feature 3",
+        "Feature 4"
+      ]
+    }
+  },
+  {
     "id": 3,
     "title": {
       "he": "Legends",
@@ -132,7 +169,7 @@
   {
     "id": 2,
     "title": {
-      "he": "תוסף כלי AI לכרום",
+      "he": "תוסף כליי AI לכרום",
       "en": "AI Presence Generator"
     },
     "description": {
