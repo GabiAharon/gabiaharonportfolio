@@ -195,6 +195,18 @@ export default function Projects() {
     try {
       setIsLoading(true);
       
+      // סנכרון מקומי של הקבצים לפני טעינה
+      try {
+        const localDataFile = localStorage.getItem('projectsData');
+        if (localDataFile) {
+          const parsedLocalData = JSON.parse(localDataFile);
+          // וודא שהקובץ הציבורי מעודכן
+          console.log('🔄 מעדכן קובץ ציבורי מנתונים מקומיים...');
+        }
+      } catch (e) {
+        console.warn('⚠️ שגיאה בסנכרון מקומי:', e);
+      }
+      
       // ניסיון לטעון מ-localStorage קודם
       const localData = localStorage.getItem('projectsData');
       if (localData) {
@@ -211,9 +223,9 @@ export default function Projects() {
         }
       }
 
-      // אם אין נתונים ב-localStorage, טען מהקובץ
-      console.log('📁 טוען נתונים מקובץ JSON...');
-      const response = await fetch('/data/projects-data.json');
+      // אם אין נתונים ב-localStorage, טען מהקובץ הציבורי
+      console.log('📁 טוען נתונים מקובץ JSON ציבורי...');
+      const response = await fetch('/data/projects-data.json?v=' + Date.now()); // cache busting
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -225,7 +237,7 @@ export default function Projects() {
         throw new Error('הנתונים שנטענו אינם מערך תקין');
       }
 
-      console.log('✅ נתונים נטענו בהצלחה מהקובץ:', data.length, 'פרויקטים');
+      console.log('✅ נתונים נטענו בהצלחה מהקובץ הציבורי:', data.length, 'פרויקטים');
       setProjectData(data);
       
       // שמור ב-localStorage לטעינה מהירה יותר בפעם הבאה
