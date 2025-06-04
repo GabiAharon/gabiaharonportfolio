@@ -1067,28 +1067,6 @@ myusername/myrepo/ghp_abc123xyz...
           </button>
         )}
 
-        {/* כפתור גיבוי ידני ל-GitHub - גלוי תמיד */}
-        <button 
-          onClick={async () => {
-            try {
-              const success = await saveToGitHub(projectData);
-              if (success) {
-                alert('הנתונים נשמרו בהצלחה ל-GitHub! 🎉');
-              } else {
-                alert('שגיאה בשמירה ל-GitHub. נסה שוב או בדוק את הטוקן.');
-              }
-            } catch (error) {
-              console.error('Error in manual backup:', error);
-              alert('שגיאה בשמירה ל-GitHub: ' + error.message);
-            }
-          }}
-          className="bg-yellow-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-yellow-700"
-          title="גיבוי ידני ל-GitHub"
-        >
-          <Upload className="w-4 h-4" />
-          <span className="text-xs hidden sm:inline">GitHub</span>
-        </button>
-
         {isEditMode && (
           <button 
             onClick={uploadDataFile}
@@ -1116,15 +1094,17 @@ myusername/myrepo/ghp_abc123xyz...
           </button>
         )}
 
-        {/* כפתור סנכרון מ-GitHub - גלוי תמיד */}
-        <button 
-          onClick={syncFromGitHub}
-          className="bg-cyan-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-cyan-700"
-          title="סנכרון נתונים מ-GitHub"
-        >
-          <Download className="w-4 h-4" />
-          <span className="text-xs hidden sm:inline">Sync</span>
-        </button>
+        {/* כפתור סנכרון מ-GitHub - רק במצב עריכה */}
+        {isEditMode && (
+          <button 
+            onClick={syncFromGitHub}
+            className="bg-cyan-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-cyan-700"
+            title="סנכרון נתונים מ-GitHub"
+          >
+            <Download className="w-4 h-4" />
+            <span className="text-xs hidden sm:inline">Sync</span>
+          </button>
+        )}
       </div>
 
       {/* מחוון טעינה */}
