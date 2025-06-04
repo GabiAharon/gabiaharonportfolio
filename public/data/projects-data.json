@@ -2,37 +2,47 @@
   {
     "id": 9,
     "title": {
-      "he": "Intelligent Suno Prompt Generator",
-      "en": "New Project"
+      "he": "Intelligent Suno Prompt Generator - מחולל פרומפטים מוזיקליים חכם",
+      "en": "Intelligent Suno Prompt Generator"
     },
     "description": {
-      "he": "מחולל פרומפטים מוזיקליים חכם ל-Suno-מזהה סגנון שירים ומפיק תיאור מוזיקלי מדויק ב-120 תווים.\n\n",
-      "en": "Short description of the new project"
+      "he": "מחולל פרומפטים מוזיקליים חכם ל-Suno - מזהה סגנון שירים ומפיק תיאור מוזיקלי מדויק ב-120 תווים למקסימום איכות.",
+      "en": "Intelligent music prompt generator for Suno - identifies song styles and produces accurate musical descriptions in 120 characters for maximum quality."
     },
     "detailedDescription": {
-      "he": "התוסף \"Intelligent Music Prompt Generator for Suno\" הוא כלי מבוסס GPT שתוכנן במיוחד עבור יוצרים המשתמשים בפלטפורמת Suno ליצירת שירים. הוא מתפקד כמפיק מוזיקלי חכם שמסייע למשתמש לנסח תיאור סגנוני מדויק לשיר – בהתאם לדרישות Suno. המשתמש מתחיל בבחירת סגנון מוזיקה רצוי, ואם אינו בטוח, התוסף מבקש ממנו להזין שם של שיר או להקה אהובה. לאחר מכן, התוסף מנתח את המאפיינים המוזיקליים המרכזיים – כגון ז’אנר, טמפו, כלי נגינה, סגנון שירה ומצב רוח – וממיר אותם לפרומפט מוכן באורך של עד 120 תווים, המותאם באופן מושלם לשדה “Style of Music” ב-Suno. כך, גם משתמשים חסרי רקע מוזיקלי יכולים לקבל תוצאה מקצועית ומדויקת שתוביל להפקה איכותית וקרובה לסגנון שאליו כיוונו.",
-      "en": "Here is a detailed description of the project. This is the place to expand on the goals, methods and results."
+      "he": "התוסף \"Intelligent Music Prompt Generator for Suno\" הוא כלי מבוסס GPT שתוכנן במיוחד עבור יוצרים המשתמשים בפלטפורמת Suno ליצירת שירים. הוא מתפקד כמפיק מוזיקלי חכם שמסייע למשתמש לנסח תיאור סגנוני מדויק לשיר – בהתאם לדרישות Suno.\n\nאיך זה עובד?\nהמשתמש מתחיל בבחירת סגנון מוזיקה רצוי, ואם אינו בטוח, התוסף מבקש ממנו להזין שם של שיר או להקה אהובה. לאחר מכן, התוסף מנתח את המאפיינים המוזיקליים המרכזיים – כגון ז'אנר, טמפו, כלי נגינה, סגנון שירה ומצב רוח – וממיר אותם לפרומפט מוכן באורך של עד 120 תווים, המותאם באופן מושלם לשדה \"Style of Music\" ב-Suno.\n\nלמה זה חשוב?\nגם משתמשים חסרי רקע מוזיקלי יכולים לקבל תוצאה מקצועית ומדויקת שתוביל להפקה איכותית וקרובה לסגנון שאליו כיוונו. במקום לנסות ולטעות עם פרומפטים, התוסף מספק כיוון מקצועי ומדויק מיד.",
+      "en": "The 'Intelligent Music Prompt Generator for Suno' is a GPT-based tool designed specifically for creators using the Suno platform to create songs. It functions as a smart music producer that helps users formulate an accurate stylistic description for their song - according to Suno's requirements.\n\nHow it works:\nThe user starts by selecting a desired music style, and if unsure, the extension asks them to enter the name of a favorite song or band. The extension then analyzes the core musical characteristics - such as genre, tempo, instruments, vocal style and mood - and converts them into a ready prompt of up to 120 characters, perfectly adapted to the 'Style of Music' field in Suno.\n\nWhy is this important?\nEven users without musical background can get professional and accurate results that will lead to quality production close to the style they aimed for. Instead of trial and error with prompts, the extension provides professional and precise direction immediately."
     },
     "category": "tool",
     "date": "2025-06-04",
     "image": "https://i.postimg.cc/HLWnT45K/Chat-GPT-Image-Jun-4-2025-03-25-20-PM.png",
     "detailImage": "https://i.postimg.cc/HLWnT45K/Chat-GPT-Image-Jun-4-2025-03-25-20-PM.png",
-    "link": "#new-project",
+    "link": "https://chatgpt.com/g/g-6759b6f36e948191bb7de5749cbfe5e1-intelligent-music-prompt-generator-for-suno",
     "isVideo": false,
     "technologies": [
       "Chat GPT",
-      "GPT'S"
+      "GPTs",
+      "Suno AI",
+      "Music Theory",
+      "Natural Language Processing"
     ],
-    "status": "בפיתוח",
+    "status": "הושלם",
     "features": {
       "he": [
-        ""
+        "ניתוח סגנונות מוזיקליים",
+        "יצירת פרומפטים מדויקים",
+        "זיהוי אוטומטי של ז'אנרים",
+        "התאמה לדרישות Suno",
+        "ממשק פשוט ונוח",
+        "תמיכה במגוון רחב של סגנונות"
       ],
       "en": [
-        "Feature 1",
-        "Feature 2",
-        "Feature 3",
-        "Feature 4"
+        "Musical style analysis",
+        "Accurate prompt generation",
+        "Automatic genre recognition",
+        "Suno requirements adaptation",
+        "Simple and convenient interface",
+        "Support for wide range of styles"
       ]
     }
   },

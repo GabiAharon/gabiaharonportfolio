@@ -489,48 +489,72 @@ ${defaultOwner}/${defaultRepo}
       const fileContent = JSON.stringify(data, null, 2);
       const base64Content = btoa(unescape(encodeURIComponent(fileContent)));
       
-      // קבלת SHA הנוכחי של הקובץ
-      const currentFileResponse = await fetch(
-        `https://api.github.com/repos/${repoOwner}/${repoName}/contents/public/data/projects-data.json`,
-        {
-          headers: {
-            'Authorization': `token ${githubToken}`,
-            'Accept': 'application/vnd.github.v3+json',
-          }
-        }
-      );
+      // רשימת קבצים לעדכון (צריך לעדכן שניהם!)
+      const filesToUpdate = [
+        'data/projects-data.json',          // הקובץ הראשי
+        'public/data/projects-data.json'    // הקובץ הציבורי שהאתר קורא ממנו
+      ];
       
-      let sha = null;
-      if (currentFileResponse.ok) {
-        const currentFile = await currentFileResponse.json();
-        sha = currentFile.sha;
-      }
+      let allUpdatesSuccessful = true;
+      
+      // עדכון כל קובץ בנפרד
+      for (const filePath of filesToUpdate) {
+        try {
+          // קבלת SHA הנוכחי של הקובץ
+          const currentFileResponse = await fetch(
+            `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`,
+            {
+              headers: {
+                'Authorization': `token ${githubToken}`,
+                'Accept': 'application/vnd.github.v3+json',
+              }
+            }
+          );
+          
+          let sha = null;
+          if (currentFileResponse.ok) {
+            const currentFile = await currentFileResponse.json();
+            sha = currentFile.sha;
+          }
 
-      // עדכון הקובץ הציבורי (זה שהאתר קורא ממנו)
-      const commitResponse = await fetch(
-        `https://api.github.com/repos/${repoOwner}/${repoName}/contents/public/data/projects-data.json`,
-        {
-          method: 'PUT',
-          headers: {
-            'Authorization': `token ${githubToken}`,
-            'Accept': 'application/vnd.github.v3+json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            message: `🔄 עדכון אוטומטי של נתוני פרויקטים - ${new Date().toLocaleString('he-IL')}`,
-            content: base64Content,
-            sha: sha
-          })
+          // עדכון הקובץ
+          const commitResponse = await fetch(
+            `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`,
+            {
+              method: 'PUT',
+              headers: {
+                'Authorization': `token ${githubToken}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                message: `🔄 עדכון אוטומטי של נתוני פרויקטים [${filePath}] - ${new Date().toLocaleString('he-IL')}`,
+                content: base64Content,
+                sha: sha
+              })
+            }
+          );
+
+          if (!commitResponse.ok) {
+            const errorData = await commitResponse.json();
+            console.error(`❌ שגיאה בעדכון ${filePath}:`, errorData.message);
+            allUpdatesSuccessful = false;
+          } else {
+            console.log(`✅ ${filePath} עודכן בהצלחה`);
+          }
+        } catch (error) {
+          console.error(`❌ שגיאה בעדכון ${filePath}:`, error);
+          allUpdatesSuccessful = false;
         }
-      );
-
-      if (!commitResponse.ok) {
-        const errorData = await commitResponse.json();
-        throw new Error(`שגיאה בשמירה לגיטהאב: ${errorData.message || 'שגיאה לא ידועה'}`);
       }
 
-      console.log('✅ נתוני פרויקטים נשמרו בהצלחה ל-GitHub');
-      return true;
+      if (allUpdatesSuccessful) {
+        console.log('✅ כל הקבצים עודכנו בהצלחה ב-GitHub');
+        return true;
+      } else {
+        console.warn('⚠️ חלק מהקבצים לא עודכנו');
+        return false;
+      }
     } catch (error) {
       console.error('❌ שגיאה בשמירה ל-GitHub:', error);
       
