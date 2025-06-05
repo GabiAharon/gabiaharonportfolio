@@ -2,41 +2,36 @@
   {
     "id": 10,
     "title": {
-      "he": "חוויה ממש",
-      "en": "New Project"
+      "he": "פלטפורמת עיצוב תמונות לשימוש מקומי",
+      "en": "Local Image Editing Platform"
     },
     "description": {
-      "he": "תיאור קצר של הפרויקט החדש",
-      "en": "Short description of the new project"
+      "he": "פלטפורמה לעריכת תמונות באופן מהיר ומקומי מבוססת קוד פתוח. המטרה העיקרית היא לחסוך זמן ושימוש בתוכנות ואתרים חיצוניים להסרת רקעים, המרת קבצי תמונה, חידוד תמונה ועוד. ",
+      "en": "A fast and local image editing platform based on open-source code. The main goal is to save time and avoid relying on external software or websites for tasks such as background removal, image format conversion, image enhancement, and more."
     },
     "detailedDescription": {
-      "he": "כאן יופיע תיאור מפורט של הפרויקט. זהו המקום להרחיב על המטרות, השיטות והתוצאות.",
-      "en": "Here is a detailed description of the project. This is the place to expand on the goals, methods and results."
+      "he": " פלטפורמת עיצוב תמונות - ImageToolbox Platform\n\nתיאור הפרויקט:\nפלטפורמה מקיפה לעיצוב ועיבוד תמונות בעברית, שפותחה בהשראת הפרויקט הפתוח [ImageToolbox](https://github.com/T8RIN/ImageToolbox). הפלטפורמה מספקת כלים מתקדמים לעיבוד תמונות באמצעות בינה מלאכותית וטכנולוגיות ווב מודרניות.\n\nהמטרה של הפרויקט היא ליצור פתרון נגיש ומקצועי למשתמשים דוברי עברית לעיבוד תמונות ללא צורך בהתקנת תוכנות חיצוניות, תוך מתן דגש על ביצועים גבוהים וממשק משתמש אינטואיטיבי.\n\nתכונות עיקריות:\n\nהסרת רקע:\n- הסרת רקע חכמה באמצעות AI של @imgly/background-removal\n- 6 שיטות הסרה שונות: AI אוטומטי, AI לאנשים, AI לאובייקטים, זיהוי קצוות, סף צבע ועידון ידני\n- תצוגה מקדימה בזמן אמת עם בקרות מתקדמות\n- הגדרות עידון: החלקת קצוות, שחיקה, התרחבות ובקרת סף\n\n✂️ חיתוך תמונות חכם:\n- חיתוך אינטראקטיביי עם תצוגה מקדימה\n- יחסי גובה-רוחב מוגדרים מראש (16:9, 4:3, 1:1, וכו')\n- חיתוך חופשי ומדויק\n- ממשק drag & drop נוח\n\n🎨 230+ פילטרים מתקדמים:\n- פילטרים מוכנים בהשראת ImageToolbox\n- בקרות ידניות מתקדמות לכל פרמטר\n- קטגוריות: התאמות בסיסיות, צבעים, חדות וטשטוש, אפקטים אמנותיים\n- תמיכה ב-GPU לעיבוד מהיר יותר\n- תצוגה מקדימה בזמן אמת\n\n### 🔄 המרת פורמטים\n- תמיכה ב-WebP, JPEG, PNG, BMP\n- בקרת איכות מתקדמת\n- אופטימיזציה אוטומטית לגודל קובץ\n- השוואת תוצאות ועמידה בתקנים\n\nטכנולוגיות:\n Frontend Framework:\nReact 18.3.1- ספריית JavaScript מודרנית לבניית ממשקי משתמש\nVite 5.4.2 - כלי build מהיר ומודרני\n\n- כל הספריות הנוספות תחת רישיונות פתוחים\n\nתהליך הפיתוח:\n\n1.מחקר ופיתוח - ניתוח פרויקט ImageToolbox המקורי וזיהוי התכונות העיקריות\n2. תכנון ארכיטקטורה - עיצוב מבנה הפרויקט עם React וטכנולוגיות ווב\n3. פיתוח UI/UX - יצירת ממשק עברי RTL עם עיצוב מודרני\n4. אינטגרציה - שילוב ספריות AI ועיבוד תמונות\n5. אופטימיזציה - שיפור ביצועים ותמיכה ב-GPU\n6. בדיקות ובאגים - תיקון שגיאות ושיפור יציבות\n\nהפרויקט כולל:\n- ממשק מקצועי ואינטואיטיבי\n- עיבוד תמונות בזמן אמת\n- תמיכה בפורמטים מרובים\n",
+      "en": "Project Description:\nA comprehensive image editing and processing platform in Hebrew, inspired by the open-source project ImageToolbox. The platform offers advanced image processing tools using artificial intelligence and modern web technologies.\n\nThe project's goal is to provide an accessible and professional solution for Hebrew-speaking users to process images without the need to install external software, while emphasizing high performance and an intuitive user interface.\n\nKey Features:\n🧼 Background Removal:\nSmart background removal powered by @imgly/background-removal AI\n6 different removal methods: Auto AI, AI for People, AI for Objects, Edge Detection, Color Threshold, and Manual Refinement\nReal-time preview with advanced control options\nRefinement settings: edge smoothing, erosion, expansion, and threshold control\n\n✂️ Smart Cropping:\nInteractive cropping with live preview\nPredefined aspect ratios (16:9, 4:3, 1:1, etc.)\nFreeform and precise cropping\nEasy drag & drop interface\n\n🎨 230+ Advanced Filters:\nReady-to-use filters inspired by ImageToolbox\nManual fine-tuning of every parameter\nCategories: Basic Adjustments, Colors, Sharpening & Blur, Artistic Effects\nGPU-accelerated for faster processing\nReal-time filter preview\n\n🔄 Format Conversion:\nSupports WebP, JPEG, PNG, BMP\nAdvanced quality control\nAutomatic file size optimization\nResult comparison and standards compliance\n\nTechnologies:\nFrontend Framework:\nReact 18.3.1 – A modern JavaScript library for building user interfaces\nVite 5.4.2 – A fast, modern build tool\n\nAll libraries used are open-source licensed\n\nDevelopment Process:\nResearch & Analysis – Reviewing the original ImageToolbox project and identifying key features\n\nArchitecture Planning – Designing the structure using React and modern web technologies\n\nUI/UX Design – Creating a modern RTL Hebrew interface\nIntegration – Implementing AI libraries and image processing tools\nOptimization – Enhancing performance with GPU support\nTesting & Debugging – Fixing issues and improving stability\n\nProject Includes:\nA professional and intuitive user interface\nReal-time image processing\nSupport for multiple image formats"
     },
-    "category": "tool",
+    "category": "interface",
     "date": "2025-06-04",
     "image": "https://i.postimg.cc/25csk35r/enhanced-3c4170e4-52d3-4395-94b1-c051f9309ed1-1.png",
     "detailImage": "https://i.postimg.cc/25csk35r/enhanced-3c4170e4-52d3-4395-94b1-c051f9309ed1-1.png",
     "link": "#new-project",
     "isVideo": false,
     "technologies": [
-      "Technology 1",
-      "Technology 2",
-      "Technology 3"
+      "Cursor AI",
+      "JavaScript, CSS, HTML"
     ],
-    "status": "בפיתוח",
+    "status": "הושלם",
     "features": {
       "he": [
-        "תכונה 1",
-        "תכונה 2",
-        "תכונה 3",
-        "תכונה 4"
+        "עריכת תמונות",
+        "קוד פתוח"
       ],
       "en": [
-        "Feature 1",
-        "Feature 2",
-        "Feature 3",
-        "Feature 4"
+        "photo editing",
+        "open source"
       ]
     }
   },
