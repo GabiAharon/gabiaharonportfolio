@@ -1160,9 +1160,9 @@ ${defaultOwner}/${defaultRepo}
                               {project.title[language]}
                             </h3>
                             <div className="flex-1 flex flex-col">
-                              <p className="text-gray-300 text-sm mb-4 line-clamp-3 flex-1">
+                              <div className="text-gray-300 text-sm mb-4 line-clamp-3 flex-1 whitespace-pre-line">
                                 {project.description[language]}
-                              </p>
+                              </div>
                               
                               {/* טכנולוגיות */}
                               <div className="mb-4">
@@ -1632,9 +1632,9 @@ ${defaultOwner}/${defaultRepo}
                     {/* תיאור מפורט */}
                     <div className="mb-6">
                       <h4 className="text-lg font-semibold mb-3">{t('detailedDescription')}</h4>
-                      <p className="text-gray-300 leading-relaxed">
+                      <div className="text-gray-300 leading-relaxed whitespace-pre-line">
                         {selectedProject.detailedDescription[language]}
-                      </p>
+                      </div>
                     </div>
                     
                     {/* תכונות */}
