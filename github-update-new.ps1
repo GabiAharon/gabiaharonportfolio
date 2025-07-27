@@ -66,7 +66,10 @@ if (-not $skipToNetlify) {
     git pull origin $branch --rebase | Out-Null
 
     Write-Host "Pushing to GitHub…" -ForegroundColor $Cyan
-    if (!(git push origin $branch)) {
+    try {
+        git push origin $branch
+        Write-Host "Push successful!" -ForegroundColor $Green
+    } catch {
         Write-Host "ERROR: Git push failed." -ForegroundColor $Red
         exit 1
     }
