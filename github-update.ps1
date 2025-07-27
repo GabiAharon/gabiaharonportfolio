@@ -113,9 +113,9 @@ try {
     $authenticatedRemote = "https://$GITHUB_USER`:$GITHUB_TOKEN@github.com/$GITHUB_USER/$GITHUB_REPO.git"
     git remote set-url origin $authenticatedRemote
 
-    # Push
-    Write-Host "Pushing to GitHub..." -ForegroundColor $Cyan
-    $pushResult = git push origin $branch 2>&1
+    # Push with force
+    Write-Host "Force pushing to GitHub to overwrite problematic history..." -ForegroundColor $Yellow
+    $pushResult = git push origin $branch --force 2>&1
     $pushExitCode = $LASTEXITCODE
     
     # Restore original remote URL for security
