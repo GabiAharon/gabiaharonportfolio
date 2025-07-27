@@ -89,3 +89,4 @@ This project is open source and available under the [MIT License](LICENSE).
 <!-- Trigger GitHub Pages build 05/25/2025 09:23:13 -->
 ## Test Update
 This line was added to test the GitHub update script.
+Another test line added to check change detection.
