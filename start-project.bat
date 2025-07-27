@@ -17,19 +17,21 @@ echo Starting fresh development server...
 echo.
 
 :: Start the development server
-start /b npm run dev
+start /min cmd /c "npm run dev"
 
-:: Wait a moment for server to start
-timeout /t 5 /nobreak >nul
+:: Wait longer for server to start
+echo Waiting for server to initialize...
+timeout /t 8 /nobreak >nul
 
 :: Open browser
 echo Opening browser at http://localhost:3000
-start http://localhost:3000
+start "" "http://localhost:3000"
 
 echo.
 echo =================================
 echo  Development server is running!
 echo  URL: http://localhost:3000
+echo  Press Ctrl+C in the server window to stop
 echo =================================
 echo.
 echo Press any key to close this window...
