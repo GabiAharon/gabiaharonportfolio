@@ -594,7 +594,19 @@ ${defaultOwner}/${defaultRepo}
         // עדכון Netlify באופן אוטומטי
         try {
           // נשתמש ב-Build Hook קבוע של Netlify
-          const netlifyBuildHook = "https://api.netlify.com/build_hooks/65b4b9b6e7e2d2a5c0a1a9b9";
+          // החלף את ה-URL הזה עם ה-Build Hook האמיתי שלך מ-Netlify
+          // כדי ליצור Build Hook:
+          // 1. היכנס לחשבון ה-Netlify שלך
+          // 2. בחר את האתר שלך (gabiaharon.com)
+          // 3. לחץ על "Site settings" בתפריט העליון
+          // 4. בתפריט הצד, בחר "Build & deploy"
+          // 5. גלול למטה עד שתמצא את החלק "Build hooks"
+          // 6. לחץ על "Add build hook"
+          // 7. תן לו שם (למשל "Auto Deploy")
+          // 8. בחר את הענף שברצונך להפעיל (בדרך כלל "master" או "main")
+          // 9. לחץ על "Save"
+          // 10. העתק את ה-URL שנוצר והדבק אותו כאן
+          const netlifyBuildHook = "https://api.netlify.com/build_hooks/688688c76292b35f68ccf3cb";
           
           console.log('🔄 מעדכן את Netlify אוטומטית...');
           

@@ -1,6 +1,12 @@
 # GitHub Update Script - Simple and Secure
 # No hardcoded tokens - uses Git credential management
 
+# ===================================================
+# הוראות: 
+# 1. החלף את ה-URL של ה-Build Hook בשורה 15 עם ה-URL האמיתי שלך מ-Netlify
+# 2. הרץ את הסקריפט הזה כדי לעדכן את GitHub ו-Netlify בו-זמנית
+# ===================================================
+
 param(
     [string]$CommitMessage = ""
 )
@@ -11,8 +17,19 @@ $Red = "Red"
 $Cyan = "Cyan"
 $Yellow = "Yellow"
 
-# Netlify build hook URL
-$netlifyBuildHook = "https://api.netlify.com/build_hooks/65b4b9b6e7e2d2a5c0a1a9b9"
+# Netlify build hook URL - החלף את זה עם ה-URL האמיתי שלך מ-Netlify
+# כדי ליצור Build Hook:
+# 1. היכנס לחשבון ה-Netlify שלך
+# 2. בחר את האתר שלך (gabiaharon.com)
+# 3. לחץ על "Site settings" בתפריט העליון
+# 4. בתפריט הצד, בחר "Build & deploy"
+# 5. גלול למטה עד שתמצא את החלק "Build hooks"
+# 6. לחץ על "Add build hook"
+# 7. תן לו שם (למשל "Auto Deploy")
+# 8. בחר את הענף שברצונך להפעיל (בדרך כלל "master" או "main")
+# 9. לחץ על "Save"
+# 10. העתק את ה-URL שנוצר והדבק אותו כאן
+$netlifyBuildHook = "https://api.netlify.com/build_hooks/688688c76292b35f68ccf3cb"
 
 Write-Host "=== GitHub Portfolio Updater ===" -ForegroundColor $Cyan
 Write-Host "Simple and secure update process" -ForegroundColor $Cyan
