@@ -457,49 +457,60 @@ export default function Projects() {
       let repoOwner = localStorage.getItem('githubUsername');
       let repoName = localStorage.getItem('githubRepo');
       
+      // אם אין הגדרות קיימות, קבע ברירת מחדל עם הטוקן החדש
       if (!githubToken || !repoOwner || !repoName) {
         const defaultOwner = 'GabiAharon';
         const defaultRepo = 'gabiaharonportfolio';
+        const defaultToken = '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';
         
         const userChoice = confirm(`🚀 הגדרת GitHub אוטומטית
 
 האם ברצונך להשתמש בהגדרות הריפו שלך?
 ${defaultOwner}/${defaultRepo}
 
-✅ כן - להמשיך עם הריפו שלי
+✅ כן - להמשיך עם הריפו שלי (טוקן מעודכן)
 ❌ לא - אני רוצה להגדיר פרטים אחרים`);
         
         if (userChoice) {
           repoOwner = defaultOwner;
           repoName = defaultRepo;
-          githubToken = prompt(`🔑 הכנס את הטוקן של GitHub שלך:`);
+          githubToken = defaultToken;
         } else {
           const userDetails = prompt(`🔧 הגדרת GitHub ידנית:
 
 הכנס בפורמט הבא:
-שם_משתמש/שם_ריפו/טוקן`);
+שם_משתמש/שם_ריפו/טוקן
+
+או רק טוקן (אם רוצה להשתמש ב-${defaultOwner}/${defaultRepo})`);
           
           if (!userDetails) {
             throw new Error('נדרשים פרטי GitHub');
           }
           
           const parts = userDetails.split('/');
-          if (parts.length !== 3) {
-            throw new Error('פורמט לא נכון - צריך להיות: שם_משתמש/שם_ריפו/טוקן');
+          if (parts.length === 3) {
+            repoOwner = parts[0].trim();
+            repoName = parts[1].trim();
+            githubToken = parts[2].trim();
+          } else if (parts.length === 1 && userDetails.startsWith('github_pat_')) {
+            // רק טוקן - השתמש בברירת מחדל
+            repoOwner = defaultOwner;
+            repoName = defaultRepo;
+            githubToken = userDetails.trim();
+          } else {
+            throw new Error('פורמט לא נכון - הכנס: שם_משתמש/שם_ריפו/טוקן או רק טוקן');
           }
-          
-          repoOwner = parts[0].trim();
-          repoName = parts[1].trim();
-          githubToken = parts[2].trim();
         }
         
         if (!githubToken) {
           throw new Error('נדרש טוקן GitHub');
         }
         
+        // שמור הגדרות חדשות
         localStorage.setItem('githubUsername', repoOwner);
         localStorage.setItem('githubRepo', repoName);
         localStorage.setItem('githubToken', githubToken);
+        console.log('✅ הגדרות GitHub נשמרו:', { repoOwner, repoName, tokenPrefix: githubToken.substring(0, 10) + '...' });
       }
       
       // הכנת תוכן הקובץ עם קידוד UTF-8
@@ -567,6 +578,11 @@ ${defaultOwner}/${defaultRepo}
 
       if (allUpdatesSuccessful) {
         console.log('✅ כל הקבצים עודכנו בהצלחה ב-GitHub');
+        
+        // הודעה לקונסול על הצלחה
+        console.log(`📁 Repository: ${repoOwner}/${repoName}`);
+        console.log(`📅 Last update: ${new Date().toLocaleString('he-IL')}`);
+        
         return true;
       } else {
         console.warn('⚠️ חלק מהקבצים לא עודכנו');
@@ -575,11 +591,26 @@ ${defaultOwner}/${defaultRepo}
     } catch (error) {
       console.error('❌ שגיאה בשמירה ל-GitHub:', error);
       
-      // אם יש בעיית הרשאה, נמחק את הטוקן
-      if (error.message && (error.message.includes('401') || error.message.includes('token'))) {
-        localStorage.removeItem('githubToken');
-        localStorage.removeItem('githubUsername');
-        localStorage.removeItem('githubRepo');
+      // בדיקות מפורטות יותר לסוגי שגיאות
+      if (error.message) {
+        if (error.message.includes('401') || error.message.includes('Unauthorized')) {
+          console.error('❌ שגיאת הרשאה - הטוקן לא תקף או שפג תוקפו');
+          alert('🔑 שגיאת הרשאה ל-GitHub\n\nהטוקן שלך לא תקף או שפג תוקפו.\nהגדרות GitHub נמחקו - בפעם הבאה תוכל להזין טוקן חדש.');
+          localStorage.removeItem('githubToken');
+          localStorage.removeItem('githubUsername');
+          localStorage.removeItem('githubRepo');
+        } else if (error.message.includes('403') || error.message.includes('rate limit')) {
+          console.error('❌ הגבלת קצב API או אין הרשאה לריפו');
+          alert('⏱️ הגבלת קצב GitHub API\n\nנסה שוב בעוד כמה דקות.');
+        } else if (error.message.includes('404')) {
+          console.error('❌ הריפו לא נמצא או לא נגיש');
+          alert('🔍 הריפו לא נמצא\n\nבדוק שהשם שלו נכון ושיש לך הרשאה לגשת אליו.');
+        } else if (error.message.includes('network') || error.message.includes('fetch')) {
+          console.error('❌ בעיית חיבור לאינטרנט');
+          alert('🌐 בעיית חיבור\n\nבדוק את החיבור לאינטרנט ונסה שוב.');
+        } else {
+          console.error('❌ שגיאה כללית:', error.message);
+        }
       }
       
       return false;
@@ -857,7 +888,7 @@ ${defaultOwner}/${defaultRepo}
             </button>
 
             <button 
-              onClick={() => {
+              onClick={async () => {
                 const token = localStorage.getItem('githubToken');
                 const username = localStorage.getItem('githubUsername');
                 const repo = localStorage.getItem('githubRepo');
@@ -866,33 +897,73 @@ ${defaultOwner}/${defaultRepo}
                   const choice = confirm(`🔧 הגדרות GitHub נוכחיות:
                   
 📁 Repository: ${username}/${repo}
-🔑 Token: ${token.substring(0, 4)}...${token.slice(-4)}
+🔑 Token: ${token.substring(0, 10)}...${token.slice(-4)}
+📅 עדכון אחרון: ${localStorage.getItem('lastGitHubUpdate') || 'לא ידוע'}
 
-✅ לבדוק חיבור
+✅ לבדוק חיבור API
 ❌ למחוק הגדרות`);
                   
                   if (choice) {
-                    // בדיקת חיבור
-                    saveToGitHub(projectData).then(success => {
-                      if (success) {
-                        alert('✅ החיבור ל-GitHub תקין!');
+                    // בדיקת חיבור API ישירה
+                    try {
+                      console.log('🔍 בודק חיבור ל-GitHub API...');
+                      const response = await fetch(`https://api.github.com/repos/${username}/${repo}`, {
+                        headers: {
+                          'Authorization': `token ${token}`,
+                          'Accept': 'application/vnd.github.v3+json',
+                        }
+                      });
+                      
+                      if (response.ok) {
+                        const repoData = await response.json();
+                        alert(`✅ החיבור ל-GitHub תקין!
+                        
+📁 Repository: ${repoData.full_name}
+🌟 Stars: ${repoData.stargazers_count}
+📝 Description: ${repoData.description || 'אין תיאור'}
+📅 עדכון אחרון: ${new Date(repoData.updated_at).toLocaleString('he-IL')}
+
+🔑 הטוקן עובד בהצלחה!`);
+                        localStorage.setItem('lastGitHubUpdate', new Date().toLocaleString('he-IL'));
+                      } else if (response.status === 401) {
+                        alert('❌ שגיאת הרשאה!\n\nהטוקן לא תקף או שפג תוקפו.\nהגדרות GitHub נמחקו.');
+                        localStorage.removeItem('githubToken');
+                        localStorage.removeItem('githubUsername');
+                        localStorage.removeItem('githubRepo');
+                      } else if (response.status === 404) {
+                        alert('❌ הריפו לא נמצא!\n\nבדוק שהשם נכון ושיש לך הרשאה לגשת אליו.');
                       } else {
-                        alert('❌ בעיה בחיבור ל-GitHub\nבדוק את הטוקן והרשאות');
+                        alert(`❌ שגיאה בחיבור ל-GitHub\nקוד שגיאה: ${response.status}\n\nבדוק את ההגדרות והרשאות.`);
                       }
-                    });
+                    } catch (error) {
+                      console.error('שגיאה בבדיקת GitHub:', error);
+                      alert('❌ שגיאה בחיבור לאינטרנט\n\nבדוק את החיבור שלך ונסה שוב.');
+                    }
                   } else {
                     // מחיקת הגדרות
                     localStorage.removeItem('githubToken');
                     localStorage.removeItem('githubUsername');
                     localStorage.removeItem('githubRepo');
-                    alert('🗑️ הגדרות GitHub נמחקו');
+                    localStorage.removeItem('lastGitHubUpdate');
+                    alert('🗑️ כל הגדרות GitHub נמחקו');
                   }
                 } else {
-                  alert('⚙️ לא נמצאו הגדרות GitHub\nהשמירה הבאה תפתח את חלון ההגדרה');
+                  // הצעה להגדיר טוקן חדש
+                  const setupNew = confirm('⚙️ לא נמצאו הגדרות GitHub\n\n✅ להגדיר עכשיו עם הטוקן החדש?\n❌ להמתין לשמירה הבאה?');
+                  
+                  if (setupNew) {
+                    // הגדרה מיידית
+                    const newToken = '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';
+                    localStorage.setItem('githubToken', newToken);
+                    localStorage.setItem('githubUsername', 'GabiAharon');
+                    localStorage.setItem('githubRepo', 'gabiaharonportfolio');
+                    localStorage.setItem('lastGitHubUpdate', new Date().toLocaleString('he-IL'));
+                    alert('✅ הגדרות GitHub הוגדרו!\n\nכעת ניתן לשמור שינויים אוטומטית ל-GitHub.');
+                  }
                 }
               }}
               className="bg-purple-600 p-2 rounded-full flex items-center gap-2 transition-all hover:bg-purple-700"
-              title="הגדרות GitHub"
+              title="הגדרות ובדיקת GitHub"
             >
               <span className="text-xs">⚙️</span>
             </button>
