@@ -696,6 +696,12 @@ ${defaultOwner}/${defaultRepo}
     
     setProjectData(updatedProjects);
     saveToLocalStorage(updatedProjects);
+    
+    // שמירה אוטומטית ל-GitHub
+    const githubSaved = await saveToGitHub(updatedProjects);
+    if (!githubSaved) {
+      alert('⚠️ הפרויקט הוזז מקומית\n❌ שגיאה בשמירה לגיטהאב\n(בדוק את הטוקן או החיבור לאינטרנט)');
+    }
   };
 
   // פונקציה להזזת פרויקט מטה
@@ -710,6 +716,12 @@ ${defaultOwner}/${defaultRepo}
     
     setProjectData(updatedProjects);
     saveToLocalStorage(updatedProjects);
+    
+    // שמירה אוטומטית ל-GitHub
+    const githubSaved = await saveToGitHub(updatedProjects);
+    if (!githubSaved) {
+      alert('⚠️ הפרויקט הוזז מקומית\n❌ שגיאה בשמירה לגיטהאב\n(בדוק את הטוקן או החיבור לאינטרנט)');
+    }
   };
 
   // פונקציה להחלפת תמונה
