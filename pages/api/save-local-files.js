@@ -8,17 +8,14 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { data, files } = req.body;
+    const { content, filePaths } = req.body;
 
-    if (!data || !files || !Array.isArray(files)) {
+    if (!content || !filePaths || !Array.isArray(filePaths)) {
       return res.status(400).json({ error: 'נתונים חסרים או לא תקינים' });
     }
 
-    // המרת הנתונים ל-JSON מפורמט
-    const jsonData = JSON.stringify(data, null, 2);
-
     // שמירת כל הקבצים
-    for (const filePath of files) {
+    for (const filePath of filePaths) {
       // קבלת הנתיב המלא
       const fullPath = path.join(process.cwd(), filePath);
       
@@ -29,7 +26,7 @@ export default async function handler(req, res) {
       }
       
       // כתיבת הקובץ
-      fs.writeFileSync(fullPath, jsonData, 'utf8');
+      fs.writeFileSync(fullPath, content, 'utf8');
       console.log(`✅ נשמר: ${filePath}`);
     }
 

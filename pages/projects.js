@@ -931,6 +931,89 @@ ${defaultOwner}/${defaultRepo}
     }
   };
 
+  // פונקציה להוספת פרויקט בדיקה זמני
+  const addTestProject = async () => {
+    const currentDate = new Date().toISOString().split('T')[0];
+    const newId = Math.max(...projectData.map(p => p.id), 0) + 1;
+    
+    const testProject = {
+      id: newId,
+      title: { 
+        he: "פרויקט בדיקה - " + new Date().toLocaleTimeString('he-IL'), 
+        en: "Test Project - " + new Date().toLocaleTimeString('en-US')
+      },
+      description: { 
+        he: "זהו פרויקט בדיקה שנוצר ב-" + new Date().toLocaleString('he-IL'), 
+        en: "This is a test project created at " + new Date().toLocaleString('en-US')
+      },
+      detailedDescription: {
+        he: "פרויקט זה נוצר כדי לבדוק את מערכת העדכון האוטומטית.",
+        en: "This project was created to test the automatic update system."
+      },
+      category: "tool",
+      date: currentDate,
+      image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=400&fit=crop",
+      detailImage: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=600&fit=crop",
+      link: "#test-project",
+      isVideo: false,
+      technologies: ["Test Technology"],
+      status: "בדיקה",
+      features: {
+        he: ["תכונת בדיקה 1", "תכונת בדיקה 2"],
+        en: ["Test feature 1", "Test feature 2"]
+      }
+    };
+    
+    // הוספת הפרויקט בראש הרשימה
+    const updatedProjects = [testProject, ...projectData];
+    setProjectData(updatedProjects);
+    saveToLocalStorage(updatedProjects);
+    
+    // שמירה מקומית של הקבצים
+    try {
+      const fileContent = JSON.stringify(updatedProjects, null, 2);
+      
+      // שימוש ב-fetch לשמירת הקובץ לשרת
+      const response = await fetch('/api/save-local-files', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          content: fileContent,
+          filePaths: [
+            'data/projects-data.json',
+            'public/data/projects-data.json'
+          ]
+        }),
+      });
+      
+      if (response.ok) {
+        console.log('✅ הקבצים המקומיים נשמרו בהצלחה');
+        alert('✅ פרויקט הבדיקה נוסף בהצלחה!\nהקבצים המקומיים עודכנו.');
+        
+        // הפעלת סקריפט העדכון
+        const scriptResponse = await fetch('/api/run-updater', {
+          method: 'POST',
+        });
+        
+        if (scriptResponse.ok) {
+          console.log('✅ סקריפט העדכון הופעל בהצלחה');
+          alert('✅ סקריפט העדכון הופעל בהצלחה!\nהשינויים יופיעו באתר בקרוב.');
+        } else {
+          console.error('❌ שגיאה בהפעלת סקריפט העדכון:', await scriptResponse.text());
+          alert('❌ שגיאה בהפעלת סקריפט העדכון.\nנסה להפעיל את site-updater.bat באופן ידני.');
+        }
+      } else {
+        console.error('❌ שגיאה בשמירת הקבצים המקומיים:', await response.text());
+        alert('❌ שגיאה בשמירת הקבצים המקומיים.\nנסה להפעיל את site-updater.bat באופן ידני.');
+      }
+    } catch (error) {
+      console.error('❌ שגיאה:', error);
+      alert('❌ שגיאה: ' + error.message);
+    }
+  };
+
   return (
     <div className={`min-h-screen w-full bg-gradient-to-b from-gray-900 via-gray-900 to-black text-white ${language === 'he' ? 'rtl' : 'ltr'}`}>
       {/* לוגו */}
@@ -1144,12 +1227,44 @@ ${defaultOwner}/${defaultRepo}
                     📝 {t('editingInstructions')}
                   </p>
                   
-                  <button
-                    onClick={createNewProject}
-                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
-                  >
-                    <span>+ פרויקט חדש</span>
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={addTestProject}
+                      className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
+                    >
+                      <span>+ הוסף פרויקט בדיקה</span>
+                    </button>
+                    
+                    <button
+                      onClick={() => {
+                        // הורדת הקובץ
+                        downloadUpdatedData(projectData);
+                        
+                        // הצגת הוראות
+                        alert(`✅ הקובץ הורד בהצלחה!
+
+הוראות להעתקת הקובץ:
+1. העתק את הקובץ שהורדת (projects-data-updated.json)
+2. הדבק אותו בשני המיקומים הבאים:
+   - data/projects-data.json
+   - public/data/projects-data.json
+3. הפעל את site-updater.bat
+
+זהו! השינויים יופיעו באתר תוך מספר דקות.`);
+                      }}
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
+                    >
+                      <Download className="w-4 h-4" />
+                      <span>ייצוא והעתקה</span>
+                    </button>
+                    
+                    <button
+                      onClick={createNewProject}
+                      className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
+                    >
+                      <span>+ פרויקט חדש</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             )}
