@@ -591,6 +591,52 @@ ${defaultOwner}/${defaultRepo}
         console.log(`📁 Repository: ${repoOwner}/${repoName}`);
         console.log(`📅 Last update: ${new Date().toLocaleString('he-IL')}`);
         
+        // עדכון Netlify באופן אוטומטי
+        try {
+          // נשתמש ב-Build Hook קבוע של Netlify
+          const netlifyBuildHook = "https://api.netlify.com/build_hooks/65b4b9b6e7e2d2a5c0a1a9b9";
+          
+          console.log('🔄 מעדכן את Netlify אוטומטית...');
+          
+          // שליחת בקשת POST ל-build hook של Netlify
+          const netlifyResponse = await fetch(netlifyBuildHook, {
+            method: 'POST',
+          });
+          
+          if (netlifyResponse.ok) {
+            console.log('✅ Netlify עודכן בהצלחה!');
+            console.log('האתר יתעדכן תוך 1-2 דקות.');
+          } else {
+            console.error('❌ שגיאה בעדכון Netlify:', netlifyResponse.status);
+            
+            // אם יש שגיאה, נציע למשתמש לעדכן את ה-Build Hook
+            const updateBuildHook = confirm('❌ שגיאה בעדכון Netlify. האם ברצונך להגדיר Build Hook חדש?');
+            
+            if (updateBuildHook) {
+              const newHook = prompt('הכנס את ה-URL של Build Hook של Netlify:');
+              
+              if (newHook && newHook.includes('api.netlify.com/build_hooks/')) {
+                localStorage.setItem('netlifyBuildHook', newHook);
+                
+                // נסה שוב עם ה-Hook החדש
+                const retryResponse = await fetch(newHook, {
+                  method: 'POST',
+                });
+                
+                if (retryResponse.ok) {
+                  console.log('✅ Netlify עודכן בהצלחה עם ה-Hook החדש!');
+                  alert('✅ Netlify עודכן בהצלחה!\nהאתר יתעדכן תוך 1-2 דקות.');
+                } else {
+                  console.error('❌ שגיאה בעדכון Netlify גם עם ה-Hook החדש:', retryResponse.status);
+                  alert('❌ שגיאה בעדכון Netlify גם עם ה-Hook החדש.');
+                }
+              }
+            }
+          }
+        } catch (error) {
+          console.error('❌ שגיאה בעדכון Netlify:', error);
+        }
+        
         return true;
       } else {
         console.warn('⚠️ חלק מהקבצים לא עודכנו');

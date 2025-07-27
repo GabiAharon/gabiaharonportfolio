@@ -11,7 +11,7 @@ $Red = "Red"
 $Cyan = "Cyan"
 $Yellow = "Yellow"
 
-# Netlify build hook URL - קבוע ומוגדר מראש
+# Netlify build hook URL
 $netlifyBuildHook = "https://api.netlify.com/build_hooks/65b4b9b6e7e2d2a5c0a1a9b9"
 
 Write-Host "=== GitHub Portfolio Updater ===" -ForegroundColor $Cyan
@@ -30,8 +30,8 @@ if (-not $changes) {
     Write-Host "No changes to upload." -ForegroundColor $Yellow
     Write-Host "Repository is up to date!" -ForegroundColor $Green
     
-    # שאל את המשתמש אם הוא רוצה לעדכן את Netlify בכל מקרה
-    $updateNetlify = Read-Host "עדכן את Netlify בכל מקרה? (y/n)"
+    # Ask if user wants to update Netlify anyway
+    $updateNetlify = Read-Host "Update Netlify anyway? (y/n)"
     
     if ($updateNetlify -eq "y") {
         try {
