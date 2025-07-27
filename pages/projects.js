@@ -531,6 +531,44 @@ ${defaultOwner}/${defaultRepo}
         'public/data/projects-data.json'    // הקובץ הציבורי שהאתר קורא ממנו
       ];
       
+      // שמירת הקבצים המקומיים באופן אוטומטי
+      try {
+        // שימוש ב-fetch כדי לשמור את הקבצים המקומיים
+        const saveLocalFiles = await fetch('/api/save-local-files', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            data: data,
+            files: filesToUpdate
+          })
+        });
+        
+        if (saveLocalFiles.ok) {
+          console.log('✅ הקבצים המקומיים נשמרו בהצלחה');
+        } else {
+          console.error('❌ שגיאה בשמירת הקבצים המקומיים:', await saveLocalFiles.text());
+        }
+      } catch (error) {
+        console.error('❌ שגיאה בשמירת הקבצים המקומיים:', error);
+      }
+      
+      // הפעלת סקריפט העדכון המקומי
+      try {
+        const runScript = await fetch('/api/run-updater', {
+          method: 'POST'
+        });
+        
+        if (runScript.ok) {
+          console.log('✅ סקריפט העדכון הופעל בהצלחה');
+        } else {
+          console.error('❌ שגיאה בהפעלת סקריפט העדכון:', await runScript.text());
+        }
+      } catch (error) {
+        console.error('❌ שגיאה בהפעלת סקריפט העדכון:', error);
+      }
+      
       let allUpdatesSuccessful = true;
       
       // עדכון כל קובץ בנפרד
