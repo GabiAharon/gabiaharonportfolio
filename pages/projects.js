@@ -461,7 +461,7 @@ export default function Projects() {
       if (!githubToken || !repoOwner || !repoName) {
         const defaultOwner = 'GabiAharon';
         const defaultRepo = 'gabiaharonportfolio';
-        const defaultToken = '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';
+        const defaultToken = ''; // טוקן יוזן על ידי המשתמש
         
         const userChoice = confirm(`🚀 הגדרת GitHub אוטומטית
 
@@ -474,7 +474,10 @@ ${defaultOwner}/${defaultRepo}
         if (userChoice) {
           repoOwner = defaultOwner;
           repoName = defaultRepo;
-          githubToken = defaultToken;
+          githubToken = prompt(`🔑 הכנס את הטוקן של GitHub שלך:`);
+          if (!githubToken) {
+            throw new Error('נדרש טוקן GitHub');
+          }
         } else {
           const userDetails = prompt(`🔧 הגדרת GitHub ידנית:
 
@@ -953,12 +956,16 @@ ${defaultOwner}/${defaultRepo}
                   
                   if (setupNew) {
                     // הגדרה מיידית
-                    const newToken = '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';
-                    localStorage.setItem('githubToken', newToken);
-                    localStorage.setItem('githubUsername', 'GabiAharon');
-                    localStorage.setItem('githubRepo', 'gabiaharonportfolio');
-                    localStorage.setItem('lastGitHubUpdate', new Date().toLocaleString('he-IL'));
-                    alert('✅ הגדרות GitHub הוגדרו!\n\nכעת ניתן לשמור שינויים אוטומטית ל-GitHub.');
+                    const newToken = prompt('🔑 הכנס את הטוקן של GitHub שלך:');
+                    if (newToken && newToken.trim()) {
+                      localStorage.setItem('githubToken', newToken.trim());
+                      localStorage.setItem('githubUsername', 'GabiAharon');
+                      localStorage.setItem('githubRepo', 'gabiaharonportfolio');
+                      localStorage.setItem('lastGitHubUpdate', new Date().toLocaleString('he-IL'));
+                      alert('✅ הגדרות GitHub הוגדרו!\n\nכעת ניתן לשמור שינויים אוטומטית ל-GitHub.');
+                    } else {
+                      alert('❌ לא הוזן טוקן תקף');
+                    }
                   }
                 }
               }}
