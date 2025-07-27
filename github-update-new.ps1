@@ -34,41 +34,44 @@ if (-not (Test-Path ".git")) {
 $changes = git status --porcelain
 if (-not $changes) {
     Write-Host "No changes to commit. Repo is clean." -ForegroundColor $Yellow
-    goto TriggerNetlify
+    # במקום goto נשתמש בקפיצה ישירה לחלק של Netlify
+    $skipToNetlify = $true
 }
 
-# ─── Build commit message ──────────────────────────────────────────────────────
-if ([string]::IsNullOrWhiteSpace($CommitMessage)) {
-    $CommitMessage = Read-Host "Enter commit message (blank = auto)"
+# אם לא צריך לדלג, נבצע את תהליך ה-git
+if (-not $skipToNetlify) {
+    # ─── Build commit message ──────────────────────────────────────────────────────
     if ([string]::IsNullOrWhiteSpace($CommitMessage)) {
-        $CommitMessage = "Portfolio update - $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+        $CommitMessage = Read-Host "Enter commit message (blank = auto)"
+        if ([string]::IsNullOrWhiteSpace($CommitMessage)) {
+            $CommitMessage = "Portfolio update - $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+        }
+    }
+
+    # ─── Ensure git user configured ────────────────────────────────────────────────
+    if (-not (git config user.name)) { git config user.name  $defaultGitUser }
+    if (-not (git config user.email)) { git config user.email $defaultGitEmail }
+
+    # ─── Commit & push ─────────────────────────────────────────────────────────────
+    Write-Host "Staging files…" -ForegroundColor $Cyan
+    git add .
+    Write-Host "Creating commit…" -ForegroundColor $Cyan
+    if (!(git commit -m $CommitMessage)) {
+        Write-Host "Nothing to commit." -ForegroundColor $Yellow
+    }
+
+    # Rebase pull (safer than merge)
+    $branch = git branch --show-current
+    Write-Host "Syncing with origin/$branch…" -ForegroundColor $Cyan
+    git pull origin $branch --rebase | Out-Null
+
+    Write-Host "Pushing to GitHub…" -ForegroundColor $Cyan
+    if (!(git push origin $branch)) {
+        Write-Host "ERROR: Git push failed." -ForegroundColor $Red
+        exit 1
     }
 }
 
-# ─── Ensure git user configured ────────────────────────────────────────────────
-if (-not (git config user.name)) { git config user.name  $defaultGitUser }
-if (-not (git config user.email)) { git config user.email $defaultGitEmail }
-
-# ─── Commit & push ─────────────────────────────────────────────────────────────
-Write-Host "Staging files…" -ForegroundColor $Cyan
-git add .
-Write-Host "Creating commit…" -ForegroundColor $Cyan
-if (!(git commit -m $CommitMessage)) {
-    Write-Host "Nothing to commit." -ForegroundColor $Yellow
-}
-
-# Rebase pull (safer than merge)
-$branch = git branch --show-current
-Write-Host "Syncing with origin/$branch…" -ForegroundColor $Cyan
- git pull origin $branch --rebase | Out-Null
-
-Write-Host "Pushing to GitHub…" -ForegroundColor $Cyan
-if (!(git push origin $branch)) {
-    Write-Host "ERROR: Git push failed." -ForegroundColor $Red
-    exit 1
-}
-
-:TriggerNetlify
 # ─── Trigger Netlify build ─────────────────────────────────────────────────────
 Write-Host "Triggering Netlify build…" -ForegroundColor $Cyan
 try {
