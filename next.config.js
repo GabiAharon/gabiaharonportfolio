@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
-  output: 'export',
+  // הסרנו את output: 'export' כדי לאפשר API routes
   images: {
     unoptimized: true,
     domains: [

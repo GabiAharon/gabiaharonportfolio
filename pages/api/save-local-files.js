@@ -8,11 +8,23 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { content, filePaths } = req.body;
+    // קבלת נתוני הפרויקטים מהבקשה
+    const { data } = req.body;
 
-    if (!content || !filePaths || !Array.isArray(filePaths)) {
-      return res.status(400).json({ error: 'נתונים חסרים או לא תקינים' });
+    if (!data || !Array.isArray(data)) {
+      return res.status(400).json({ error: 'נתוני פרויקטים חסרים או לא תקינים' });
     }
+
+    // המרה לפורמט JSON מפורמט
+    const content = JSON.stringify(data, null, 2);
+    
+    // רשימת הקבצים לעדכון
+    const filePaths = [
+      'data/projects-data.json',
+      'data/projects-data-updated.json',
+      'public/data/projects-data.json',
+      'public/data/projects-data-updated.json'
+    ];
 
     // שמירת כל הקבצים
     for (const filePath of filePaths) {
@@ -31,7 +43,11 @@ export default async function handler(req, res) {
     }
 
     // החזרת תשובה חיובית
-    return res.status(200).json({ success: true, message: 'הקבצים נשמרו בהצלחה' });
+    return res.status(200).json({ 
+      success: true, 
+      message: 'הקבצים נשמרו בהצלחה',
+      updatedFiles: filePaths
+    });
   } catch (error) {
     console.error('❌ שגיאה בשמירת הקבצים:', error);
     return res.status(500).json({ error: `שגיאה בשמירת הקבצים: ${error.message}` });

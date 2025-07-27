@@ -540,8 +540,7 @@ ${defaultOwner}/${defaultRepo}
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            data: data,
-            files: filesToUpdate
+            data: data
           })
         });
         
@@ -980,11 +979,7 @@ ${defaultOwner}/${defaultRepo}
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          content: fileContent,
-          filePaths: [
-            'data/projects-data.json',
-            'public/data/projects-data.json'
-          ]
+          data: updatedProjects
         }),
       });
       
