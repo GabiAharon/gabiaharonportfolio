@@ -1,7 +1,18 @@
 @echo off
-echo GitHub Update Process Started...
 echo.
+echo ========================================
+echo    Gabi Aharon Portfolio Updater
+echo ========================================
+echo.
+echo This script will update your portfolio to GitHub
+echo Make sure you have your changes ready!
+echo.
+pause
+
 powershell -ExecutionPolicy Bypass -File "%~dp0github-update.ps1"
+
 echo.
-echo Process completed! This window will close in 10 seconds.
-timeout /t 10 
+echo ========================================
+echo Process completed!
+echo ========================================
+pause 

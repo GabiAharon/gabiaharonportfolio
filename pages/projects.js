@@ -457,27 +457,32 @@ export default function Projects() {
       let repoOwner = localStorage.getItem('githubUsername');
       let repoName = localStorage.getItem('githubRepo');
       
-      // אם אין הגדרות קיימות, קבע ברירת מחדל עם הטוקן החדש
+      // הגדרת GitHub - המשתמש יזין את הטוקן
       if (!githubToken || !repoOwner || !repoName) {
         const defaultOwner = 'GabiAharon';
         const defaultRepo = 'gabiaharonportfolio';
-        const defaultToken = ''; // טוקן יוזן על ידי המשתמש
         
-        const userChoice = confirm(`🚀 הגדרת GitHub אוטומטית
+        const userChoice = confirm(`🚀 הגדרת GitHub
 
 האם ברצונך להשתמש בהגדרות הריפו שלך?
 ${defaultOwner}/${defaultRepo}
 
-✅ כן - להמשיך עם הריפו שלי (טוקן מעודכן)
+✅ כן - להמשיך עם הריפו שלי
 ❌ לא - אני רוצה להגדיר פרטים אחרים`);
         
         if (userChoice) {
           repoOwner = defaultOwner;
           repoName = defaultRepo;
-          githubToken = prompt(`🔑 הכנס את הטוקן של GitHub שלך:`);
-          if (!githubToken) {
-            throw new Error('נדרש טוקן GitHub');
+          githubToken = prompt(`🔑 הכנס את הטוקן של GitHub שלך:
+
+איך להשיג טוקן:
+1. GitHub.com → Settings → Developer settings
+2. Personal access tokens → Tokens (classic)
+3. Generate new token עם הרשאות repo`);
+          if (!githubToken || !githubToken.trim()) {
+            throw new Error('נדרש טוקן GitHub תקף');
           }
+          githubToken = githubToken.trim();
         } else {
           const userDetails = prompt(`🔧 הגדרת GitHub ידנית:
 
@@ -495,13 +500,13 @@ ${defaultOwner}/${defaultRepo}
             repoOwner = parts[0].trim();
             repoName = parts[1].trim();
             githubToken = parts[2].trim();
-          } else if (parts.length === 1 && userDetails.startsWith('github_pat_')) {
+          } else if (parts.length === 1 && (userDetails.startsWith('github_pat_') || userDetails.startsWith('ghp_'))) {
             // רק טוקן - השתמש בברירת מחדל
             repoOwner = defaultOwner;
             repoName = defaultRepo;
             githubToken = userDetails.trim();
           } else {
-            throw new Error('פורמט לא נכון - הכנס: שם_משתמש/שם_ריפו/טוקן או רק טוקן');
+            throw new Error('פורמט לא נכון - הכנס: שם_משתמש/שם_ריפו/טוקן או רק טוקן GitHub');
           }
         }
         
@@ -956,7 +961,14 @@ ${defaultOwner}/${defaultRepo}
                   
                   if (setupNew) {
                     // הגדרה מיידית
-                    const newToken = prompt('🔑 הכנס את הטוקן של GitHub שלך:');
+                    const newToken = prompt(`🔑 הכנס את הטוקן של GitHub שלך:
+
+איך להשיג טוקן GitHub:
+1. עבור ל-GitHub.com → Settings → Developer settings
+2. לחץ על Personal access tokens → Tokens (classic)
+3. לחץ Generate new token (classic)
+4. בחר הרשאות: repo (full control)
+5. העתק את הטוקן והדבק כאן`);
                     if (newToken && newToken.trim()) {
                       localStorage.setItem('githubToken', newToken.trim());
                       localStorage.setItem('githubUsername', 'GabiAharon');
