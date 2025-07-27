@@ -90,3 +90,4 @@ This project is open source and available under the [MIT License](LICENSE).
 ## Test Update
 This line was added to test the GitHub update script.
 Another test line added to check change detection.
+Testing script's change detection - third change.

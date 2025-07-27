@@ -13,6 +13,7 @@ $Yellow = "Yellow"
 
 Write-Host "=== GitHub Portfolio Updater ===" -ForegroundColor $Cyan
 Write-Host "Simple and secure update process" -ForegroundColor $Cyan
+Write-Host ""
 
 # Check if we're in a git repository
 if (-not (Test-Path ".git")) {
@@ -31,7 +32,7 @@ if (-not $changes) {
 
 try {
     # Show changes
-    Write-Host "`nChanges to upload:" -ForegroundColor $Cyan
+    Write-Host "Changes to upload:" -ForegroundColor $Cyan
     git status -s
     Write-Host ""
 
