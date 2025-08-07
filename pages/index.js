@@ -24,22 +24,10 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
 export default function Home() {
-  // Optional Spline embed URL via NEXT_PUBLIC_SPLINE_URL
-  const splineUrl = process.env.NEXT_PUBLIC_SPLINE_URL || '';
-  const [runtimeSplineUrl, setRuntimeSplineUrl] = useState('');
   const Background3D = React.useMemo(
     () => dynamic(() => import('../components/Background3D'), { ssr: false }),
     []
   );
-
-  useEffect(() => {
-    try {
-      const urlParam = new URLSearchParams(window.location.search).get('spline');
-      if (urlParam) setRuntimeSplineUrl(urlParam);
-    } catch (_) {
-      // ignore
-    }
-  }, []);
   const router = useRouter();
   const { language, setLanguage } = useLanguage();
   
@@ -294,21 +282,29 @@ export default function Home() {
         </Link>
       )}
       
-      {/* 3D background: prefer Spline if URL provided; else React Three Fiber stars */}
-      {(runtimeSplineUrl || splineUrl) ? (
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <iframe
-            src={runtimeSplineUrl || splineUrl}
-            title="Spline Scene"
-            className="w-full h-full"
-            frameBorder="0"
-            allow="autoplay; clipboard-write; microphone; camera; display-capture; xr-spatial-tracking"
-            style={{ background: 'transparent' }}
-          />
-        </div>
-      ) : (
+      {/* 3D background (R3F) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <Background3D />
-      )}
+      </div>
+
+      {/* Subtle particles overlay */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {particles.map((particle) => (
+          <div
+            key={particle.id}
+            className="absolute rounded-full bg-white"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              opacity: particle.opacity,
+              transition: 'all 0.5s linear',
+              transform: 'translateZ(0)'
+            }}
+          />
+        ))}
+      </div>
       
       {/* Content container */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-8">
