@@ -525,8 +525,8 @@ ${defaultOwner}/${defaultRepo}
             repoOwner = parts[0].trim();
             repoName = parts[1].trim();
             githubToken = parts[2].trim();
-          } else if (parts.length === 1 && (userDetails.startsWith('github_pat_') || userDetails.startsWith('ghp_'))) {
-            // רק טוקן - השתמש בברירת מחדל
+          } else if (parts.length === 1 && userDetails.trim().length > 20) {
+            // רק טוקן (לא בודקים קידומות מפורשות) - השתמש בברירת מחדל
             repoOwner = defaultOwner;
             repoName = defaultRepo;
             githubToken = userDetails.trim();
