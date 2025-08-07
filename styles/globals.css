@@ -139,6 +139,25 @@ img {
   color: white;
 }
 
+/* Custom cursor (desktop only) */
+@media (min-width: 1024px) {
+  html, body { cursor: none; }
+}
+
+/* Heading shimmer utility */
+.heading-shimmer {
+  background-image: linear-gradient(90deg, rgba(255,255,255,0.7), rgba(180,200,255,0.95), rgba(255,255,255,0.7));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+/* Interactive tilt utility */
+.interactive-tilt { transition: transform 300ms ease, box-shadow 300ms ease; }
+.interactive-tilt:hover { transform: translateY(-2px) scale(1.01); box-shadow: 0 10px 30px rgba(120,140,255,0.15); }
+
 /* Loading state styles */
 .loading-shimmer {
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);

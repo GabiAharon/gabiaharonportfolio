@@ -22,6 +22,7 @@ import { useLanguage } from './_app';
 import translations from '../translations';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import CustomCursor from '../components/CustomCursor';
 
 export default function Home() {
   const Background3D = React.useMemo(
@@ -252,6 +253,7 @@ export default function Home() {
 
   return (
     <div className={`min-h-screen w-full bg-gradient-to-b from-gray-900 via-gray-900 to-black text-white overflow-hidden relative ${language === 'he' ? 'rtl' : 'ltr'}`}>
+      <CustomCursor />
       {/* לוגו */}
       <div className="absolute top-4 left-4 z-40">
         <img 
@@ -354,7 +356,7 @@ export default function Home() {
           
           {/* Name and title */}
           <motion.h1 
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-purple-200 hover:from-blue-200 hover:to-purple-300 transition-all duration-500 px-4 cursor-pointer"
+            className="heading-shimmer text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-purple-200 hover:from-blue-200 hover:to-purple-300 transition-all duration-500 px-4 cursor-pointer"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -479,7 +481,7 @@ export default function Home() {
                 <div className={`${link.color} p-0.5 rounded-xl`}>
                   <div className="bg-gray-900 bg-opacity-90 backdrop-blur-sm rounded-xl px-6 py-4 h-full">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full bg-white bg-opacity-15 flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full bg-white bg-opacity-15 flex items-center justify-center flex-shrink-0 interactive-tilt cursor-interactive">
                         {link.icon}
                       </div>
                       <div className="flex-1 min-w-0">
