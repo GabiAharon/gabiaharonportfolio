@@ -109,6 +109,24 @@ a:focus-visible {
   background-color: rgba(17, 24, 39, 0.8);
 }
 
+  /* Mobile text wrapping and clamping helpers */
+  .wrap-anywhere {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
 /* Image optimization */
 img {
   image-rendering: -webkit-optimize-contrast;

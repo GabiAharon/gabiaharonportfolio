@@ -464,11 +464,8 @@ export default function Projects() {
       setEditForm({});
       
       // הודעה על הצלחה עם סטטוס GitHub
-      if (githubSaved) {
-        alert('🎉 הפרויקט נשמר בהצלחה!\n✅ נשמר לגיטהאב אוטומטית\nהאתר יתעדכן תוך דקה');
-      } else {
-        alert('⚠️ הפרויקט נשמר מקומית\n❌ שגיאה בשמירה לגיטהאב\n(בדוק את הטוקן או החיבור לאינטרנט)');
-      }
+      // הסרנו פופאפ הצלחה - נשאר רק לוג לקונסול
+      console.log('✅ פרויקט נשמר', { githubSaved });
     } catch (error) {
       console.error('שגיאה בשמירת שינויים:', error);
       alert('❌ שגיאה בשמירת השינויים');
@@ -786,11 +783,8 @@ ${defaultOwner}/${defaultRepo}
     }
     
     // הודעה על הצלחה עם סטטוס GitHub
-    if (githubSaved) {
-      alert(`✅ הפרויקט שוכפל בהצלחה!\nמזהה חדש: ${newId}\n✅ נשמר לגיטהאב אוטומטית\nהאתר יתעדכן תוך דקה`);
-    } else {
-      alert(`✅ הפרויקט שוכפל בהצלחה!\nמזהה חדש: ${newId}\n❌ שגיאה בשמירה לגיטהאב`);
-    }
+    // לא מציגים פופאפ; רק לוג
+    console.log('✅ פרויקט שוכפל', { newId, githubSaved });
   };
 
   const deleteProject = async (project) => {
@@ -819,11 +813,8 @@ ${defaultOwner}/${defaultRepo}
       }
       
       // הודעה על הצלחה עם סטטוס GitHub
-      if (githubSaved) {
-        alert('🗑️ הפרויקט נמחק בהצלחה!\n✅ נשמר לגיטהאב אוטומטית\nהאתר יתעדכן תוך דקה');
-      } else {
-        alert('🗑️ הפרויקט נמחק מקומית\n❌ שגיאה בשמירה לגיטהאב');
-      }
+      // לא מציגים פופאפ; רק לוג
+      console.log('🗑️ פרויקט נמחק', { githubSaved });
     }
   };
 
@@ -992,11 +983,8 @@ ${defaultOwner}/${defaultRepo}
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
     // הודעה על הצלחה עם סטטוס GitHub
-    if (githubSaved) {
-      alert(`✅ נוצר פרויקט חדש (ID: ${newId})!\n✅ נשמר לגיטהאב אוטומטית\nהאתר יתעדכן תוך דקה\nכעת ערוך את הפרטים לפי הצורך.`);
-    } else {
-      alert(`✅ נוצר פרויקט חדש (ID: ${newId})!\n❌ שגיאה בשמירה לגיטהאב\nכעת ערוך את הפרטים לפי הצורך.`);
-    }
+    // לא מציגים פופאפ; רק לוג
+    console.log('✅ נוצר פרויקט חדש', { newId, githubSaved });
   };
 
   // פונקציה להוספת פרויקט בדיקה זמני
@@ -1549,11 +1537,11 @@ ${defaultOwner}/${defaultRepo}
                         ) : (
                           /* מצב צפייה רגיל */
                           <>
-                            <h3 className="text-xl font-bold mb-2 group-hover:text-blue-300 transition-colors line-clamp-2">
+                            <h3 className="text-xl font-bold mb-2 group-hover:text-blue-300 transition-colors line-clamp-2 wrap-anywhere">
                               {project.title[language]}
                             </h3>
                             <div className="flex-1 flex flex-col">
-                              <div className="text-gray-300 text-sm mb-4 line-clamp-3 flex-1 whitespace-pre-line">
+                              <div className="text-gray-300 text-sm mb-4 line-clamp-3 flex-1 whitespace-pre-line wrap-anywhere">
                                 {project.description[language]}
                               </div>
                               

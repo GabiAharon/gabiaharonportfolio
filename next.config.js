@@ -50,7 +50,7 @@ const nextConfig = {
           },
           {
             key: 'Cache-Control',
-            value: 'no-store, no-cache, must-revalidate, proxy-revalidate',
+            value: 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
           },
           {
             key: 'Pragma',
@@ -69,6 +69,18 @@ const nextConfig = {
             key: 'Content-Type',
             value: 'application/json; charset=utf-8',
           },
+          {
+            key: 'Cache-Control',
+            value: 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+          },
+          {
+            key: 'Pragma',
+            value: 'no-cache',
+          },
+          {
+            key: 'Expires',
+            value: '0',
+          }
         ],
       }
     ]
