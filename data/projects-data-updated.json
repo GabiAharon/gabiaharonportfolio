@@ -1,0 +1,502 @@
+[
+  {
+    "id": 14,
+    "title": {
+      "he": "new new new",
+      "en": "New Project"
+    },
+    "description": {
+      "he": "תיאור קצר של הפרויקט החדש",
+      "en": "Short description of the new project"
+    },
+    "detailedDescription": {
+      "he": "כאן יופיע תיאור מפורט של הפרויקט. זהו המקום להרחיב על המטרות, השיטות והתוצאות.",
+      "en": "Here is a detailed description of the project. This is the place to expand on the goals, methods and results."
+    },
+    "category": "video",
+    "date": "2025-08-07",
+    "image": "https://images.unsplash.com/photo-1585974738771-84483dd9f89f?w=600&h=400&fit=crop",
+    "detailImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
+    "link": "#new-project",
+    "isVideo": false,
+    "technologies": [
+      "Technology 1",
+      "Technology 2",
+      "Technology 3"
+    ],
+    "status": "בפיתוח",
+    "features": {
+      "he": [
+        "תכונה 1",
+        "תכונה 2",
+        "תכונה 3",
+        "תכונה 4"
+      ],
+      "en": [
+        "Feature 1",
+        "Feature 2",
+        "Feature 3",
+        "Feature 4"
+      ]
+    }
+  },
+  {
+    "id": 13,
+    "title": {
+      "he": "פרויקט חדש",
+      "en": "New Project"
+    },
+    "description": {
+      "he": "תיאור קצר של הפרויקט החדש",
+      "en": "Short description of the new project"
+    },
+    "detailedDescription": {
+      "he": "כאן יופיע תיאור מפורט של הפרויקט. זהו המקום להרחיב על המטרות, השיטות והתוצאות.",
+      "en": "Here is a detailed description of the project. This is the place to expand on the goals, methods and results."
+    },
+    "category": "tool",
+    "date": "2025-07-27",
+    "image": "https://images.unsplash.com/photo-1585974738771-84483dd9f89f?w=600&h=400&fit=crop",
+    "detailImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
+    "link": "#new-project",
+    "isVideo": false,
+    "technologies": [
+      "Technology 1",
+      "Technology 2",
+      "Technology 3"
+    ],
+    "status": "בפיתוח",
+    "features": {
+      "he": [
+        "תכונה 1",
+        "תכונה 2",
+        "תכונה 3",
+        "תכונה 4"
+      ],
+      "en": [
+        "Feature 1",
+        "Feature 2",
+        "Feature 3",
+        "Feature 4"
+      ]
+    }
+  },
+  {
+    "id": 12,
+    "title": {
+      "he": "world",
+      "en": "New Project"
+    },
+    "description": {
+      "he": "תיאור קצר של הפרויקט החדש",
+      "en": "Short description of the new project"
+    },
+    "detailedDescription": {
+      "he": "כאן יופיע תיאור מפורט של הפרויקט. זהו המקום להרחיב על המטרות, השיטות והתוצאות.",
+      "en": "Here is a detailed description of the project. This is the place to expand on the goals, methods and results."
+    },
+    "category": "tool",
+    "date": "2025-07-27",
+    "image": "https://images.unsplash.com/photo-1585974738771-84483dd9f89f?w=600&h=400&fit=crop",
+    "detailImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
+    "link": "#new-project",
+    "isVideo": false,
+    "technologies": [
+      "Technology 1",
+      "Technology 2",
+      "Technology 3"
+    ],
+    "status": "בפיתוח",
+    "features": {
+      "he": [
+        "תכונה 1",
+        "תכונה 2",
+        "תכונה 3",
+        "תכונה 4"
+      ],
+      "en": [
+        "Feature 1",
+        "Feature 2",
+        "Feature 3",
+        "Feature 4"
+      ]
+    }
+  },
+  {
+    "id": 11,
+    "title": {
+      "he": "hello",
+      "en": "New Project"
+    },
+    "description": {
+      "he": "תיאור קצר של הפרויקט החדש",
+      "en": "Short description of the new project"
+    },
+    "detailedDescription": {
+      "he": "כאן יופיע תיאור מפורט של הפרויקט. זהו המקום להרחיב על המטרות, השיטות והתוצאות.",
+      "en": "Here is a detailed description of the project. This is the place to expand on the goals, methods and results."
+    },
+    "category": "tool",
+    "date": "2025-07-27",
+    "image": "https://images.unsplash.com/photo-1585974738771-84483dd9f89f?w=600&h=400&fit=crop",
+    "detailImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
+    "link": "#new-project",
+    "isVideo": false,
+    "technologies": [
+      "Technology 1",
+      "Technology 2",
+      "Technology 3"
+    ],
+    "status": "בפיתוח",
+    "features": {
+      "he": [
+        "תכונה 1",
+        "תכונה 2",
+        "תכונה 3",
+        "תכונה 4"
+      ],
+      "en": [
+        "Feature 1",
+        "Feature 2",
+        "Feature 3",
+        "Feature 4"
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "title": {
+      "he": "פלטפורמת עיצוב תמונות לשימוש מקומי",
+      "en": "Local Image Editing Platform"
+    },
+    "description": {
+      "he": "פלטפורמה לעריכת תמונות באופן מהיר ומקומי מבוססת קוד פתוח. המטרה העיקרית היא לחסוך זמן ושימוש בתוכנות ואתרים חיצוניים להסרת רקעים, המרת קבצי תמונה, חידוד תמונה ועוד. ",
+      "en": "A fast and local image editing platform based on open-source code. The main goal is to save time and avoid relying on external software or websites for tasks such as background removal, image format conversion, image enhancement, and more."
+    },
+    "detailedDescription": {
+      "he": " פלטפורמת עיצוב תמונות - ImageToolbox Platform\n\nתיאור הפרויקט:\nפלטפורמה מקיפה לעיצוב ועיבוד תמונות בעברית, שפותחה בהשראת הפרויקט הפתוח [ImageToolbox](https://github.com/T8RIN/ImageToolbox). הפלטפורמה מספקת כלים מתקדמים לעיבוד תמונות באמצעות בינה מלאכותית וטכנולוגיות ווב מודרניות.\n\nהמטרה של הפרויקט היא ליצור פתרון נגיש ומקצועי למשתמשים דוברי עברית לעיבוד תמונות ללא צורך בהתקנת תוכנות חיצוניות, תוך מתן דגש על ביצועים גבוהים וממשק משתמש אינטואיטיבי.\n\nתכונות עיקריות:\n\nהסרת רקע:\n- הסרת רקע חכמה באמצעות AI של @imgly/background-removal\n- 6 שיטות הסרה שונות: AI אוטומטי, AI לאנשים, AI לאובייקטים, זיהוי קצוות, סף צבע ועידון ידני\n- תצוגה מקדימה בזמן אמת עם בקרות מתקדמות\n- הגדרות עידון: החלקת קצוות, שחיקה, התרחבות ובקרת סף\n\n✂️ חיתוך תמונות חכם:\n- חיתוך אינטראקטיביי עם תצוגה מקדימה\n- יחסי גובה-רוחב מוגדרים מראש (16:9, 4:3, 1:1, וכו')\n- חיתוך חופשי ומדויק\n- ממשק drag & drop נוח\n\n🎨 230+ פילטרים מתקדמים:\n- פילטרים מוכנים בהשראת ImageToolbox\n- בקרות ידניות מתקדמות לכל פרמטר\n- קטגוריות: התאמות בסיסיות, צבעים, חדות וטשטוש, אפקטים אמנותיים\n- תמיכה ב-GPU לעיבוד מהיר יותר\n- תצוגה מקדימה בזמן אמת\n\n### 🔄 המרת פורמטים\n- תמיכה ב-WebP, JPEG, PNG, BMP\n- בקרת איכות מתקדמת\n- אופטימיזציה אוטומטית לגודל קובץ\n- השוואת תוצאות ועמידה בתקנים\n\nטכנולוגיות:\n Frontend Framework:\nReact 18.3.1- ספריית JavaScript מודרנית לבניית ממשקי משתמש\nVite 5.4.2 - כלי build מהיר ומודרני\n\n- כל הספריות הנוספות תחת רישיונות פתוחים\n\nתהליך הפיתוח:\n\n1.מחקר ופיתוח - ניתוח פרויקט ImageToolbox המקורי וזיהוי התכונות העיקריות\n2. תכנון ארכיטקטורה - עיצוב מבנה הפרויקט עם React וטכנולוגיות ווב\n3. פיתוח UI/UX - יצירת ממשק עברי RTL עם עיצוב מודרני\n4. אינטגרציה - שילוב ספריות AI ועיבוד תמונות\n5. אופטימיזציה - שיפור ביצועים ותמיכה ב-GPU\n6. בדיקות ובאגים - תיקון שגיאות ושיפור יציבות\n\nהפרויקט כולל:\n- ממשק מקצועי ואינטואיטיבי\n- עיבוד תמונות בזמן אמת\n- תמיכה בפורמטים מרובים\n",
+      "en": "Project Description:\nA comprehensive image editing and processing platform in Hebrew, inspired by the open-source project ImageToolbox. The platform offers advanced image processing tools using artificial intelligence and modern web technologies.\n\nThe project's goal is to provide an accessible and professional solution for Hebrew-speaking users to process images without the need to install external software, while emphasizing high performance and an intuitive user interface.\n\nKey Features:\n🧼 Background Removal:\nSmart background removal powered by @imgly/background-removal AI\n6 different removal methods: Auto AI, AI for People, AI for Objects, Edge Detection, Color Threshold, and Manual Refinement\nReal-time preview with advanced control options\nRefinement settings: edge smoothing, erosion, expansion, and threshold control\n\n✂️ Smart Cropping:\nInteractive cropping with live preview\nPredefined aspect ratios (16:9, 4:3, 1:1, etc.)\nFreeform and precise cropping\nEasy drag & drop interface\n\n🎨 230+ Advanced Filters:\nReady-to-use filters inspired by ImageToolbox\nManual fine-tuning of every parameter\nCategories: Basic Adjustments, Colors, Sharpening & Blur, Artistic Effects\nGPU-accelerated for faster processing\nReal-time filter preview\n\n🔄 Format Conversion:\nSupports WebP, JPEG, PNG, BMP\nAdvanced quality control\nAutomatic file size optimization\nResult comparison and standards compliance\n\nTechnologies:\nFrontend Framework:\nReact 18.3.1 – A modern JavaScript library for building user interfaces\nVite 5.4.2 – A fast, modern build tool\n\nAll libraries used are open-source licensed\n\nDevelopment Process:\nResearch & Analysis – Reviewing the original ImageToolbox project and identifying key features\n\nArchitecture Planning – Designing the structure using React and modern web technologies\n\nUI/UX Design – Creating a modern RTL Hebrew interface\nIntegration – Implementing AI libraries and image processing tools\nOptimization – Enhancing performance with GPU support\nTesting & Debugging – Fixing issues and improving stability\n\nProject Includes:\nA professional and intuitive user interface\nReal-time image processing\nSupport for multiple image formats"
+    },
+    "category": "interface",
+    "date": "2025-06-04",
+    "image": "https://i.postimg.cc/25csk35r/enhanced-3c4170e4-52d3-4395-94b1-c051f9309ed1-1.png",
+    "detailImage": "https://i.postimg.cc/25csk35r/enhanced-3c4170e4-52d3-4395-94b1-c051f9309ed1-1.png",
+    "link": "#new-project",
+    "isVideo": false,
+    "technologies": [
+      "Cursor AI",
+      "JavaScript, CSS, HTML"
+    ],
+    "status": "הושלם",
+    "features": {
+      "he": [
+        "עריכת תמונות",
+        "קוד פתוח"
+      ],
+      "en": [
+        "photo editing",
+        "open source"
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "title": {
+      "he": "Intelligent Suno Prompt Generator - מחולל פרומפטים מוזיקליים חכם",
+      "en": "Intelligent Suno Prompt Generator"
+    },
+    "description": {
+      "he": "מחולל פרומפטים מוזיקליים חכם ל-Suno - מזהה סגנון שירים ומפיק תיאור מוזיקלי מדויק ב-120 תווים למקסימום איכות.",
+      "en": "Intelligent music prompt generator for Suno - identifies song styles and produces accurate musical descriptions in 120 characters for maximum quality."
+    },
+    "detailedDescription": {
+      "he": "התוסף \"Intelligent Music Prompt Generator for Suno\" הוא כלי מבוסס GPT שתוכנן במיוחד עבור יוצרים המשתמשים בפלטפורמת Suno ליצירת שירים. הוא מתפקד כמפיק מוזיקלי חכם שמסייע למשתמש לנסח תיאור סגנוני מדויק לשיר – בהתאם לדרישות Suno.\n\nאיך זה עובד?\nהמשתמש מתחיל בבחירת סגנון מוזיקה רצוי, ואם אינו בטוח, התוסף מבקש ממנו להזין שם של שיר או להקה אהובה. לאחר מכן, התוסף מנתח את המאפיינים המוזיקליים המרכזיים – כגון ז'אנר, טמפו, כלי נגינה, סגנון שירה ומצב רוח – וממיר אותם לפרומפט מוכן באורך של עד 120 תווים, המותאם באופן מושלם לשדה \"Style of Music\" ב-Suno.\n\nלמה זה חשוב?\nגם משתמשים חסרי רקע מוזיקלי יכולים לקבל תוצאה מקצועית ומדויקת שתוביל להפקה איכותית וקרובה לסגנון שאליו כיוונו. במקום לנסות ולטעות עם פרומפטים, התוסף מספק כיוון מקצועי ומדויק מיד.",
+      "en": "The 'Intelligent Music Prompt Generator for Suno' is a GPT-based tool designed specifically for creators using the Suno platform to create songs. It functions as a smart music producer that helps users formulate an accurate stylistic description for their song - according to Suno's requirements.\n\nHow it works:\nThe user starts by selecting a desired music style, and if unsure, the extension asks them to enter the name of a favorite song or band. The extension then analyzes the core musical characteristics - such as genre, tempo, instruments, vocal style and mood - and converts them into a ready prompt of up to 120 characters, perfectly adapted to the 'Style of Music' field in Suno.\n\nWhy is this important?\nEven users without musical background can get professional and accurate results that will lead to quality production close to the style they aimed for. Instead of trial and error with prompts, the extension provides professional and precise direction immediately."
+    },
+    "category": "tool",
+    "date": "2025-06-04",
+    "image": "https://i.postimg.cc/HLWnT45K/Chat-GPT-Image-Jun-4-2025-03-25-20-PM.png",
+    "detailImage": "https://i.postimg.cc/HLWnT45K/Chat-GPT-Image-Jun-4-2025-03-25-20-PM.png",
+    "link": "https://chatgpt.com/g/g-6759b6f36e948191bb7de5749cbfe5e1-intelligent-music-prompt-generator-for-suno",
+    "isVideo": false,
+    "technologies": [
+      "Chat GPT",
+      "GPTs",
+      "Suno AI",
+      "Music Theory",
+      "Natural Language Processing"
+    ],
+    "status": "הושלם",
+    "features": {
+      "he": [
+        "ניתוח סגנונות מוזיקליים",
+        "יצירת פרומפטים מדויקים",
+        "זיהוי אוטומטי של ז'אנרים",
+        "התאמה לדרישות Suno",
+        "ממשק פשוט ונוח",
+        "תמיכה במגוון רחב של סגנונות"
+      ],
+      "en": [
+        "Musical style analysis",
+        "Accurate prompt generation",
+        "Automatic genre recognition",
+        "Suno requirements adaptation",
+        "Simple and convenient interface",
+        "Support for wide range of styles"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "title": {
+      "he": "Legends",
+      "en": "Legends"
+    },
+    "description": {
+      "he": "סרטון אישי על עולם הדימיונות, אגדות המוזיקה שמלוות אותי, והקשר בין חלומות למציאות.",
+      "en": "A personal video about the world of imagination, music legends that accompany me, and the connection between dreams and reality."
+    },
+    "detailedDescription": {
+      "he": "מכירים את הרגע ההוא? הרגע שבו אתם נוסעים אל תוך עולם של דמיונות, אל אשליות, אל האדם שתמיד חלמתם להיות? את הטקסט הזה כתבתי לפני לא מעט זמן, והוא מספר על 'ספר הדימיונות' שכל אחד מאיתנו כותב במהלך החיים. בדמיון שלנו אנחנו יכולים להיות הכול, גם דברים שברור לנו שלעולם לא נהיה. התרופה עבורי (כמו בטח לא מעט מכם) לעולם האמיתי תמיד הייתה מוזיקה. בסרטון הזה ניסיתי לחבר בין המוזיקה, אגדות המוזיקה שאני מרגיש שמלוות אותי כל החיים, לבין מי ומה שאני ואולי כולנו מנסים להיות בעולם, כל אחד בדרך שלו.",
+      "en": "Do you know that moment? The moment when you travel into a world of fantasies, into illusions, into the person you always dreamed of being? I wrote this text quite some time ago, and it tells about the 'book of imagination' that each of us writes throughout life. In our imagination we can be everything, even things we know we will never be. The remedy for me (like probably many of you) to the real world has always been music. In this video I tried to connect between music, the music legends that I feel have accompanied me all my life, and who and what I and perhaps all of us are trying to be in the world, each in their own way."
+    },
+    "category": "video",
+    "date": "2024-10-20",
+    "image": "https://i.postimg.cc/y8Y180by/Screenshot-2025-05-23-015716.png",
+    "detailImage": "https://i.postimg.cc/y8Y180by/Screenshot-2025-05-23-015716.png",
+    "link": "https://vimeo.com/1086929819",
+    "isVideo": true,
+    "technologies": [
+      "Reve AI",
+      "Filmora",
+      "Suno AI",
+      "Eleven Labs",
+      "Dreamina",
+      "Kling AI",
+      "Sora",
+      "Chat GPT",
+      "Imagenfx"
+    ],
+    "status": "פורסם",
+    "features": {
+      "he": [
+        "סיפור אישי",
+        "חיבור בין מוזיקה לחלומות",
+        "הרהורים על דמיון ומציאות",
+        "ביטוי אומנותי"
+      ],
+      "en": [
+        "Personal story",
+        "Connection between music and dreams",
+        "Reflections on imagination and reality",
+        "Artistic expression"
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "title": {
+      "he": "סרטון דמויות אספנות ",
+      "en": "New Project"
+    },
+    "description": {
+      "he": "יצירת דמויות אספנות של הצוות לעבודה לכבוד חג הפסח. ",
+      "en": "Short description of the new project"
+    },
+    "detailedDescription": {
+      "he": "כאן יופיע תיאור מפורט של הפרויקט. זהו המקום להרחיב על המטרות, השיטות והתוצאות.",
+      "en": "Here is a detailed description of the project. This is the place to expand on the goals, methods and results."
+    },
+    "category": "video",
+    "date": "2025-05-24",
+    "image": "https://i.postimg.cc/XqKSckjD/11.png",
+    "detailImage": "https://i.postimg.cc/sgTzNmpk/Untitled-design.png",
+    "link": "https://i.postimg.cc/XqKSckjD/11.png",
+    "isVideo": true,
+    "technologies": [
+      "Technology 1",
+      "Technology 2",
+      "Technology 3"
+    ],
+    "status": "פורסם",
+    "features": {
+      "he": [
+        "תכונה 1",
+        "תכונה 2",
+        "תכונה 3",
+        "תכונה 4"
+      ],
+      "en": [
+        "Feature 1",
+        "Feature 2",
+        "Feature 3",
+        "Feature 4"
+      ]
+    }
+  },
+  {
+    "id": 1,
+    "title": {
+      "he": "תוסף טיפים בשפת גוף",
+      "en": "Body Language Bot for Zoom"
+    },
+    "description": {
+      "he": "תוסף כרום שמאפשר גישה מהירה למאות טיפים שונים בנושא שפת גוף ותקשורת לא מילולית",
+      "en": "A Zoom plugin that analyzes participants' body language during meetings and provides real-time feedback on engagement and presence levels."
+    },
+    "detailedDescription": {
+      "he": "התוסף מכיל את כל הטיפים שלמדתי, אספתי והשתמשתי ומאפשר לקטלג אותם על פי קטגוריות שונות כמו: הבעות פנים, שכנוע, משא ומתן, סגנונות תקשורת, עמידה מול קהל ועוד. \nבנוסף התוסף מייצר משימות שבועיות למשל: שים לב להבעות פנים של כעס לפחות במקרה אחד בו תיתקל השבוע. לאחר ביצוע המשימה ניתן לרשום משוב עבור מעקב והתקדמות. \n\nבנוסף קיימת פונקציה של \"טיקר\" שמאפשר טיפים רצים בתחתית המסך לצפייה רציפה. \n",
+      "en": "An innovative project that combines AI and computer vision for real-time body language analysis during Zoom meetings. The tool identifies movements, facial expressions and body postures and provides immediate feedback to the meeting host about participants' engagement levels. Perfect for organizations looking to improve their virtual meeting effectiveness."
+    },
+    "category": "plugin",
+    "date": "2024-12-01",
+    "image": "https://i.postimg.cc/Vs7rYr2c/Screenshot-2025-05-23-180614.png",
+    "detailImage": "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&h=400&fit=crop",
+    "link": "#zoom-body-language-bot",
+    "isVideo": false,
+    "technologies": [
+      "AI",
+      "Computer Vision",
+      "Zoom SDK",
+      "Python",
+      "TensorFlow"
+    ],
+    "status": "הושלם",
+    "features": {
+      "he": [
+        "תוסף",
+        "שינון",
+        "שימור ידע"
+      ],
+      "en": [
+        "Real-time analysis",
+        "Engagement feedback",
+        "Detailed reports",
+        "Zoom integration"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "title": {
+      "he": "תוסף כליי AI לכרום",
+      "en": "AI Presence Generator"
+    },
+    "description": {
+      "he": "תוסף כלי AI לכרום",
+      "en": "A tool that helps speakers improve their stage presence through body movement analysis and personalized recommendations."
+    },
+    "detailedDescription": {
+      "he": "תוסף נגיש לכרום שמכיל את כל כלי הAI הנפוצים ומחולק על פי קטגוריות. \nנבנה ע\"י Cursor AI",
+      "en": "An advanced application that uses AI to analyze and improve speakers' stage presence. The tool analyzes body movements, voice, speech pace and audience alignment, providing personalized recommendations for improvement. Includes interactive training and simulations of various speaking scenarios."
+    },
+    "category": "tool",
+    "date": "2024-11-15",
+    "image": "https://i.postimg.cc/yd96SJbN/Screenshot-2025-05-23-171315.png",
+    "detailImage": "https://i.postimg.cc/yd96SJbN/Screenshot-2025-05-23-171315.png",
+    "link": "#ai-presence-generator",
+    "isVideo": false,
+    "technologies": [
+      "React",
+      "Cursor AI"
+    ],
+    "status": "הושלם",
+    "features": {
+      "he": [
+        "כלי AI",
+        "נגישות"
+      ],
+      "en": [
+        "Body movement analysis",
+        "Voice analysis",
+        "Personal recommendations",
+        "Interactive training"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "title": {
+      "he": "Your Interview",
+      "en": "Digital Body Language"
+    },
+    "description": {
+      "he": "מערכת דיגיטלית לניהול וסיכום ראיונות עבודה – מלווה אותך בזמן אמת עם שאלות, טיימר, מקום להערות וייצוא הסיכום בסוף.",
+      "en": "AI-powered analysis of non-verbal cues in virtual meetings - a tool that helps managers better understand their employees in remote work."
+    },
+    "detailedDescription": {
+      "he": "מערכת חכמה שנולדה מהצורך שלי לנהל ראיונות למועמדים בצורה יותר מסודרת עם שאלות מכוונות - אישיות ומקצועיות. במהלך הראיון ניתן לסכם את תשובות המועמד, לפתוח את קובץ קו\"ח בצד, לעבוד על פי זמנים מוגדרים מראש ולבסוף לייצא את הסיכום לקובץ PDF או למייל בלחיצת כפתור.\n\nלמי זה מיועד?\nלמנהלים בארגון שמראיינים מועמדים לצוותים – במיוחד כשיש הרבה ראיונות בחודש, וצריך סטנדרט מסודר ויעיל.\n",
+      "en": "An advanced platform for analyzing digital body language in the modern workplace. The tool analyzes behavioral patterns in virtual meetings, including eye contact, posture, facial expressions and engagement. Provides organizations with deep insights into team dynamics and helps improve communication and motivation in remote work."
+    },
+    "category": "tool",
+    "date": "2024-09-10",
+    "image": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
+    "detailImage": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop",
+    "link": "#digital-body-language",
+    "isVideo": false,
+    "technologies": [
+      "Cursor AI",
+      "Chat GPT",
+      "notebooklm"
+    ],
+    "status": "הושלם",
+    "features": {
+      "he": [
+        "טפסי ראיון חכמים",
+        "סנכרון קורות חיים",
+        "ייצוא לפידיאף",
+        "ניהול זמנים",
+        "תבנית דיווח למייל",
+        "תמיכה בקליטת עובדים"
+      ],
+      "en": [
+        "Behavioral pattern analysis",
+        "Team dynamics insights",
+        "Automated reports",
+        "HR systems integration"
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "title": {
+      "he": "Gabi Aharon -Landing Page",
+      "en": "AI Presence Generator (Copy)"
+    },
+    "description": {
+      "he": "דף נחיתה אישי שמשלב את כל העולמות שלי: שפת גוף, הרצאות, פרויקטים עם בינה מלאכותית וניסיון ניהולי – כולל קישורים, תיק עבודות ודף יצירת קשר.\n",
+      "en": "A tool that helps speakers improve their stage presence through body movement analysis and personalized recommendations."
+    },
+    "detailedDescription": {
+      "he": "דף נחיתה אישי שמרכז את כל מה שאני עושה -מההרצאות והפרויקטים הטכנולוגיים, ועד עולמות הניהול, שפת הגוף והבינה המלאכותית.\n\nלמה זה נבנה?\nרציתי ליצור עוגן אחד ברור, מקצועי ונגיש – שדרכו כל מי שפוגש אותי (בלינקדאין, בהרצאה או בכנס) יוכל להבין מי אני ומה אני מציע בלחיצה אחת.\n\nלמי זה מיועד?\nללקוחות פוטנציאליים, מנהלים, מרצים, סטודנטים, אנשי חינוך – ובעצם כל מי שיכול למצוא עניין בהרצאות, בשיתופי פעולה או בפרויקטים שלי.\n\nאיך זה נבנה?\nהקוד העיצוב והתשתית נבנו ב-Cursor, לאחר מכן העלאה לגיטהאב ומשם הועלה ב-Netlify. כל שינוי נשמר אוטומטית בגיטהאב וישנה פונקציית עריכה לכלל האתר ללא צורך לגשת שוב לCursor מלבד שינויים מהותיים. \n\nמה מיוחד בזה?\nהאתר מחולק לפי עולמות התוכן שלי, כולל מעבר חלק בין פרויקטים, הרצאות ודף יצירת קשר.\nדף הפרויקטים כולל סיכומים תמציתיים עם קישורים לפירוט מלא, מה שמאפשר למבקר לצלול לעומק – או פשוט להתרשם מהרוח הכללית.",
+      "en": "An advanced application that uses AI to analyze and improve speakers' stage presence. The tool analyzes body movements, voice, speech pace and audience alignment, providing personalized recommendations for improvement. Includes interactive training and simulations of various speaking scenarios."
+    },
+    "category": "interface",
+    "date": "2025-05-25",
+    "image": "https://i.postimg.cc/W3BKVDSG/Screenshot-2025-05-25-2331432.png",
+    "detailImage": "https://i.postimg.cc/W3BKVDSG/Screenshot-2025-05-25-2331432.png",
+    "link": "#ai-presence-generator",
+    "isVideo": false,
+    "technologies": [
+      "React",
+      "Cursor AI",
+      "Chat GPT"
+    ],
+    "status": "הושלם",
+    "features": {
+      "he": [
+        "הצגת זהות מקצועית",
+        "איחוד תחומי פעילות",
+        "ניווט קל",
+        "עיצוב רספונסיבי",
+        "נראות מקצועית"
+      ],
+      "en": [
+        "Body movement analysis",
+        "Voice analysis",
+        "Personal recommendations",
+        "Interactive training"
+      ]
+    }
+  }
+]
