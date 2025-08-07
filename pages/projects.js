@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ExternalLink, Calendar, Globe, Play, Code, X, Edit3, Save, Trash2, Download, Upload, Copy, ArrowUp, ArrowDown, Camera, Image } from "lucide-react";
 import Link from 'next/link';
@@ -134,6 +135,31 @@ const projectTranslations = {
 
 export default function Projects() {
   const { language, toggleLanguage } = useLanguage();
+  const Background3D = React.useMemo(
+    () => dynamic(() => import('../components/Background3D'), { ssr: false }),
+    []
+  );
+  const [particles, setParticles] = useState([]);
+  useEffect(() => {
+    const particleCount = window.innerWidth < 768 ? 20 : 40;
+    const initial = Array.from({ length: particleCount }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 2 + 1,
+      opacity: Math.random() * 0.5 + 0.1,
+      speed: Math.random() * 0.1 + 0.05,
+    }));
+    setParticles(initial);
+    const interval = setInterval(() => {
+      setParticles(prev => prev.map(p => ({
+        ...p,
+        y: (p.y + p.speed) % 100,
+        opacity: Math.sin(Date.now() * 0.001 + p.id) * 0.3 + 0.3,
+      })));
+    }, 100);
+    return () => clearInterval(interval);
+  }, []);
   
   // Debug alert to confirm new code is loaded
   React.useEffect(() => {
@@ -1067,7 +1093,19 @@ ${defaultOwner}/${defaultRepo}
   };
 
   return (
-    <div className={`min-h-screen w-full bg-gradient-to-b from-gray-900 via-gray-900 to-black text-white ${language === 'he' ? 'rtl' : 'ltr'}`}>
+    <div className={`min-h-screen w-full bg-gradient-to-b from-gray-900 via-gray-900 to-black text-white relative overflow-hidden ${language === 'he' ? 'rtl' : 'ltr'}`}>
+      {/* 3D background and subtle particles for consistency with home */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <Background3D />
+      </div>
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {particles.map((p) => (
+          <div key={p.id} className="absolute rounded-full bg-white" style={{
+            left: `${p.x}%`, top: `${p.y}%`, width: `${p.size}px`, height: `${p.size}px`, opacity: p.opacity,
+            transition: 'all 0.5s linear', transform: 'translateZ(0)'
+          }} />
+        ))}
+      </div>
       {/* לוגו */}
       <div className="absolute top-4 left-4 z-50">
         <Link href="/" className="flex items-center group">

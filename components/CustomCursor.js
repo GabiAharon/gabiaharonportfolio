@@ -25,23 +25,22 @@ export default function CustomCursor() {
       const isInteractive = el.closest('a, button, [role="button"], input, textarea, select, .cursor-interactive');
       setIsHoverInteractive(Boolean(isInteractive));
     };
-    const leaveDoc = () => setEnabled(false);
-    const enterDoc = () => setEnabled(true);
 
     window.addEventListener('mousemove', move);
     window.addEventListener('mousedown', down);
     window.addEventListener('mouseup', up);
     document.addEventListener('mouseover', over, true);
-    document.addEventListener('mouseleave', leaveDoc);
-    document.addEventListener('mouseenter', enterDoc);
+
+    // keep cursor enabled within the window; no document mouseleave toggling
+    const onResize = () => setEnabled(window.innerWidth >= 1024);
+    window.addEventListener('resize', onResize);
 
     return () => {
       window.removeEventListener('mousemove', move);
       window.removeEventListener('mousedown', down);
       window.removeEventListener('mouseup', up);
       document.removeEventListener('mouseover', over, true);
-      document.removeEventListener('mouseleave', leaveDoc);
-      document.removeEventListener('mouseenter', enterDoc);
+      window.removeEventListener('resize', onResize);
     };
   }, [x, y]);
 
@@ -55,7 +54,7 @@ export default function CustomCursor() {
     <>
       {/* Ring */}
       <motion.div
-        className="fixed z-50 pointer-events-none hidden lg:block"
+        className="fixed z-[9999] pointer-events-none hidden lg:block"
         style={{ translateX: x, translateY: y }}
         aria-hidden
       >
@@ -69,7 +68,7 @@ export default function CustomCursor() {
 
       {/* Dot */}
       <motion.div
-        className="fixed z-50 pointer-events-none hidden lg:block"
+        className="fixed z-[9999] pointer-events-none hidden lg:block"
         style={{ translateX: x, translateY: y }}
         aria-hidden
       >
