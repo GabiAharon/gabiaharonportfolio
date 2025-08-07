@@ -22,7 +22,6 @@ import { useLanguage } from './_app';
 import translations from '../translations';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import CustomCursor from '../components/CustomCursor';
 
 export default function Home() {
   const Background3D = React.useMemo(
@@ -253,7 +252,6 @@ export default function Home() {
 
   return (
     <div className={`min-h-screen w-full bg-gradient-to-b from-gray-900 via-gray-900 to-black text-white overflow-hidden relative ${language === 'he' ? 'rtl' : 'ltr'}`}>
-      <CustomCursor />
       {/* לוגו */}
       <div className="absolute top-4 left-4 z-40">
         <img 

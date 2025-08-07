@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gabi Aharon – Evolution Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0f1a;
+      --surface: #121726;
+      --text: #EAF0FF;
+      --muted: #9AA5C4;
+      --primary: #6AA8FF; /* Electric Blue */
+      --accent: #A179FF;  /* Royal Purple */
+      --teal: #4CD7C8;    /* Soft Teal */
+      --success:#22c55e; --warning:#f59e0b;
+      --radius:16px;
+      --shadow: 0 10px 30px rgba(120,140,255,.12);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";background:radial-gradient(1200px 600px at 50% -100px, rgba(106,168,255,.25), transparent), var(--bg); color:var(--text); overflow-x:hidden}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{position:relative;padding:40px 0 20px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:44px}
+    .nav{display:flex;gap:16px;align-items:center}
+    .pill{padding:10px 16px;border-radius:999px;background:linear-gradient(90deg,var(--primary),var(--accent));color:#0b0f1a;font-weight:700;box-shadow:var(--shadow)}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center;margin-top:26px}
+    h1{font-family:Heebo,Inter,sans-serif;font-weight:800;line-height:1.15;margin:0 0 12px;font-size:42px;background:linear-gradient(90deg,#fff, #cfe2ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{color:var(--muted);font-size:18px;line-height:1.7;max-width:60ch}
+    .ctas{display:flex;gap:12px;margin-top:16px}
+    .btn{padding:12px 18px;border-radius:12px;border:1px solid transparent;color:#0b0f1a;background:linear-gradient(90deg,var(--primary),var(--teal));font-weight:700;box-shadow:var(--shadow);text-decoration:none}
+    .btn.secondary{background:transparent;color:var(--text);border-color:#26304b}
+    .glass{position:relative;border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));backdrop-filter: blur(8px); border:1px solid rgba(255,255,255,.10);box-shadow:var(--shadow)}
+    .portrait{aspect-ratio:1/1;border-radius:50%;overflow:hidden;position:relative}
+    .portrait img{width:100%;height:100%;object-fit:cover}
+    .halo{position:absolute;inset:-12px;border-radius:50%;background:conic-gradient(from 0deg, var(--primary), var(--accent), var(--teal), var(--primary));filter:blur(24px);opacity:.4}
+    .proof{display:flex;gap:16px;align-items:center;margin-top:18px;color:var(--muted);font-size:14px}
+    .logos img{height:22px;opacity:.8;filter:grayscale(1)}
+    section{margin-top:48px}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+    .chip{padding:8px 12px;border-radius:999px;background:#1a2238;border:1px solid #2a3557;color:#cbd5ff;font-size:12px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{border-radius:14px;overflow:hidden;background:#111728;border:1px solid #273152;box-shadow:var(--shadow);display:flex;flex-direction:column}
+    .thumb{aspect-ratio:16/9;background:linear-gradient(180deg,rgba(106,168,255,.25),rgba(161,121,255,.2));position:relative}
+    .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.18) 50%,transparent 60%);transform:skewX(-20deg) translateX(-120%);transition:transform .7s}
+    .card:hover .thumb::after{transform:skewX(-20deg) translateX(120%)}
+    .card h3{font-family:Heebo,Inter,sans-serif;margin:12px 14px 6px;font-size:18px}
+    .card p{margin:0 14px 12px;color:var(--muted);font-size:14px;line-height:1.6}
+    .tags{display:flex;gap:6px;flex-wrap:wrap;margin:0 14px 14px}
+    .tag{font-size:11px;background:#1b2136;border:1px solid #2b3558;color:#c8d1ff;border-radius:999px;padding:6px 8px}
+    .testimonials{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .quote{padding:18px}
+    .quote p{margin:0 0 10px;color:#dbe5ff}
+    .quote .who{color:var(--muted);font-size:13px}
+    .footer{margin:48px 0 24px;color:#8fa1d6;font-size:13px;text-align:center}
+    .particles{position:fixed;inset:0;pointer-events:none;z-index:-1}
+    .particle{position:absolute;border-radius:50%;background:#fff;opacity:.2;transition:all .6s linear}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:640px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="particles" id="particles"></div>
+  <div class="container">
+    <header>
+      <div style="display:flex;justify-content:space-between;gap:12px;align-items:center">
+        <div class="brand">
+          <img src="https://i.postimg.cc/j5MJ3Rmz/image.png" alt="Logo" />
+          <strong>גבי אהרון</strong>
+        </div>
+        <nav class="nav">
+          <a class="pill" href="#contact">צור קשר</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>מבהירות לתוצאה. הופכים רעיונות מורכבים לחוויות חלקות</h1>
+        <p class="lead">מנהל, מרצה לשפת גוף ועמידה מול קהל, מהנדס תוכנה ומומחה חוויית משתמש. בונה מוצרים, מספר סיפורים, ומוביל אנשים לביצועים.</p>
+        <div class="ctas">
+          <a href="#projects" class="btn">לפרויקטים</a>
+          <a href="#contact" class="btn secondary">שיחה קצרה</a>
+        </div>
+        <div class="proof">
+          <span>+120 הרצאות | 10+ שנות פיתוח | 30+ פרויקטים</span>
+          <span class="logos">
+            <img src="/favicon.ico" alt="" />
+          </span>
+        </div>
+      </div>
+      <div class="glass" style="padding:18px;display:grid;place-items:center">
+        <div class="portrait">
+          <div class="halo"></div>
+          <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/9d57c5_Untitleddesign1.png" alt="Gabi" />
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="chips">
+        <span class="chip">הכל</span>
+        <span class="chip">תוספים</span>
+        <span class="chip">כלים</span>
+        <span class="chip">וידאו</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <div class="thumb"></div>
+          <h3>מערכת פרזנטציות חכמה</h3>
+          <p>כלי רה־הקשבה לעצמך, עם פידבק שפת גוף בזמן אמת.</p>
+          <div class="tags"><span class="tag">React</span><span class="tag">AI</span><span class="tag">R&D</span></div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background:linear-gradient(180deg,rgba(76,215,200,.25),rgba(161,121,255,.2))"></div>
+          <h3>מחולל תבניות להרצאה</h3>
+          <p>יוצר שלד תוכן חכם, מותאם לקהל ולמטרות.</p>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">UX</span></div>
+        </article>
+        <article class="card">
+          <div class="thumb" style="background:linear-gradient(180deg,rgba(106,168,255,.25),rgba(76,215,200,.2))"></div>
+          <h3>דשבורד קהל</h3>
+          <p>איסוף רגש ותשומת לב בזמן אמת לשיפור המסר.</p>
+          <div class="tags"><span class="tag">Realtime</span><span class="tag">Analytics</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <div class="glass quote">
+        <p>“ההרצאה של גבי שינתה את הדרך שבה אנחנו מציגים מול לקוחות.”</p>
+        <div class="who">מנכ"ל סטארטאפ</div>
+      </div>
+      <div class="glass quote">
+        <p>“שילוב נדיר של טכנולוגיה ותקשורת אנושית.”</p>
+        <div class="who">סמנכ"לית שיווק</div>
+      </div>
+    </section>
+
+    <footer class="footer">© gabi aharon · demo evolution</footer>
+  </div>
+
+  <script>
+    // Minimal particles like current site
+    (function(){
+      const el = document.getElementById('particles');
+      const count = Math.min(60, Math.floor(window.innerWidth/20));
+      const parts = [];
+      for(let i=0;i<count;i++){
+        const d=document.createElement('div');
+        d.className='particle';
+        const size = Math.random()*2+1;
+        d.style.width=d.style.height=size+'px';
+        d.style.left=Math.random()*100+'%';
+        d.style.top=Math.random()*100+'%';
+        d.style.opacity=(Math.random()*0.5+0.1).toFixed(2);
+        el.appendChild(d); parts.push({el:d,speed:Math.random()*0.1+0.05, id:i});
+      }
+      setInterval(()=>{
+        parts.forEach(p=>{
+          const top = parseFloat(p.el.style.top);
+          const next = (top + p.speed)%100;
+          p.el.style.top = next+'%';
+          p.el.style.opacity = (Math.sin(Date.now()*0.001 + p.id)*0.3+0.3).toFixed(2);
+        });
+      },100);
+    })();
+  </script>
+</body>
+</html>
+
+

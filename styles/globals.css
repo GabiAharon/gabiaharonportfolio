@@ -139,10 +139,7 @@ img {
   color: white;
 }
 
-/* Custom cursor (desktop only) */
-@media (min-width: 1024px) {
-  html, body { cursor: none; }
-}
+/* Remove custom cursor override */
 
 /* Heading shimmer utility */
 .heading-shimmer {
