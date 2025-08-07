@@ -25,6 +25,16 @@ import Link from 'next/link';
 export default function Home() {
   // Optional Spline embed URL via NEXT_PUBLIC_SPLINE_URL
   const splineUrl = process.env.NEXT_PUBLIC_SPLINE_URL || '';
+  const [runtimeSplineUrl, setRuntimeSplineUrl] = useState('');
+
+  useEffect(() => {
+    try {
+      const urlParam = new URLSearchParams(window.location.search).get('spline');
+      if (urlParam) setRuntimeSplineUrl(urlParam);
+    } catch (_) {
+      // ignore
+    }
+  }, []);
   const router = useRouter();
   const { language, setLanguage } = useLanguage();
   
@@ -280,10 +290,10 @@ export default function Home() {
       )}
       
       {/* 3D background: prefer Spline embed if URL provided; fallback to particles */}
-      {splineUrl ? (
+      {(runtimeSplineUrl || splineUrl) ? (
         <div className="absolute inset-0 z-0 overflow-hidden">
           <iframe
-            src={splineUrl}
+            src={runtimeSplineUrl || splineUrl}
             title="Spline Scene"
             className="w-full h-full"
             frameBorder="0"
