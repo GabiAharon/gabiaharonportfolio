@@ -21,11 +21,16 @@ import { useRouter } from 'next/router';
 import { useLanguage } from './_app';
 import translations from '../translations';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
 export default function Home() {
   // Optional Spline embed URL via NEXT_PUBLIC_SPLINE_URL
   const splineUrl = process.env.NEXT_PUBLIC_SPLINE_URL || '';
   const [runtimeSplineUrl, setRuntimeSplineUrl] = useState('');
+  const Background3D = React.useMemo(
+    () => dynamic(() => import('../components/Background3D'), { ssr: false }),
+    []
+  );
 
   useEffect(() => {
     try {
@@ -289,7 +294,7 @@ export default function Home() {
         </Link>
       )}
       
-      {/* 3D background: prefer Spline embed if URL provided; fallback to particles */}
+      {/* 3D background: prefer Spline if URL provided; else React Three Fiber stars */}
       {(runtimeSplineUrl || splineUrl) ? (
         <div className="absolute inset-0 z-0 overflow-hidden">
           <iframe
@@ -302,24 +307,7 @@ export default function Home() {
           />
         </div>
       ) : (
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          {particles.map((particle) => (
-            <div
-              key={particle.id}
-              className="absolute rounded-full bg-white"
-              style={{
-                left: `${particle.x}%`,
-                top: `${particle.y}%`,
-                width: `${particle.size}px`,
-                height: `${particle.size}px`,
-                opacity: particle.opacity,
-                transition: 'all 0.5s linear',
-                transform: 'translateZ(0)',
-                zIndex: 1
-              }}
-            />
-          ))}
-        </div>
+        <Background3D />
       )}
       
       {/* Content container */}
