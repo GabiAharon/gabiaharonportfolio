@@ -10,6 +10,7 @@
     "export": "npm run build"
   },
   "dependencies": {
+    "@splinetool/react-spline": "^4.1.0",
     "autoprefixer": "^10.4.16",
     "framer-motion": "^10.16.4",
     "lucide-react": "^0.290.0",

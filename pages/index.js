@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Instagram, 
@@ -23,6 +24,9 @@ import translations from '../translations';
 import Link from 'next/link';
 
 export default function Home() {
+  // Spline lazy component (client only). Set URL via NEXT_PUBLIC_SPLINE_URL
+  const Spline = React.useMemo(() => dynamic(() => import('@splinetool/react-spline').then(m => m.default), { ssr: false }), []);
+  const splineUrl = process.env.NEXT_PUBLIC_SPLINE_URL || '';
   const router = useRouter();
   const { language, setLanguage } = useLanguage();
   
@@ -277,25 +281,31 @@ export default function Home() {
         </Link>
       )}
       
-      {/* Animated particles background */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute rounded-full bg-white"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-              opacity: particle.opacity,
-              transition: 'all 0.5s linear',
-              transform: 'translateZ(0)',
-              zIndex: 1
-            }}
-          />
-        ))}
-      </div>
+      {/* 3D background: prefer Spline if URL provided; fallback to particles */}
+      {splineUrl ? (
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <Spline scene={splineUrl} style={{ width: '100%', height: '100%' }} />
+        </div>
+      ) : (
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          {particles.map((particle) => (
+            <div
+              key={particle.id}
+              className="absolute rounded-full bg-white"
+              style={{
+                left: `${particle.x}%`,
+                top: `${particle.y}%`,
+                width: `${particle.size}px`,
+                height: `${particle.size}px`,
+                opacity: particle.opacity,
+                transition: 'all 0.5s linear',
+                transform: 'translateZ(0)',
+                zIndex: 1
+              }}
+            />
+          ))}
+        </div>
+      )}
       
       {/* Content container */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-8">
