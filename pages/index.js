@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Instagram, 
@@ -24,8 +23,7 @@ import translations from '../translations';
 import Link from 'next/link';
 
 export default function Home() {
-  // Spline lazy component (client only). Set URL via NEXT_PUBLIC_SPLINE_URL
-  const Spline = React.useMemo(() => dynamic(() => import('@splinetool/react-spline').then(m => m.default), { ssr: false }), []);
+  // Optional Spline embed URL via NEXT_PUBLIC_SPLINE_URL
   const splineUrl = process.env.NEXT_PUBLIC_SPLINE_URL || '';
   const router = useRouter();
   const { language, setLanguage } = useLanguage();
@@ -281,10 +279,17 @@ export default function Home() {
         </Link>
       )}
       
-      {/* 3D background: prefer Spline if URL provided; fallback to particles */}
+      {/* 3D background: prefer Spline embed if URL provided; fallback to particles */}
       {splineUrl ? (
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <Spline scene={splineUrl} style={{ width: '100%', height: '100%' }} />
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <iframe
+            src={splineUrl}
+            title="Spline Scene"
+            className="w-full h-full"
+            frameBorder="0"
+            allow="autoplay; clipboard-write; microphone; camera; display-capture; xr-spatial-tracking"
+            style={{ background: 'transparent' }}
+          />
         </div>
       ) : (
         <div className="absolute inset-0 z-0 overflow-hidden">
