@@ -5,8 +5,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Netlify build hook URL
-    const netlifyBuildHook = "https://api.netlify.com/build_hooks/688688c76292b35f68ccf3cb";
+    // Netlify build hook URL (prefer env)
+    const netlifyBuildHook = process.env.NETLIFY_BUILD_HOOK || "https://api.netlify.com/build_hooks/688688c76292b35f68ccf3cb";
     
     console.log('🔄 Triggering Netlify build...');
     

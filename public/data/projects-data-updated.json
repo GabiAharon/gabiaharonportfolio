@@ -1,5 +1,46 @@
 [
   {
+    "id": 14,
+    "title": {
+      "he": "new new new",
+      "en": "New Project"
+    },
+    "description": {
+      "he": "תיאור קצר של הפרויקט החדש",
+      "en": "Short description of the new project"
+    },
+    "detailedDescription": {
+      "he": "כאן יופיע תיאור מפורט של הפרויקט. זהו המקום להרחיב על המטרות, השיטות והתוצאות.",
+      "en": "Here is a detailed description of the project. This is the place to expand on the goals, methods and results."
+    },
+    "category": "video",
+    "date": "2025-08-07",
+    "image": "https://images.unsplash.com/photo-1585974738771-84483dd9f89f?w=600&h=400&fit=crop",
+    "detailImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
+    "link": "#new-project",
+    "isVideo": false,
+    "technologies": [
+      "Technology 1",
+      "Technology 2",
+      "Technology 3"
+    ],
+    "status": "בפיתוח",
+    "features": {
+      "he": [
+        "תכונה 1",
+        "תכונה 2",
+        "תכונה 3",
+        "תכונה 4"
+      ],
+      "en": [
+        "Feature 1",
+        "Feature 2",
+        "Feature 3",
+        "Feature 4"
+      ]
+    }
+  },
+  {
     "id": 13,
     "title": {
       "he": "פרויקט חדש",

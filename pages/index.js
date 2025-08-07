@@ -50,6 +50,7 @@ export default function Home() {
   
   // Particle background animation effect
   const [particles, setParticles] = useState([]);
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
 
   useEffect(() => {
     // Create initial particles with responsive count
@@ -104,6 +105,20 @@ export default function Home() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  // Mouse 3D tilt for hero
+  const handleHeroMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+    const rx = (dy / rect.height) * -10; // rotation X
+    const ry = (dx / rect.width) * 10;  // rotation Y
+    setTilt({ rx, ry });
+  };
+
+  const resetTilt = () => setTilt({ rx: 0, ry: 0 });
 
   // פונקציות לטיפול בלחיצות
   const handleEmailClick = () => {
@@ -275,6 +290,7 @@ export default function Home() {
               height: `${particle.size}px`,
               opacity: particle.opacity,
               transition: 'all 0.5s linear',
+              transform: 'translateZ(0)',
               zIndex: 1
             }}
           />
@@ -290,6 +306,8 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center py-8 sm:py-12 lg:py-16 relative"
+          onMouseMove={handleHeroMouseMove}
+          onMouseLeave={resetTilt}
         >
           {/* Profile photo with glowing effect */}
           <motion.div 

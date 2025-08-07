@@ -167,6 +167,16 @@ export default function Projects() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  // Allow admin via URL param ?admin=1
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('admin') === '1') {
+        setShowAdminButton(true);
+      }
+    }
+  }, []);
+
   const getAllAITools = () => {
     const currentTools = editForm.technologies || [];
     return [...new Set([...availableAITools, ...currentTools])];
@@ -425,8 +435,23 @@ export default function Projects() {
       setProjectData(updatedProjects);
       saveToLocalStorage(updatedProjects);
       
-      // שמירה אוטומטית ל-GitHub
-      const githubSaved = await saveToGitHub(updatedProjects);
+      // שמירה אוטומטית ל-GitHub (עדיפות ל-API צד שרת)
+      let githubSaved = false;
+      try {
+        const resp = await fetch('/api/github-commit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ data: updatedProjects })
+        });
+        githubSaved = resp.ok;
+      } catch (e) {
+        githubSaved = false;
+      }
+
+      // נפילה אחורה לשמירה ישירה ל-GitHub מהדפדפן אם אין שרת
+      if (!githubSaved) {
+        githubSaved = await saveToGitHub(updatedProjects);
+      }
       
       // עדכון הפרויקט הנבחר אם הוא פתוח במודל
       if (selectedProject && selectedProject.id === editingProject) {
@@ -746,8 +771,19 @@ ${defaultOwner}/${defaultRepo}
     setProjectData(updatedProjects);
     saveToLocalStorage(updatedProjects);
     
-    // שמירה אוטומטית ל-GitHub
-    const githubSaved = await saveToGitHub(updatedProjects);
+    // שמירה אוטומטית ל-GitHub (שרת → fallback לקליינט)
+    let githubSaved = false;
+    try {
+      const resp = await fetch('/api/github-commit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data: updatedProjects })
+      });
+      githubSaved = resp.ok;
+    } catch (e) {}
+    if (!githubSaved) {
+      githubSaved = await saveToGitHub(updatedProjects);
+    }
     
     // הודעה על הצלחה עם סטטוס GitHub
     if (githubSaved) {
@@ -763,8 +799,19 @@ ${defaultOwner}/${defaultRepo}
       setProjectData(updatedProjects);
       saveToLocalStorage(updatedProjects);
       
-      // שמירה אוטומטית ל-GitHub
-      const githubSaved = await saveToGitHub(updatedProjects);
+      // שמירה אוטומטית ל-GitHub (שרת → fallback לקליינט)
+      let githubSaved = false;
+      try {
+        const resp = await fetch('/api/github-commit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ data: updatedProjects })
+        });
+        githubSaved = resp.ok;
+      } catch (e) {}
+      if (!githubSaved) {
+        githubSaved = await saveToGitHub(updatedProjects);
+      }
       
       // סגור את המודל אם הפרויקט שנמחק פתוח
       if (selectedProject && selectedProject.id === project.id) {
@@ -792,8 +839,19 @@ ${defaultOwner}/${defaultRepo}
     setProjectData(updatedProjects);
     saveToLocalStorage(updatedProjects);
     
-    // שמירה אוטומטית ל-GitHub
-    const githubSaved = await saveToGitHub(updatedProjects);
+    // שמירה אוטומטית ל-GitHub (שרת → fallback לקליינט)
+    let githubSaved = false;
+    try {
+      const resp = await fetch('/api/github-commit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data: updatedProjects })
+      });
+      githubSaved = resp.ok;
+    } catch (e) {}
+    if (!githubSaved) {
+      githubSaved = await saveToGitHub(updatedProjects);
+    }
     if (!githubSaved) {
       alert('⚠️ הפרויקט הוזז מקומית\n❌ שגיאה בשמירה לגיטהאב\n(בדוק את הטוקן או החיבור לאינטרנט)');
     }
@@ -812,8 +870,19 @@ ${defaultOwner}/${defaultRepo}
     setProjectData(updatedProjects);
     saveToLocalStorage(updatedProjects);
     
-    // שמירה אוטומטית ל-GitHub
-    const githubSaved = await saveToGitHub(updatedProjects);
+    // שמירה אוטומטית ל-GitHub (שרת → fallback לקליינט)
+    let githubSaved = false;
+    try {
+      const resp = await fetch('/api/github-commit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data: updatedProjects })
+      });
+      githubSaved = resp.ok;
+    } catch (e) {}
+    if (!githubSaved) {
+      githubSaved = await saveToGitHub(updatedProjects);
+    }
     if (!githubSaved) {
       alert('⚠️ הפרויקט הוזז מקומית\n❌ שגיאה בשמירה לגיטהאב\n(בדוק את הטוקן או החיבור לאינטרנט)');
     }
@@ -1311,7 +1380,23 @@ ${defaultOwner}/${defaultRepo}
                   whileTap={{ scale: editingProject === project.id ? 1 : 0.98 }}
                 >
                   <div className={`${editingProject === project.id && !editingInModal ? 'bg-gradient-to-r from-orange-500 to-red-600' : 'bg-gradient-to-r from-blue-500 to-purple-600'} p-0.5 rounded-xl w-full flex`}>
-                    <div className="bg-gray-900 rounded-xl overflow-hidden flex flex-col w-full min-h-[600px]">
+                    <div
+                      className="bg-gray-900 rounded-xl overflow-hidden flex flex-col w-full min-h-[600px] will-change-transform"
+                      style={{ transformStyle: 'preserve-3d', perspective: '900px', transition: 'transform 150ms ease-out' }}
+                      onMouseMove={(e) => {
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        const cx = rect.left + rect.width / 2;
+                        const cy = rect.top + rect.height / 2;
+                        const dx = e.clientX - cx;
+                        const dy = e.clientY - cy;
+                        const rx = (dy / rect.height) * -6;
+                        const ry = (dx / rect.width) * 6;
+                        e.currentTarget.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                      }}
+                    >
                       {/* תמונת הפרויקט */}
                       <div className="relative h-48 overflow-hidden flex-shrink-0">
                         <img 
