@@ -23,6 +23,8 @@ import translations from '../translations';
 import Link from 'next/link';
 
 export default function Home() {
+  // Optional Spline embed URL via NEXT_PUBLIC_SPLINE_URL
+  const splineUrl = process.env.NEXT_PUBLIC_SPLINE_URL || '';
   const router = useRouter();
   const { language, setLanguage } = useLanguage();
   
@@ -277,25 +279,38 @@ export default function Home() {
         </Link>
       )}
       
-      {/* Animated particles background */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {particles.map((particle) => (
-          <div
-            key={particle.id}
-            className="absolute rounded-full bg-white"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: `${particle.size}px`,
-              height: `${particle.size}px`,
-              opacity: particle.opacity,
-              transition: 'all 0.5s linear',
-              transform: 'translateZ(0)',
-              zIndex: 1
-            }}
+      {/* 3D background: prefer Spline embed if URL provided; fallback to particles */}
+      {splineUrl ? (
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <iframe
+            src={splineUrl}
+            title="Spline Scene"
+            className="w-full h-full"
+            frameBorder="0"
+            allow="autoplay; clipboard-write; microphone; camera; display-capture; xr-spatial-tracking"
+            style={{ background: 'transparent' }}
           />
-        ))}
-      </div>
+        </div>
+      ) : (
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          {particles.map((particle) => (
+            <div
+              key={particle.id}
+              className="absolute rounded-full bg-white"
+              style={{
+                left: `${particle.x}%`,
+                top: `${particle.y}%`,
+                width: `${particle.size}px`,
+                height: `${particle.size}px`,
+                opacity: particle.opacity,
+                transition: 'all 0.5s linear',
+                transform: 'translateZ(0)',
+                zIndex: 1
+              }}
+            />
+          ))}
+        </div>
+      )}
       
       {/* Content container */}
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-8">
