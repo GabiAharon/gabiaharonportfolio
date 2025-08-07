@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects – Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{ --bg:#0b0f1a; --surface:#111728; --text:#EAF0FF; --muted:#9AA5C4; --blue:#6AA8FF; --purple:#A179FF; --teal:#4CD7C8; --shadow:0 10px 30px rgba(97,118,255,.16)}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui}
+    .wrap{max-width:1200px;margin:0 auto;padding:20px}
+    header{display:flex;justify-content:space-between;align-items:center}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{height:40px}
+    h1{font-family:Heebo,Inter,sans-serif;margin:18px 0 8px}
+    .filters{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{padding:8px 12px;border-radius:999px;background:#1a2238;border:1px solid #2a3557;color:#cbd5ff;font-size:12px;cursor:pointer}
+    .chip.active{background:linear-gradient(90deg,var(--blue),var(--teal));color:#071021;border-color:transparent}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    .card{background:var(--surface);border:1px solid #273152;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+    .thumb{aspect-ratio:16/9;background:linear-gradient(180deg,rgba(106,168,255,.25),rgba(161,121,255,.2));position:relative}
+    .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,.18) 50%,transparent 60%);transform:skewX(-20deg) translateX(-120%);transition:transform .7s}
+    .card:hover .thumb::after{transform:skewX(-20deg) translateX(120%)}
+    .content{padding:14px;display:flex;flex-direction:column;gap:10px}
+    .desc{color:var(--muted);font-size:14px;line-height:1.6}
+    .tags{display:flex;gap:6px;flex-wrap:wrap}
+    .tag{font-size:11px;background:#1b2136;border:1px solid #2b3558;color:#c8d1ff;border-radius:999px;padding:6px 8px}
+    .actions{display:flex;gap:8px;margin-top:auto}
+    .btn{flex:1;text-align:center;text-decoration:none;color:#0a121f;background:linear-gradient(90deg,var(--blue),var(--teal));padding:10px;border-radius:10px;font-weight:700}
+    .btn.ghost{background:transparent;color:#e5ecff;border:1px solid #2a3557}
+    @media(max-width:900px){.grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.grid{grid-template-columns:1fr}}
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const chips = document.querySelectorAll('.chip');
+      chips.forEach(c=>c.addEventListener('click',()=>{
+        chips.forEach(x=>x.classList.remove('active'));
+        c.classList.add('active');
+      }));
+    });
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img src="https://i.postimg.cc/j5MJ3Rmz/image.png" alt="Logo" />
+        <strong>פרויקטים</strong>
+      </div>
+      <a href="/demo-wave.html" style="color:#bcd0ff;text-decoration:none">לדף הבית</a>
+    </header>
+
+    <h1>העבודות הנבחרות</h1>
+    <div class="filters">
+      <div class="chip active">הכל</div>
+      <div class="chip">כלים</div>
+      <div class="chip">תוספים</div>
+      <div class="chip">וידאו</div>
+      <div class="chip">ממשקים</div>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <div class="thumb"></div>
+        <div class="content">
+          <strong>Dashboard לקהל</strong>
+          <div class="desc">מדד קשב בזמן אמת לשיפור מסרים במהלך הרצאה.</div>
+          <div class="tags"><span class="tag">Realtime</span><span class="tag">Analytics</span></div>
+          <div class="actions"><a class="btn" href="#">מידע נוסף</a><a class="btn ghost" href="#">צפייה</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb" style="background:linear-gradient(180deg,rgba(76,215,200,.25),rgba(161,121,255,.2))"></div>
+        <div class="content">
+          <strong>מחולל תבניות להרצאה</strong>
+          <div class="desc">בונה שלד תוכן קצר וחד, מותאם לקהל ולמטרות.</div>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">UX</span></div>
+          <div class="actions"><a class="btn" href="#">מידע נוסף</a><a class="btn ghost" href="#">צפייה</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb" style="background:linear-gradient(180deg,rgba(106,168,255,.25),rgba(76,215,200,.2))"></div>
+        <div class="content">
+          <strong>מערכת פרזנטציות חכמה</strong>
+          <div class="desc">פידבק שפת גוף בזמן אמת — שיפור בטחון ודיוק המסר.</div>
+          <div class="tags"><span class="tag">AI</span><span class="tag">React</span></div>
+          <div class="actions"><a class="btn" href="#">מידע נוסף</a><a class="btn ghost" href="#">צפייה</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</body>
+</html>
+
+

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gabi Aharon – Energetic Wave Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #070b14; --text:#EAF0FF; --muted:#9AA5C4;
+      --blue:#6AA8FF; --purple:#A179FF; --teal:#4CD7C8;
+      --radius:16px; --shadow: 0 12px 40px rgba(97,118,255,.18);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    .wrap{max-width:1200px;margin:0 auto;padding:20px}
+    header{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{height:42px}
+    .nav a{color:#cfe2ff;text-decoration:none;margin-inline:8px;font-weight:600}
+    .hero{position:relative;margin-top:28px}
+    .wave{position:absolute;inset:0;top:-120px;z-index:-1;opacity:.9}
+    h1{font-family:Heebo,Inter,sans-serif;font-weight:800;font-size:56px;line-height:1.05;margin:18px 0;background:conic-gradient(from 120deg, #fff 0%, #b9d3ff 30%, #e9f0ff 60%, #fff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{color:var(--muted);font-size:18px;max-width:60ch;line-height:1.8}
+    .cta{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:12px 18px;border-radius:12px;border:1px solid transparent;background:linear-gradient(90deg,var(--blue),var(--teal));color:#06101f;font-weight:800;text-decoration:none;box-shadow:var(--shadow)}
+    .btn.secondary{background:transparent;color:var(--text);border-color:#26304b}
+    .stats{display:flex;gap:18px;margin-top:16px;color:#b6c7ff}
+    .particles{position:fixed;inset:0;pointer-events:none;z-index:-2}
+    .particle{position:absolute;border-radius:50%;background:#fff;opacity:.2;transition:all .6s linear}
+    .features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.10);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+    .card h3{font-family:Heebo;margin:0 0 8px}
+    @media(max-width:900px){.features{grid-template-columns:1fr} h1{font-size:40px}}
+  </style>
+</head>
+<body>
+  <canvas class="wave" id="wave"></canvas>
+  <div class="particles" id="particles"></div>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img src="https://i.postimg.cc/j5MJ3Rmz/image.png" alt="Logo" />
+        <strong>גבי אהרון</strong>
+      </div>
+      <nav class="nav">
+        <a href="#projects">פרויקטים</a>
+        <a href="#contact">צור קשר</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>גל אנרגטי שמוביל את תשומת הלב למסר שלך</h1>
+      <p class="lead">שילוב של חוויית משתמש, הנדסת תוכנה ושפת גוף. עוזר לאנשים ולמוצרים להציג ברור, קצר ומדויק — ולהשפיע.</p>
+      <div class="cta">
+        <a class="btn" href="#projects">לפורטפוליו</a>
+        <a class="btn secondary" href="#contact">דברו איתי</a>
+      </div>
+      <div class="stats">+120 הרצאות • 10+ שנים בפיתוח • 30+ פרויקטים</div>
+    </section>
+
+    <section class="features">
+      <div class="card"><h3>חוויית משתמש</h3><p>מבנה מסר, היררכיה, קריאות ותנועה עקבית שמרגישה טבעית.</p></div>
+      <div class="card"><h3>הנדסה</h3><p>מערכות רספונסיביות, ביצועים, ואחזקה ארוכת טווח עם טוקנים ורכיבים.</p></div>
+    </section>
+  </div>
+
+  <script>
+    // Energetic wave
+    (function(){
+      const c = document.getElementById('wave');
+      const ctx = c.getContext('2d');
+      let w, h, t=0, amp=40, mouseX=0;
+      function resize(){ w = c.width = window.innerWidth; h = c.height = Math.max(400, window.innerHeight*0.6) }
+      window.addEventListener('resize', resize); resize();
+      window.addEventListener('mousemove', e=>{ mouseX = e.clientX / w });
+      function grad(){ const g = ctx.createLinearGradient(0,0,w,h); g.addColorStop(0,'#6AA8FF'); g.addColorStop(.5,'#A179FF'); g.addColorStop(1,'#4CD7C8'); return g; }
+      function draw(){
+        t += 0.015;
+        ctx.clearRect(0,0,w,h);
+        ctx.fillStyle = 'rgba(7,11,20,0.9)'; ctx.fillRect(0,0,w,h);
+        ctx.beginPath();
+        const base = h*0.55;
+        const localAmp = amp*(0.6 + mouseX*0.8);
+        ctx.moveTo(0, h);
+        ctx.lineTo(0, base);
+        for(let x=0;x<=w;x+=6){
+          const y = base + Math.sin((x*0.008)+(t*2)) * localAmp * 0.6 + Math.sin((x*0.014)-(t*1.2))* localAmp*0.4;
+          ctx.lineTo(x, y);
+        }
+        ctx.lineTo(w, h);
+        ctx.closePath();
+        ctx.fillStyle = grad();
+        ctx.globalAlpha = 0.85;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    // Particles
+    (function(){
+      const el = document.getElementById('particles');
+      const count = Math.min(70, Math.floor(window.innerWidth/18));
+      const parts = [];
+      for(let i=0;i<count;i++){
+        const d=document.createElement('div'); d.className='particle';
+        const size = Math.random()*2+1; d.style.width=d.style.height=size+'px';
+        d.style.left=Math.random()*100+'%'; d.style.top=Math.random()*100+'%';
+        d.style.opacity=(Math.random()*0.5+0.1).toFixed(2);
+        el.appendChild(d); parts.push({el:d,speed:Math.random()*0.1+0.05,id:i});
+      }
+      setInterval(()=>{
+        parts.forEach(p=>{ const top=parseFloat(p.el.style.top); const next=(top+p.speed)%100; p.el.style.top=next+'%'; p.el.style.opacity=(Math.sin(Date.now()*0.001+p.id)*0.3+0.3).toFixed(2); });
+      },100);
+    })();
+  </script>
+</body>
+</html>
+
+
