@@ -1,42 +1,48 @@
 [
   {
-    "id": 11,
+    "id": 12,
     "title": {
-      "he": "יששששששששששששששששששששש",
-      "en": "New Project"
+      "he": "The Southerners",
+      "en": "The Southerners"
     },
     "description": {
-      "he": "תיאור קצר של הפרויקט החדש",
-      "en": "Short description of the new project"
+      "he": "סרטון הרמה לצוות שלי לקראת תחרות היזמות הגדולה של המדינה",
+      "en": "A personal video about the world of imagination, music legends that accompany me, and the connection between dreams and reality."
     },
     "detailedDescription": {
-      "he": "כאן יופיע תיאור מפורט של הפרויקט. זהו המקום להרחיב על המטרות, השיטות והתוצאות.",
-      "en": "Here is a detailed description of the project. This is the place to expand on the goals, methods and results."
+      "he": "מכירים את הרגע ההוא? הרגע שבו אתם נוסעים אל תוך עולם של דמיונות, אל אשליות, אל האדם שתמיד חלמתם להיות? את הטקסט הזה כתבתי לפני לא מעט זמן, והוא מספר על 'ספר הדימיונות' שכל אחד מאיתנו כותב במהלך החיים. בדמיון שלנו אנחנו יכולים להיות הכול, גם דברים שברור לנו שלעולם לא נהיה. התרופה עבורי (כמו בטח לא מעט מכם) לעולם האמיתי תמיד הייתה מוזיקה. בסרטון הזה ניסיתי לחבר בין המוזיקה, אגדות המוזיקה שאני מרגיש שמלוות אותי כל החיים, לבין מי ומה שאני ואולי כולנו מנסים להיות בעולם, כל אחד בדרך שלו.",
+      "en": "Do you know that moment? The moment when you travel into a world of fantasies, into illusions, into the person you always dreamed of being? I wrote this text quite some time ago, and it tells about the 'book of imagination' that each of us writes throughout life. In our imagination we can be everything, even things we know we will never be. The remedy for me (like probably many of you) to the real world has always been music. In this video I tried to connect between music, the music legends that I feel have accompanied me all my life, and who and what I and perhaps all of us are trying to be in the world, each in their own way."
     },
-    "category": "tool",
-    "date": "2025-08-07",
-    "image": "https://images.unsplash.com/photo-1585974738771-84483dd9f89f?w=600&h=400&fit=crop",
-    "detailImage": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=600&fit=crop",
-    "link": "#new-project",
-    "isVideo": false,
+    "category": "video",
+    "date": "2025-08-08",
+    "image": "https://i.postimg.cc/X786Wgkf/Screenshot-2025-08-08-113051.png",
+    "detailImage": "https://i.postimg.cc/X786Wgkf/Screenshot-2025-08-08-113051.png",
+    "link": "https://vimeo.com/1108356010?fl=pl&fe=sh",
+    "isVideo": true,
     "technologies": [
-      "Technology 1",
-      "Technology 2",
-      "Technology 3"
+      "Reve AI",
+      "Filmora",
+      "Suno AI",
+      "Eleven Labs",
+      "Dreamina",
+      "Kling AI",
+      "Sora",
+      "Chat GPT",
+      "Imagenfx"
     ],
-    "status": "בפיתוח",
+    "status": "פורסם",
     "features": {
       "he": [
-        "תכונה 1",
-        "תכונה 2",
-        "תכונה 3",
-        "תכונה 4"
+        "סיפור אישי",
+        "חיבור בין מוזיקה לחלומות",
+        "הרהורים על דמיון ומציאות",
+        "ביטוי אומנותי"
       ],
       "en": [
-        "Feature 1",
-        "Feature 2",
-        "Feature 3",
-        "Feature 4"
+        "Personal story",
+        "Connection between music and dreams",
+        "Reflections on imagination and reality",
+        "Artistic expression"
       ]
     }
   },
