@@ -2,11 +2,11 @@
   {
     "id": 12,
     "title": {
-      "he": "Legends (עותק)",
-      "en": "Legends (Copy)"
+      "he": "The Southerners",
+      "en": "The Southerners"
     },
     "description": {
-      "he": "סרטון אישי על עולם הדימיונות, אגדות המוזיקה שמלוות אותי, והקשר בין חלומות למציאות.",
+      "he": "סרטון הרמה לצוות שלי לקראת תחרות היזמות הגדולה של המדינה",
       "en": "A personal video about the world of imagination, music legends that accompany me, and the connection between dreams and reality."
     },
     "detailedDescription": {
@@ -15,9 +15,9 @@
     },
     "category": "video",
     "date": "2025-08-08",
-    "image": "https://i.postimg.cc/y8Y180by/Screenshot-2025-05-23-015716.png",
-    "detailImage": "https://i.postimg.cc/y8Y180by/Screenshot-2025-05-23-015716.png",
-    "link": "https://vimeo.com/1086929819",
+    "image": "https://i.postimg.cc/X786Wgkf/Screenshot-2025-08-08-113051.png",
+    "detailImage": "https://i.postimg.cc/X786Wgkf/Screenshot-2025-08-08-113051.png",
+    "link": "https://vimeo.com/1108356010?fl=pl&fe=sh",
     "isVideo": true,
     "technologies": [
       "Reve AI",
